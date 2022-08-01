@@ -1,12 +1,18 @@
+<div class="top-bar">
+  <h1>Home page</h1>
+</div>
 <div class="container">
   <div class="categories">
     <h3>Categories:</h3>
     <ul>
-    <li><button>Most popular movies</button></li>
+    <li><button routerLink="popular-movies">Most popular movies</button></li>
     <li><button>Movie search engine</button></li>
     <li><button>Movie details</button></li>
   </ul>
   </div>
   <div class="contents">
+    <router-outlet></router-outlet>
   </div>
 </div>
+
+

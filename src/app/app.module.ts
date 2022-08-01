@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PopularMoviesComponent } from './popular-movies/popular-movies.component';
+import { RoutingComponents } from './app-routing.module'
 
 @NgModule({
   declarations: [
     AppComponent,
-    PopularMoviesComponent
+    RoutingComponents
   ],
   imports: [
     BrowserModule,
@@ -18,3 +17,4 @@ import { PopularMoviesComponent } from './popular-movies/popular-movies.componen
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

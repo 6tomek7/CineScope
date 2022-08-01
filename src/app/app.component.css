@@ -1,3 +1,9 @@
+h1 {
+    align-items: center;
+    background-color: aquamarine;
+    justify-content: center;
+}
+
 .container {
     display: flex;
 }
@@ -6,9 +12,8 @@
     border-right: 1px solid black;
     padding: 1rem;
     min-height: 700px;
-    display: inline;
 }
 
 .contents {
-    background-color: bisque;
+    padding: 3rem;
 }
