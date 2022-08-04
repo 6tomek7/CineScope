@@ -1,8 +1,17 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface Movies {
-  page: number;
+  page: number
+  total_pages: number
+  results: Array<MoviesResult>
+}
+
+export interface MoviesResult {
+  title : string
+  poster_path: string
+  release_date: string
 }
 
 /* . . . */
