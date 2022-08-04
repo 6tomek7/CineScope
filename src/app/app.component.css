@@ -12,6 +12,7 @@
     border-right: 1px solid black;
     padding: 1rem;
     min-height: 700px;
+    min-width: 180px;
 }
 
 .contents {
