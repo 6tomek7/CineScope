@@ -1,5 +1,3 @@
-import { Movies, MoviesResult } from './../movies.service';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 
