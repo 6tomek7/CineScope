@@ -36,7 +36,7 @@ export class SearchEngineComponent implements OnInit {
       release_date: dto.release_date,
       overview: dto.overview,
       genre_ids: dto.genre_ids,
-      id: dto.number
+      id: dto.id
     }
 
   }

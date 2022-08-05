@@ -5,7 +5,7 @@
 <div *ngFor="let t of titles">
     <ul>
         <li>
-            <h3>Title: {{t.title}}</h3>
+            <a routerLink="/details/{{t.id}}"><h3>Title: {{t.title}}</h3></a>
              <p>Release date: {{t.release_date}}</p>
             <img  src="{{imagePath}}{{t.poster_path}}">
         </li>

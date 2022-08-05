@@ -3,7 +3,7 @@
 <div *ngFor="let m of movies">
     <ul>
         <li>
-            <h3>Title: {{m.title}}</h3>
+            <a routerLink="/details/{{m.id}}"><h3>Title: {{m.title}}</h3></a>
             <p>Release date: {{m.release_date}}</p>
             <img  src="{{imagePath}}{{m.poster_path}}">
         </li>

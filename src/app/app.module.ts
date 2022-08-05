@@ -6,14 +6,12 @@ import { RoutingComponents } from './app-routing.module'
 import { HttpClientModule } from '@angular/common/http';
 import { SearchEngineComponent } from './search-engine/search-engine.component';
 import { FormsModule } from '@angular/forms';
-import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponents,
     SearchEngineComponent,
-    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
