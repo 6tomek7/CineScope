@@ -10,7 +10,7 @@ import { PopularMoviesResult, PopularMovies } from '../movies.service';
 
 export class PopularMoviesComponent implements OnInit {
   imagePath = "https://image.tmdb.org/t/p/w500"
-  public data : any 
+  public data: any 
   constructor(private http: HttpClient) {}
   movies: Array<PopularMoviesResult> | undefined;
   
