@@ -28,7 +28,9 @@ export class PopularMoviesComponent implements OnInit {
     return { 
       title: dto.title,
       poster_path: dto.poster_path,
-      release_date: dto.release_date
+      release_date: dto.release_date,
+      overview: dto.overview,
+      genre_ids: dto.genre_ids
     }
   }
 }
