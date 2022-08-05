@@ -11,6 +11,7 @@ export interface PopularMoviesResult {
   release_date: string
   overview: string
   genre_ids: number
+  id: number
 }
 
 export interface SearchMovies {
@@ -23,6 +24,7 @@ export interface SearchMoviesResult {
   release_date: string
   overview: string
   genre_ids: number
+  id: number
 }
 
 

@@ -30,7 +30,8 @@ export class PopularMoviesComponent implements OnInit {
       poster_path: dto.poster_path,
       release_date: dto.release_date,
       overview: dto.overview,
-      genre_ids: dto.genre_ids
+      genre_ids: dto.genre_ids,
+      id: dto.number
     }
   }
 }
