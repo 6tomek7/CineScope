@@ -19,6 +19,8 @@ export interface SearchMovies {
 
 export interface SearchMoviesResult {
   title: string
+  poster_path: string
+  release_date: string
 }
 
 @Injectable({ providedIn: 'root' })

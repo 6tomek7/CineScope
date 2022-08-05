@@ -12,14 +12,13 @@ import { SearchMovies, SearchMoviesResult } from '../movies.service';
 
 export class SearchEngineComponent implements OnInit {
 
+  imagePath = "https://image.tmdb.org/t/p/w300"
   constructor(private http: HttpClient) {}
   titles: Array<SearchMoviesResult> | undefined;
   name = ""
   public data: any
 
-  test(){
-    console.log(this.name)
-  }
+  
 
   getTitles(){
     const url = "https://api.themoviedb.org/3/search/movie?api_key=38193385b589296926c46f16b67e1b93&language=en-US&query=" + this.name;
@@ -32,7 +31,9 @@ export class SearchEngineComponent implements OnInit {
   ngOnInit(): void {}
   convertToTitles (dto:any) : SearchMoviesResult {
     return {
-      title: dto.title
+      title: dto.title,
+      poster_path: dto.poster_path,
+      release_date: dto.release_date
     }
 
   }
