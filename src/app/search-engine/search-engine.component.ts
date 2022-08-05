@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { SearchMoviesResult } from '../movies.service';
 
 
 @Component({
@@ -9,5 +11,9 @@ import { Component, OnInit } from '@angular/core';
 
 
 export class SearchEngineComponent implements OnInit {
+
+  constructor(private http: HttpClient) {}
+  titles: Array<SearchMoviesResult> | undefined;
+
   ngOnInit(): void {}
 }
