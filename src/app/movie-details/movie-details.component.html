@@ -1,1 +1,13 @@
-<p>movie-details works!</p>
+<button (click)="getTitles()">Details</button>
+<div *ngIf="data">
+    <h3>{{data.title}}</h3> 
+    <img  src="{{imagePath}}{{data.poster_path}}">
+    <li><b>Date:</b> {{data.release_date}}</li>
+    <li><b>Overview:</b>{{data.overview}}</li>
+    <li><b>Genres:</b></li> 
+</div>
+
+<div *ngFor="let m of genres">
+    - {{m.name}}
+</div>
+

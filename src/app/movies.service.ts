@@ -27,6 +27,20 @@ export interface SearchMoviesResult {
   id: number
 }
 
+export interface Movies {
+  
+  title: string
+  poster_path: string
+  release_date: string
+  overview: string
+  genres: Array<MoviesGenres>
+}
+
+export interface MoviesGenres {
+  name: string
+}
+
+
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
