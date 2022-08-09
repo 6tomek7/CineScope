@@ -33,6 +33,7 @@ export interface Movies {
   poster_path: string
   release_date: string
   overview: string
+  runtime: number
   genres: Array<MoviesGenres>
 }
 

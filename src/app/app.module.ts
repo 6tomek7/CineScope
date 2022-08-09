@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { RoutingComponents } from './app-routing.module'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { TrnsformTimePipe } from './shared/trnsform-time.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponents,
+    TrnsformTimePipe,
   ],
   imports: [
     BrowserModule,

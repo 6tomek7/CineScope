@@ -1,6 +1,7 @@
 <button (click)="getTitles()">Details</button>
 <div *ngIf="data">
     <h3>{{data.title}}</h3> 
+    <p>Runtime: {{data.runtime | trnsformTime}}</p>
     <img  src="{{imagePath}}{{data.poster_path}}">
     <li><b>Date:</b> {{data.release_date}}</li>
     <li><b>Overview:</b>{{data.overview}}</li>
