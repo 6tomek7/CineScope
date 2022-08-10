@@ -15,8 +15,8 @@ export class MovieDetailsComponent implements OnInit {
   urlId = environment.urlId
   urlIdApi = environment.urlIdApi
   apiKey = environment.apiKey
-  public id: any
-  public data: any 
+  private _id: any
+  data: any 
   genres: Array<MoviesGenres> | undefined;
   constructor(
     private route: ActivatedRoute,
@@ -24,11 +24,11 @@ export class MovieDetailsComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-    this.id = this.route.snapshot.params["id"] 
+    this._id = this.route.snapshot.params["id"] 
   }
 
   getTitles(){
-    this.http.get<Movies>(this.urlId+this.id+this.urlIdApi+this.apiKey).subscribe((res)=>{
+    this.http.get<Movies>(this.urlId+this._id+this.urlIdApi+this.apiKey).subscribe((res)=>{
       this.data = res
       this.genres = res.genres.map(array => this.convertToMovies(array))
      })
