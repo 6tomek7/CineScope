@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { PopularMoviesResult, PopularMovies } from '../movies.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-popular-movies',
@@ -9,14 +10,14 @@ import { PopularMoviesResult, PopularMovies } from '../movies.service';
 })
 
 export class PopularMoviesComponent implements OnInit {
-  imagePath = "https://image.tmdb.org/t/p/w300"
+  urlImage = environment.urlImage
+  urlPopularMovies = environment.urlPopularMovies
   public data: any 
   constructor(private http: HttpClient) {}
   movies: Array<PopularMoviesResult> | undefined;
   
   getData(){
-    const url ='https://api.themoviedb.org/3/movie/popular?api_key=38193385b589296926c46f16b67e1b93&language=en-US&page=1'
-    this.http.get<PopularMovies>(url).subscribe((res)=>{
+    this.http.get<PopularMovies>(this.urlPopularMovies).subscribe((res)=>{
       this.data = res
       this.movies = res.results.map(array => this.convertToMovie(array))
     })}

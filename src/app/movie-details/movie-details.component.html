@@ -2,13 +2,13 @@
 <div *ngIf="data">
     <h3>{{data.title}}</h3> 
     <p>Runtime: {{data.runtime | trnsformTime}}</p>
-    <img  src="{{imagePath}}{{data.poster_path}}">
+    <img  src="{{urlImage}}{{data.poster_path}}">
     <li><b>Date:</b> {{data.release_date}}</li>
     <li><b>Overview:</b>{{data.overview}}</li>
     <li><b>Genres:</b></li> 
 </div>
 
-<div *ngFor="let m of genres">
-    - {{m.name}}
+<div *ngFor="let genre of genres">
+    - {{genre.name}}
 </div>
 

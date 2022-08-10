@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { SearchMovies, SearchMoviesResult } from '../movies.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -11,8 +12,8 @@ import { SearchMovies, SearchMoviesResult } from '../movies.service';
 
 
 export class SearchEngineComponent implements OnInit {
-
-  imagePath = "https://image.tmdb.org/t/p/w300"
+  urlImage = environment.urlImage
+  urlSearchMovies = environment.urlSearchMovies
   constructor(private http: HttpClient) {}
   titles: Array<SearchMoviesResult> | undefined;
   name = ""
@@ -21,8 +22,7 @@ export class SearchEngineComponent implements OnInit {
   
 
   getTitles(){
-    const url = "https://api.themoviedb.org/3/search/movie?api_key=38193385b589296926c46f16b67e1b93&language=en-US&query=" + this.name;
-    this.http.get<SearchMovies>(url).subscribe((res)=>{
+    this.http.get<SearchMovies>(this.urlSearchMovies+this.name).subscribe((res)=>{
       this.data = res
       this.titles = res.results.map(array => this.convertToTitles(array))
     })
