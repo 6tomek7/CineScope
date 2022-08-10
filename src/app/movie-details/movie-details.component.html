@@ -6,4 +6,11 @@
     <li><b>Overview:</b>{{data.overview}}</li>
 </div>
 
+<button (click)="getCasts()">List of actors</button>
+<div *ngFor="let movie of movies">
+   <ul><li>{{movie.name}}</li></ul>
+    </div>
+
+
+
 
