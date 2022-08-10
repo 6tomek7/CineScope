@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 
-
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
@@ -16,6 +15,8 @@ export class MovieDetailsComponent implements OnInit {
   urlImage = environment.urlImage
   urlId = environment.urlId
   apiKey = environment.apiKey
+  urlCasts = environment.urlCast
+  urlCredits = environment.urlCredits
   private _id: any
   data$!: Observable<Movies>;
   genres: Array<MoviesGenres> | undefined;

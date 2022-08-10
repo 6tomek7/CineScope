@@ -41,6 +41,13 @@ export interface MoviesGenres {
   name: string
 }
 
+export interface Credits {
+  cast: Array<CreditsResult>
+}
+
+export interface CreditsResult{
+  name: string
+}
 
 
 @Injectable({ providedIn: 'root' })
