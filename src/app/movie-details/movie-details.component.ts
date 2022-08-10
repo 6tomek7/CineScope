@@ -15,7 +15,6 @@ import { Observable } from 'rxjs/internal/Observable';
 export class MovieDetailsComponent implements OnInit {
   urlImage = environment.urlImage
   urlId = environment.urlId
-  urlIdApi = environment.urlIdApi
   apiKey = environment.apiKey
   private _id: any
   data$!: Observable<Movies>;
@@ -27,10 +26,8 @@ export class MovieDetailsComponent implements OnInit {
   
   ngOnInit(): void {
     this._id = this.route.snapshot.params["id"] 
-    this.data$ = this.http.get<Movies>(this.urlId+this._id+this.urlIdApi+this.apiKey);
+    this.data$ = this.http.get<Movies>(this.urlId+this._id+this.apiKey);
   }
-
- 
 }
 
 
