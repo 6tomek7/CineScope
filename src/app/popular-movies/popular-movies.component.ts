@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class PopularMoviesComponent implements OnInit {
   urlImage = environment.urlImage
   urlPopularMovies = environment.urlPopularMovies
-  public data: any 
+  data: any 
   constructor(private http: HttpClient) {}
   movies: Array<PopularMoviesResult> | undefined;
   
