@@ -1,9 +1,15 @@
 <div *ngIf="data$ | async as data">
     <h3>{{data.title}}</h3> 
-    <p>Runtime: {{data.runtime | trnsformTime}}</p>
-    <img  src="{{urlImage}}{{data.poster_path}}">
-    <li><b>Date:</b> {{data.release_date}}</li>
-    <li><b>Overview:</b>{{data.overview}}</li>
+    <div class="container">
+        <div class="left-column">
+            <img  src="{{urlImage}}{{data.poster_path}}">
+        </div>
+        <div class="right-column">
+            <p>Runtime: {{data.runtime | trnsformTime}}</p>
+            <li><b>Date:</b> {{data.release_date}}</li>
+            <li><b>Overview:</b>{{data.overview}}</li>
+        </div>
+    </div>
 </div>
 
 <button (click)="getCasts()">List of actors</button>
