@@ -45,9 +45,17 @@ export interface Credits {
   cast: Array<CreditsResult>
 }
 
-export interface CreditsResult{
+export interface CreditsResult {
   name: string
   id: number
+}
+
+export interface Person {
+  birthday: string
+  name: string
+  profile_path: string
+  biography: string
+  place_of_birth: string
 }
 
 
