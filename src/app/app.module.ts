@@ -6,14 +6,12 @@ import { RoutingComponents } from './app-routing.module'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TrnsformTimePipe } from './shared/trnsform-time.pipe';
-import { PersonDetailsComponent } from './person-details/person-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponents,
     TrnsformTimePipe,
-    PersonDetailsComponent,
   ],
   imports: [
     BrowserModule,

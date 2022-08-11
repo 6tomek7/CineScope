@@ -7,9 +7,13 @@
 </div>
 
 <button (click)="getCasts()">List of actors</button>
-<div *ngFor="let movie of movies">
-   <ul><li>{{movie.name}}</li></ul>
-    </div>
+<div *ngFor="let person of persons">
+    <ul>
+         <li>
+            <a routerLink="/person/{{person.id}}">{{person.name}}</a>
+        </li>
+    </ul>
+</div>
 
 
 

@@ -47,6 +47,7 @@ export interface Credits {
 
 export interface CreditsResult{
   name: string
+  id: number
 }
 
 

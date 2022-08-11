@@ -1,6 +1,6 @@
 import { MoviesGenres, Movies, Credits, CreditsResult } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
@@ -19,7 +19,7 @@ export class MovieDetailsComponent implements OnInit {
   urlCredits = environment.urlCredits
   private _id: any
   data: any
-  movies: Array<CreditsResult> | undefined
+  persons: Array<CreditsResult> | undefined
   data$!: Observable<Movies>;
   genres: Array<MoviesGenres> | undefined;
   constructor(
@@ -35,13 +35,14 @@ export class MovieDetailsComponent implements OnInit {
   getCasts(){
     this.http.get<Credits>(this.urlCasts+this._id+this.urlCredits+this.apiKey).subscribe((res)=>{
       this.data = res
-      this.movies = res.cast.map(array => this.convertToMovie(array))
+      this.persons = res.cast.map(array => this.convertToMovie(array))
     })}
     
 
   convertToMovie (dto: any) : CreditsResult {
     return { 
-     name: dto.name
+     name: dto.name,
+     id: dto.id
     }
   }
 }

@@ -1,12 +1,12 @@
 <h1>Popular movies</h1>
 
 <button (click)="getData()">Popular movies</button>
-<div *ngFor="let m of movies">
+<div *ngFor="let movie of movies">
     <ul>
         <li>
-            <a routerLink="/details/{{m.id}}"><h3>Title: {{m.title}}</h3></a>
-            <p>Release date: {{m.release_date}}</p>
-            <img  src="{{urlImage}}{{m.poster_path}}">
+            <a routerLink="/details/{{movie.id}}"><h3>Title: {{movie.title}}</h3></a>
+            <p>Release date: {{movie.release_date}}</p>
+            <img  src="{{urlImage}}{{movie.poster_path}}">
         </li>
     </ul>
 </div>
