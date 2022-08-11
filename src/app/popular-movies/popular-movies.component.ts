@@ -12,13 +12,11 @@ import { environment } from 'src/environments/environment';
 export class PopularMoviesComponent implements OnInit {
   urlImage = environment.urlImage
   urlPopularMovies = environment.urlPopularMovies
-  data: any 
   constructor(private http: HttpClient) {}
   movies: Array<PopularMoviesResult> | undefined;
   
   getData(){
     this.http.get<PopularMovies>(this.urlPopularMovies).subscribe((res)=>{
-      this.data = res
       this.movies = res.results.map(array => this.convertToMovie(array))
     })}
     
