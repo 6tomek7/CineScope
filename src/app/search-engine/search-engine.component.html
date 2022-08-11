@@ -1,6 +1,9 @@
-<label>Movie search engine</label>
-<input [(ngModel)]="name">
-<button (click)="getTitles()">Search</button>
+<div class="mb-4">
+    <label>Movie search engine</label>
+    <input [(ngModel)]="name">
+    <button (click)="getTitles()">Search</button>
+</div>
+
 
 <div *ngFor="let t of titles">
     <ul>
