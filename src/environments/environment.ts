@@ -8,5 +8,6 @@ export const environment = {
   urlPopularMovies: "https://api.themoviedb.org/3/movie/popular?api_key=38193385b589296926c46f16b67e1b93&language=en-US&page=1",
   urlSearchMovies: "https://api.themoviedb.org/3/search/movie?api_key=38193385b589296926c46f16b67e1b93&language=en-US&query=",
   urlCast: "https://api.themoviedb.org/3/movie/",
-  urlCredits: "/credits"
+  urlCredits: "/credits",
+  urlPersonDetails: "https://api.themoviedb.org/3/person/"
 };
