@@ -3,13 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { SearchMovies, MoviesResult } from '../movies.service';
 import { environment } from 'src/environments/environment';
 
-
 @Component({
   selector: 'app-search-engine',
   templateUrl: './search-engine.component.html',
   styleUrls: ['./search-engine.component.css']
 })
-
 
 export class SearchEngineComponent implements OnInit {
   urlImage = environment.urlImage
@@ -17,8 +15,6 @@ export class SearchEngineComponent implements OnInit {
   constructor(private http: HttpClient) {}
   titles: Array<MoviesResult> | undefined;
   name = ""
-
-  
 
   getTitles(){
     this.http.get<SearchMovies>(this.urlSearchMovies+this.name).subscribe((res)=>{

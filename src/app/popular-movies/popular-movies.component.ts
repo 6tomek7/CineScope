@@ -20,7 +20,6 @@ export class PopularMoviesComponent implements OnInit {
       this.movies = res.results.map(array => this.convertToMovie(array))
     })}
     
-
   ngOnInit(): void {
   }
   convertToMovie (dto: any) : MoviesResult {

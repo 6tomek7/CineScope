@@ -18,7 +18,6 @@ export class MovieDetailsComponent implements OnInit {
   urlCasts = environment.urlCast
   urlCredits = environment.urlCredits
   private _id: any
-  data: any
   persons: Array<CreditsResult> | undefined
   data$!: Observable<Movies>;
   genres: Array<MoviesGenres> | undefined;
@@ -34,11 +33,9 @@ export class MovieDetailsComponent implements OnInit {
 
   getCasts(){
     this.http.get<Credits>(this.urlCasts+this._id+this.urlCredits+this.apiKey).subscribe((res)=>{
-      this.data = res
       this.persons = res.cast.map(array => this.convertToMovie(array))
     })}
     
-
   convertToMovie (dto: any) : CreditsResult {
     return { 
      name: dto.name,
