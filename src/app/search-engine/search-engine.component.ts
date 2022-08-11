@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { SearchMovies, SearchMoviesResult } from '../movies.service';
+import { SearchMovies, MoviesResult } from '../movies.service';
 import { environment } from 'src/environments/environment';
 
 
@@ -15,21 +15,19 @@ export class SearchEngineComponent implements OnInit {
   urlImage = environment.urlImage
   urlSearchMovies = environment.urlSearchMovies
   constructor(private http: HttpClient) {}
-  titles: Array<SearchMoviesResult> | undefined;
+  titles: Array<MoviesResult> | undefined;
   name = ""
-  public data: any
 
   
 
   getTitles(){
     this.http.get<SearchMovies>(this.urlSearchMovies+this.name).subscribe((res)=>{
-      this.data = res
       this.titles = res.results.map(array => this.convertToTitles(array))
     })
   }
   
   ngOnInit(): void {}
-  convertToTitles (dto:any) : SearchMoviesResult {
+  convertToTitles (dto:any) : MoviesResult {
     return {
       title: dto.title,
       poster_path: dto.poster_path,
@@ -38,9 +36,5 @@ export class SearchEngineComponent implements OnInit {
       genre_ids: dto.genre_ids,
       id: dto.id
     }
-
-  }
-  
-
-  
+  }  
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { PopularMoviesResult, PopularMovies } from '../movies.service';
+import { MoviesResult, PopularMovies } from '../movies.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,7 +13,7 @@ export class PopularMoviesComponent implements OnInit {
   urlImage = environment.urlImage
   urlPopularMovies = environment.urlPopularMovies
   constructor(private http: HttpClient) {}
-  movies: Array<PopularMoviesResult> | undefined;
+  movies: Array<MoviesResult> | undefined;
   
   getData(){
     this.http.get<PopularMovies>(this.urlPopularMovies).subscribe((res)=>{
@@ -23,7 +23,7 @@ export class PopularMoviesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  convertToMovie (dto: any) : PopularMoviesResult {
+  convertToMovie (dto: any) : MoviesResult {
     return { 
       title: dto.title,
       poster_path: dto.poster_path,

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface PopularMovies {
-  results: Array<PopularMoviesResult>
+  results: Array<MoviesResult>
 }
 
-export interface PopularMoviesResult {
+export interface MoviesResult {
   title: string
   poster_path: string
   release_date: string
@@ -15,16 +15,7 @@ export interface PopularMoviesResult {
 }
 
 export interface SearchMovies {
-  results: Array<SearchMoviesResult>
-}
-
-export interface SearchMoviesResult {
-  title: string
-  poster_path: string
-  release_date: string
-  overview: string
-  genre_ids: number
-  id: number
+  results: Array<MoviesResult>
 }
 
 export interface Movies {
@@ -58,14 +49,8 @@ export interface Person {
   place_of_birth: string
 }
 
-
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
-
   constructor( private http: HttpClient ) {}
-
 }
 
-/* genres list
-https://api.themoviedb.org/3/genre/movie/list?api_key=38193385b589296926c46f16b67e1b93&language=en-US
-*/
