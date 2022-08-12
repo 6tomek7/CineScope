@@ -15,7 +15,7 @@ export class PopularMoviesComponent implements OnInit {
   movies: Array<MoviesResult> | undefined;
   
   getData(){
-    this.http.get<PopularMovies>(`${environment.apiUrl}/movie/popular?api_key=38193385b589296926c46f16b67e1b93&language=en-US&page=1`).subscribe((res)=>{
+    this.http.get<PopularMovies>(`${environment.apiUrl}/movie/popular${environment.apiKey}`).subscribe((res)=>{
       this.movies = res.results.map(array => this.convertToMovie(array))
     })}
     
