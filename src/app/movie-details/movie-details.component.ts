@@ -13,11 +13,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 export class MovieDetailsComponent implements OnInit {
   urlImage = environment.urlImage
-  urlId = environment.urlId
-  apiKey = environment.apiKey
-  urlCasts = environment.urlCast
-  urlCredits = environment.urlCredits
-  private _id: any
+  private _id: string | undefined
   persons: Array<CreditsResult> | undefined
   data$!: Observable<Movies>;
   genres: Array<MoviesGenres> | undefined;
@@ -28,11 +24,11 @@ export class MovieDetailsComponent implements OnInit {
   
   ngOnInit(): void {
     this._id = this.route.snapshot.params["id"] 
-    this.data$ = this.http.get<Movies>(this.urlId+this._id+this.apiKey);
+    this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
   }
 
   getCasts(){
-    this.http.get<Credits>(this.urlCasts+this._id+this.urlCredits+this.apiKey).subscribe((res)=>{
+    this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`).subscribe((res)=>{
       this.persons = res.cast.map(array => this.convertToMovie(array))
     })}
     

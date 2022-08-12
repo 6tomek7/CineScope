@@ -11,8 +11,6 @@ import { Person } from '../movies.service';
   styleUrls: ['./person-details.component.css']
 })
 export class PersonDetailsComponent implements OnInit {
-  urlPersonDetails = environment.urlPersonDetails
-  apiKey = environment.apiKey
   urlImage = environment.urlImage
   private _id: any
   person$!: Observable<Person>
@@ -24,6 +22,6 @@ export class PersonDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this._id = this.route.snapshot.params["id"] 
-    this.person$ = this.http.get<Person>( this.urlPersonDetails+this._id+this.apiKey);
+    this.person$ = this.http.get<Person>(`${environment.apiUrl}/person/${this._id}${environment.apiKey}`);
   }
 }

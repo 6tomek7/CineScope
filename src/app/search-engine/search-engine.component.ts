@@ -11,13 +11,12 @@ import { environment } from 'src/environments/environment';
 
 export class SearchEngineComponent implements OnInit {
   urlImage = environment.urlImage
-  urlSearchMovies = environment.urlSearchMovies
   constructor(private http: HttpClient) {}
   titles: Array<MoviesResult> | undefined;
   name = ""
 
   getTitles(){
-    this.http.get<SearchMovies>(this.urlSearchMovies+this.name).subscribe((res)=>{
+    this.http.get<SearchMovies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${this.name}`).subscribe((res)=>{
       this.titles = res.results.map(array => this.convertToTitles(array))
     })
   }
