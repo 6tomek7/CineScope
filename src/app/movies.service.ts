@@ -30,6 +30,7 @@ export interface Movies {
 
 export interface MoviesGenres {
   name: string
+  id: number
 }
 
 export interface Credits {
