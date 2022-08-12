@@ -15,8 +15,8 @@ export class MovieDetailsComponent implements OnInit {
   urlImage = environment.urlImage
   private _id: string | undefined
   persons: Array<CreditsResult> | undefined
-  data$!: Observable<Movies>;
-  genres: Array<MoviesGenres> | undefined;
+  data$!: Observable<Movies>
+  genres: Array<MoviesGenres> | undefined
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient
