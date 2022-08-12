@@ -1,3 +1,5 @@
+import { PopularMoviesInTheGenreComponent } from './popular-movies-in-the-genre/popular-movies-in-the-genre.component';
+import { PopularMoviesComponent } from './popular-movies/popular-movies.component';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -19,7 +21,6 @@ export interface SearchMovies {
 }
 
 export interface Movies {
-  
   title: string
   poster_path: string
   release_date: string
@@ -48,6 +49,19 @@ export interface Person {
   profile_path: string
   biography: string
   place_of_birth: string
+}
+
+export interface PopularMoviesInTheGenre {
+  results: Array<PopularMoviesInTheGenreResult>
+}
+
+export interface PopularMoviesInTheGenreResult {
+  title: string
+  poster_path: string
+  release_date: string
+  overview: string
+  genre_ids: number
+  id: number
 }
 
 @Injectable({ providedIn: 'root' })

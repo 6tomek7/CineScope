@@ -1,1 +1,12 @@
 <p>popular-movies-in-the-genre works!</p>
+<div *ngIf="genres$ | async as genres">
+    <div *ngFor="let result of genres.results">
+        <ul>
+            <li>
+                <a routerLink="/details/{{result.id}}"><h3>Title: {{result.title}}</h3></a>
+                <p>Release date: {{result.release_date}}</p>
+                <img  src="{{urlImage}}{{result.poster_path}}">
+            </li>
+        </ul>
+    </div>
+</div>

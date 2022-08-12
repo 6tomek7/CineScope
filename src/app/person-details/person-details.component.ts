@@ -12,7 +12,7 @@ import { Person } from '../movies.service';
 })
 export class PersonDetailsComponent implements OnInit {
   urlImage = environment.urlImage
-  private _id: any
+  private _id: number | undefined
   person$!: Observable<Person>
 
   constructor(
