@@ -7,9 +7,9 @@
         <div class="right-column">
             <p><b>Runtime:</b> {{data.runtime | trnsformTime}}</p>
             <p><b>Date:</b> {{data.release_date}}</p>
-            <p><b>Genres:</b>
+            <p><b>Genres: </b>
                 <span *ngFor="let genre of data.genres">
-                    <a routerLink="/genre/{{genre.id}}">{{genre.name}},</a>
+                    <a routerLink="/genre/{{genre.id}}/{{genre.name}}">{{genre.name}},</a>
                 </span>
             </p>
             <p><b>Overview:</b>{{data.overview}}</p>

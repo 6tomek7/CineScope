@@ -12,9 +12,9 @@ import { environment } from 'src/environments/environment';
 })
 export class PopularMoviesInTheGenreComponent implements OnInit {
   private _id: number | undefined
+  _name: string | undefined
   genres$!: Observable<PopularMoviesInTheGenre>
   urlImage = environment.urlImage
-
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient
@@ -22,6 +22,7 @@ export class PopularMoviesInTheGenreComponent implements OnInit {
 
   ngOnInit(): void {
     this._id = this.route.snapshot.params["id"] 
+    this._name = this.route.snapshot.params["name"]
     this.genres$ = this.http.get<PopularMoviesInTheGenre>(`${environment.apiUrl}/discover/movie${environment.apiKey}&sort_by=popularity.desc&page=1&with_genres=${this._id}`);
   }
 }

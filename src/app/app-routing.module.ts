@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: "search-engine", component: SearchEngineComponent },
   { path: "details/:id", component: MovieDetailsComponent },
   { path: "person/:id", component: PersonDetailsComponent },
-  { path: "genre/:id", component: PopularMoviesInTheGenreComponent }
+  { path: "genre/:id/:name", component: PopularMoviesInTheGenreComponent }
 ];
 
 @NgModule({
