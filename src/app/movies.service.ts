@@ -74,6 +74,14 @@ export interface SearchActorsResult {
   profile_path: string
 }
 
+export interface Recommendations {
+  results: Array<RecommendationsResult>
+}
+
+export interface RecommendationsResult {
+  title: string
+  poster_path: string
+}
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   constructor( private http: HttpClient ) {}
