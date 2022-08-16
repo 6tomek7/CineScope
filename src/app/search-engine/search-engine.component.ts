@@ -67,5 +67,10 @@ export class SearchEngineComponent implements OnInit {
     }
   }
 
+  clear(){
+    this.movies = []
+    this.actors = []
+  }
+  
   ngOnInit(): void {}
 }
