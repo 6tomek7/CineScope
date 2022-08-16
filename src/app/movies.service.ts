@@ -64,6 +64,16 @@ export interface PopularMoviesInTheGenreResult {
   id: number
 }
 
+export interface SearchActors {
+  results: Array<SearchActorsResult>
+}
+
+export interface SearchActorsResult {
+  id: number
+  name: string
+  profile_path: string
+}
+
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   constructor( private http: HttpClient ) {}

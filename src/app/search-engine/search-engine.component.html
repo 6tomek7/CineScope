@@ -1,16 +1,26 @@
 <div class="mb-4">
-    <label>Movie search engine</label>
+    <label>Search for</label>
+    <button (click)="getTitles()">Movie</button>
+    <button (click)="getActors()">Person</button>
     <input [(ngModel)]="name">
-    <button (click)="getTitles()">Search</button>
 </div>
 
 
-<div *ngFor="let t of titles">
+<div *ngFor="let title of titles">
     <ul>
         <li>
-            <a routerLink="/details/{{t.id}}"><h3>Title: {{t.title}}</h3></a>
-             <p>Release date: {{t.release_date}}</p>
-            <img  src="{{urlImage}}{{t.poster_path}}">
+            <a routerLink="/details/{{title.id}}"><h3>Title: {{title.title}}</h3></a>
+             <p>Release date: {{title.release_date}}</p>
+            <img  src="{{urlImage}}{{title.poster_path}}">
+        </li>
+    </ul>
+</div>
+
+<div *ngFor="let actor of actors">
+    <ul>
+        <li>
+            <a routerLink="/details/{{actor.id}}"><h3>Title: {{actor.name}}</h3></a>
+            <img  src="{{urlImage}}{{actor.profile_path}}">
         </li>
     </ul>
 </div>

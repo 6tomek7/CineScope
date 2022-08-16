@@ -1,3 +1,4 @@
+import { SearchActors, SearchActorsResult } from './../movies.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { SearchMovies, MoviesResult } from '../movies.service';
@@ -12,13 +13,20 @@ import { environment } from 'src/environments/environment';
 export class SearchEngineComponent implements OnInit {
   urlImage = environment.urlImage
   constructor(private http: HttpClient) {}
-  titles: Array<MoviesResult> | undefined;
+  titles: Array<MoviesResult> | undefined
+  actors: Array<SearchActorsResult> | undefined
   name = ""
 
   getTitles(){
     this.http.get<SearchMovies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${this.name}`).subscribe((res)=>{
       this.titles = res.results.map(array => this.convertToTitles(array))
     })
+  }
+
+  getActors(){
+    this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${this.name}`).subscribe((res)=>{
+      this.actors = res.results.map(array => this.convertToActors(array))
+  })
   }
   
   ngOnInit(): void {}
@@ -32,4 +40,12 @@ export class SearchEngineComponent implements OnInit {
       id: dto.id
     }
   }  
+
+  convertToActors (dto:any) : SearchActorsResult {
+    return {
+      id: dto.id,
+      name: dto.name,
+      profile_path: dto.profile_path
+    }
+  }
 }
