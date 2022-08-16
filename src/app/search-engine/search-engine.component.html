@@ -6,7 +6,7 @@
 </div>
 <div>
     <input [(ngModel)]="name" placeholder="Search...">
-    <button [disabled]="searchFor === ''" (click)="choice()">Search</button>
+    <button [disabled]="searchFor === ''" (click)="choice(); name=''">Search</button>
 </div>
 
 <div *ngFor="let movie of movies">

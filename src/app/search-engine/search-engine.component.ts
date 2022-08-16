@@ -24,13 +24,6 @@ export class SearchEngineComponent implements OnInit {
     })
   }
 
-  getActors(){
-    this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${this.name}`).subscribe((res)=>{
-      this.actors = res.results.map(array => this.convertToActors(array))
-    })
-  }
-  
-  ngOnInit(): void {}
   convertToMovies (dto:any) : MoviesResult {
     return {
       title: dto.title,
@@ -42,6 +35,19 @@ export class SearchEngineComponent implements OnInit {
     }
   }  
 
+  getActors(){
+    this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${this.name}`).subscribe((res)=>{
+      this.actors = res.results.map(array => this.convertToActors(array))
+    })
+  }
+
+  convertToActors (dto:any) : SearchActorsResult {
+    return {
+      id: dto.id,
+      name: dto.name,
+      profile_path: dto.profile_path
+    }
+  }
   
   searchActors() {
     this.searchFor = "actors"
@@ -61,12 +67,5 @@ export class SearchEngineComponent implements OnInit {
     }
   }
 
-
-  convertToActors (dto:any) : SearchActorsResult {
-    return {
-      id: dto.id,
-      name: dto.name,
-      profile_path: dto.profile_path
-    }
-  }
+  ngOnInit(): void {}
 }
