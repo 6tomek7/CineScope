@@ -13,24 +13,25 @@ import { environment } from 'src/environments/environment';
 export class SearchEngineComponent implements OnInit {
   urlImage = environment.urlImage
   constructor(private http: HttpClient) {}
-  titles: Array<MoviesResult> | undefined
+  movies: Array<MoviesResult> | undefined
   actors: Array<SearchActorsResult> | undefined
   name = ""
+  searchFor = ""
 
-  getTitles(){
+  getMovies(){
     this.http.get<SearchMovies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${this.name}`).subscribe((res)=>{
-      this.titles = res.results.map(array => this.convertToTitles(array))
+      this.movies = res.results.map(array => this.convertToMovies(array))
     })
   }
 
   getActors(){
     this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${this.name}`).subscribe((res)=>{
       this.actors = res.results.map(array => this.convertToActors(array))
-  })
+    })
   }
   
   ngOnInit(): void {}
-  convertToTitles (dto:any) : MoviesResult {
+  convertToMovies (dto:any) : MoviesResult {
     return {
       title: dto.title,
       poster_path: dto.poster_path,
@@ -40,6 +41,26 @@ export class SearchEngineComponent implements OnInit {
       id: dto.id
     }
   }  
+
+  
+  searchActors() {
+    this.searchFor = "actors"
+  }
+
+  searchMovies() {
+    this.searchFor = "movies"
+  }
+
+  choice() {
+    if (this.searchFor === "actors"){
+      this.getActors()   
+    }
+    else if (this.searchFor === "movies")
+    {
+      this.getMovies()
+    }
+  }
+
 
   convertToActors (dto:any) : SearchActorsResult {
     return {
