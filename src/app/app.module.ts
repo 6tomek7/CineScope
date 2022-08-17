@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { TrnsformTimePipe } from './shared/trnsform-time.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecommendationsMoviesComponent } from './recommendations-movies/recommendations-movies.component';
+import { ListOfMoviesComponent } from './list-of-movies/list-of-movies.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RecommendationsMoviesComponent } from './recommendations-movies/recomme
     RoutingComponents,
     TrnsformTimePipe,
     RecommendationsMoviesComponent,
+    ListOfMoviesComponent,
   ],
   imports: [
     BrowserModule,
