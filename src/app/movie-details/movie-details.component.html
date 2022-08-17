@@ -17,13 +17,15 @@
     </div>
 </div>
 
-<button (click)="getCasts()">List of actors</button>
-<div *ngFor="let person of persons">
-    <ul>
-         <li>
+<h3 class="mt-3">Cast</h3>
+<div class="persons" *ngIf="persons$ |async as persons">
+    <div *ngFor="let person of persons.cast">
+     <ul>
+             <li>
             <a routerLink="/person/{{person.id}}">{{person.name}}</a>
         </li>
-    </ul>
+        </ul>
+    </div>
 </div>
 
 <app-recommendations-movies></app-recommendations-movies>

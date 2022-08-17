@@ -15,7 +15,7 @@ export class RecommendationsMoviesComponent implements OnInit {
   private _id: string | undefined
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient) { }
+    private http: HttpClient) {}
   movies: Array<RecommendationsResult> | undefined;
   data$!: Observable<Recommendations>
 

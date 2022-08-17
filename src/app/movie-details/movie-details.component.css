@@ -5,3 +5,9 @@
 .right-column {
     padding: 1rem;
 }
+
+.persons {
+    display: flex;
+    overflow-y: auto;
+    width: 1000px;
+}

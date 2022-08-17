@@ -81,6 +81,7 @@ export interface Recommendations {
 export interface RecommendationsResult {
   title: string
   poster_path: string
+  id: number
 }
 @Injectable({ providedIn: 'root' })
 export class MoviesService {

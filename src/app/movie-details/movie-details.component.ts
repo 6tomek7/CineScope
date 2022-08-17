@@ -17,6 +17,7 @@ export class MovieDetailsComponent implements OnInit {
   persons: Array<CreditsResult> | undefined
   data$!: Observable<Movies>
   genres: Array<MoviesGenres> | undefined
+  persons$: Observable<Credits> | undefined
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient
@@ -25,18 +26,7 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     this._id = this.route.snapshot.params["id"] 
     this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
-  }
-
-  getCasts(){
-    this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`).subscribe((res)=>{
-      this.persons = res.cast.map(array => this.convertToMovie(array))
-    })}
-    
-  convertToMovie (dto: any) : CreditsResult {
-    return { 
-     name: dto.name,
-     id: dto.id
-    }
+    this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`);
   }
 }
 
