@@ -1,6 +1,7 @@
 <div *ngIf="data$ | async as data">
     <div *ngFor="let result of data.results">
         {{result.title}}
+        <img  src="{{urlImage}}{{result.poster_path}}">
     </div>
 </div>
 

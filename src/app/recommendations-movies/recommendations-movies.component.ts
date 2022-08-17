@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./recommendations-movies.component.css']
 })
 export class RecommendationsMoviesComponent implements OnInit {
-  urlImage = environment.urlImage
+  urlImage = environment.urlImage200
   private _id: string | undefined
   constructor(
     private route: ActivatedRoute,
