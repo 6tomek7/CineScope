@@ -1,1 +1,6 @@
-<p>recommendations-movies works!</p>
+<div *ngIf="data$ | async as data">
+    <div *ngFor="let result of data.results">
+        {{result.title}}
+    </div>
+</div>
+
