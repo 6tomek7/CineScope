@@ -90,14 +90,15 @@ export interface Token {
 }
 
 export interface SessionId {
-  id: number
   request_token: string
+  success: boolean
 }
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   constructor( private http: HttpClient ) {}
-  addPost(id: SessionId): Observable<SessionId> {
-    return this.http.post<SessionId>("https://jsonplaceholder.typicode.com/posts" , id);
+  sendToken(request_token: SessionId): Observable<SessionId> {
+    return this.http.post<SessionId>
+    ("https://api.themoviedb.org/3/authentication/session/new?api_key=38193385b589296926c46f16b67e1b93" , request_token);
   }
 }
 

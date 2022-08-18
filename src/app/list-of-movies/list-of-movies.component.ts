@@ -26,14 +26,15 @@ export class ListOfMoviesComponent implements OnInit {
     this.http.get<Token>(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`).subscribe((token) => {
       console.log(token); 
   })}
+  
 
   postId(){
-    const id: SessionId = ({
-      id: 0,
-      request_token: "def02006110d4c9437b63695232916b6f71c2e68/allow"
+    const id : SessionId = ({
+      success: false,
+      request_token: "c2976b27c8fd7277e890eabf25ea6ef7546c76d5"
     });
-    
-    this.MoviesService.addPost(id).subscribe(id => {
+
+    this.MoviesService.sendToken(id).subscribe(id => {
       console.log(id);
     })
   }

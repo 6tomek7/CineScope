@@ -1,7 +1,7 @@
 <div *ngIf="data$ | async as data">
         <h3>
             {{data.title}}  
-            <button type="button" class="btn btn-primary btn-sm" title="Add this movie to list movies to watch">Add to watch</button>
+            <button type="button" class="btn btn-primary btn-sm" title="Add this movie to list movies to watch" (click)="addMovie()">Add to watch</button>
         </h3> 
     
     <div class="container">

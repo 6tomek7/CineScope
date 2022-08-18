@@ -28,6 +28,8 @@ export class MovieDetailsComponent implements OnInit {
     this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
     this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`);
   }
+
+  addMovie (){}
 }
 
 
