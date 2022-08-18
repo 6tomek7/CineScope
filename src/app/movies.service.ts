@@ -1,7 +1,6 @@
-import { PopularMoviesInTheGenreComponent } from './popular-movies-in-the-genre/popular-movies-in-the-genre.component';
-import { PopularMoviesComponent } from './popular-movies/popular-movies.component';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 
 export interface PopularMovies {
   results: Array<MoviesResult>
@@ -83,8 +82,22 @@ export interface RecommendationsResult {
   poster_path: string
   id: number
 }
+
+export interface Token {
+  expires_at: string
+  request_token: string
+  success: boolean
+}
+
+export interface SessionId {
+  id: number
+  request_token: string
+}
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   constructor( private http: HttpClient ) {}
+  addPost(id: SessionId): Observable<SessionId> {
+    return this.http.post<SessionId>("https://jsonplaceholder.typicode.com/posts" , id);
+  }
 }
 
