@@ -1,4 +1,4 @@
-import { MoviesGenres, Movies, Credits, CreditsResult } from './../movies.service';
+import { MoviesGenres, Movies, Credits, CreditsResult, AddMovie } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -29,7 +29,7 @@ export class MovieDetailsComponent implements OnInit {
     this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`);
   }
 
-  addMovie (){}
+ 
 }
 
 

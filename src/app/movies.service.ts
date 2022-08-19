@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
@@ -104,7 +105,7 @@ export class MoviesService {
   constructor( private http: HttpClient ) {}
   sendToken(request_token: SessionId): Observable<SessionId> {
     return this.http.post<SessionId>
-    ("https://api.themoviedb.org/3/authentication/session/new?api_key=38193385b589296926c46f16b67e1b93" , request_token);
+    (`${environment.apiUrl}/authentication/session/new${environment.apiKey}` , request_token);
   }
 }
 
