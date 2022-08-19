@@ -93,6 +93,12 @@ export interface SessionId {
   request_token: string
   success: boolean
 }
+
+export interface AddMovie {
+  media_type: string
+  media_id: number
+  watchlist: boolean
+}
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   constructor( private http: HttpClient ) {}
