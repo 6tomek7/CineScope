@@ -1,6 +1,7 @@
 <p>list-of-movies works!</p>
 <button (click)="getToken()">getToken</button>
 <div *ngIf="token$ | async as token">
-    <a href="{{this.permission}}{{token.request_token}}">Ask the user for permission</a>
+    {{token.request_token}}
+    <a target="_blank" href="{{this.permission}}{{token.request_token}}">Ask the user for permission</a>
+    <button (click)="sendToken(token.request_token)">Session_id</button>
 </div>
-<button (click)="postId()">ID</button>

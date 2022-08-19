@@ -1,9 +1,8 @@
-import { MoviesService, SessionId } from './../movies.service';
+import { MoviesService, SessionId, Token } from './../movies.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Token } from '../movies.service';
 
 @Component({
   selector: 'app-list-of-movies',
@@ -17,21 +16,17 @@ export class ListOfMoviesComponent implements OnInit {
   ) { }
   permission = environment.authenticate
   token$: Observable<Token> | undefined
-
   ngOnInit(): void {
-    this.token$ = this.http.get<Token>(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`);
   }
 
-  getToken() {
-    this.http.get<Token>(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`).subscribe((token) => {
-      console.log(token); 
-  })}
+  getToken(){
+    this.token$ = this.http.get<Token>(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`);
+  }
   
-
-  postId(){
+  sendToken(session_id: string){
     const id : SessionId = ({
       success: false,
-      request_token: "c2976b27c8fd7277e890eabf25ea6ef7546c76d5"
+      request_token: session_id
     });
 
     this.MoviesService.sendToken(id).subscribe(id => {
