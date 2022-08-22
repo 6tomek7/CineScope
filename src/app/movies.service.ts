@@ -101,6 +101,16 @@ export interface AddMovie {
   media_id: number
   watchlist: boolean
 }
+
+export interface Watchlist {
+  results: Array<WatchlistResult>
+}
+
+export interface WatchlistResult {
+  title: string
+  id: number
+}
+
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   sessionId: string | undefined
@@ -127,9 +137,7 @@ export class MoviesService {
       console.log(id)
       this.sessionId = id.session_id
     })
-    
   } 
 }
 
-/*  https://api.themoviedb.org/3/account/{account_id}/watchlist?api_key=zzz&session_id=zzz */
 

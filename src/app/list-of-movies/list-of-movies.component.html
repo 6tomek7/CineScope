@@ -1,6 +1,13 @@
+<h3>List of movies to watch</h3>
 <button (click)="getToken()">getToken</button>
 <div *ngIf="token$ | async as token">
     {{token.request_token}}
     <a target="_blank" href="{{this.permission}}{{token.request_token}}">Ask the user for permission</a>
    <button (click)="sendToken(token.request_token)">Session_id</button> 
+</div>
+
+<div *ngIf="watchlist$ | async as watchlist">
+    <div *ngFor="let watchlist of watchlist.results">
+        <a routerLink="/details/{{watchlist.id}}">Title: {{watchlist.title}}</a>
+    </div>
 </div>
