@@ -2,5 +2,5 @@
 <div *ngIf="token$ | async as token">
     {{token.request_token}}
     <a target="_blank" href="{{this.permission}}{{token.request_token}}">Ask the user for permission</a>
-    <button (click)="sendToken(token.request_token)">Session_id</button>
+   <button (click)="sendToken(token.request_token)">Session_id</button> 
 </div>

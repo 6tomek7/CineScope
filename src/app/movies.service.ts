@@ -93,6 +93,7 @@ export interface Token {
 export interface SessionId {
   request_token: string
   success: boolean
+  session_id: string
 }
 
 export interface AddMovie {
@@ -102,10 +103,33 @@ export interface AddMovie {
 }
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
-  constructor( private http: HttpClient ) {}
+  sessionId: string | undefined
+  constructor( private http: HttpClient,
+     ) {}
   sendToken(request_token: SessionId): Observable<SessionId> {
     return this.http.post<SessionId>
     (`${environment.apiUrl}/authentication/session/new${environment.apiKey}` , request_token);
   }
+
+  sendMovie(data: AddMovie): Observable<AddMovie> {
+    return this.http.post<AddMovie>
+    (`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.sessionId}`, data)
+  } 
+
+  sendRequestTokenn(token: string){
+    const id : SessionId = ({
+      success: false,
+      request_token: token,
+      session_id: ""
+      
+    });
+    this.sendToken(id).subscribe(id => {
+      console.log(id)
+      this.sessionId = id.session_id
+    })
+    
+  } 
 }
+
+/*  https://api.themoviedb.org/3/account/{account_id}/watchlist?api_key=zzz&session_id=zzz */
 
