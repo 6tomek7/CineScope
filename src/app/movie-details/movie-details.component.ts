@@ -51,27 +51,23 @@ export class MovieDetailsComponent implements OnInit {
   }
   
   sendToken(data: string){
-   this.moviesService.sendRequestTokenn(data)
+   this.moviesService.sendRequestToken(data)
   }
 
   watchlist(){
     if(this.moviesService.sessionId != undefined){
       this.addMovie ()
-      alert("added to watchlist")
     }
     else if(this.request_token != undefined){
-      alert("now you can add movie to watchlist")
       this.sendToken(this.request_token)
       this.name = ""
 
       if(this.moviesService.sessionId != undefined){
         this.addMovie ()
-        alert("added to watchlist")
       }
     }
     else if(this.moviesService.request_token === undefined) {
       this.getToken()
-      alert("token undefined - allow data to be read and written on your behalf")
       this.name = "allow data to be read and written on your behalf"
     }
   }

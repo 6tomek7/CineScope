@@ -132,7 +132,7 @@ export class MoviesService {
     (`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.sessionId}`, data)
   } 
 
-  sendRequestTokenn(token: string){
+  sendRequestToken(token: string){
     const id : SessionId = ({
       success: false,
       request_token: token,
