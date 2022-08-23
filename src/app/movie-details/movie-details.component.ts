@@ -54,7 +54,7 @@ export class MovieDetailsComponent implements OnInit {
    this.moviesService.sendRequestToken(data)
   }
 
-  watchlist(){
+  addToWatchlist(){
     if(this.moviesService.sessionId != undefined){
       this.addMovie ()
     }
