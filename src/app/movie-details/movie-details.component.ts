@@ -49,10 +49,6 @@ export class MovieDetailsComponent implements OnInit {
   this.moviesService.getToken().subscribe(request_token =>
     this.request_token = request_token.request_token)
   }
-
-  test(dane: string){
-    this.request_token = dane
-  }
   
   sendToken(data: string){
    this.moviesService.sendRequestTokenn(data)
