@@ -14,19 +14,9 @@ export class ListOfMoviesComponent implements OnInit {
     private http: HttpClient,
     private moviesService: MoviesService
   ) { }
-  permission = environment.authenticate
-  token$: Observable<Token> | undefined
   watchlist$: Observable<Watchlist> | undefined
   ngOnInit(): void {
    this.watchlist$ = this.http.get<Watchlist>
     (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.sessionId}&sort_by=created_at.asc`);
-  }
-
-  getToken(){
-    this.token$ = this.http.get<Token>(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`);
-  }
-  
-  sendToken(data: string){
-   this.moviesService.sendRequestTokenn(data)
   }
 }

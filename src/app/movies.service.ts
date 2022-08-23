@@ -114,11 +114,17 @@ export interface WatchlistResult {
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   sessionId: string | undefined
+  request_token: string | undefined
   constructor( private http: HttpClient,
      ) {}
+     
   sendToken(request_token: SessionId): Observable<SessionId> {
     return this.http.post<SessionId>
-    (`${environment.apiUrl}/authentication/session/new${environment.apiKey}` , request_token);
+    (`${environment.apiUrl}/authentication/session/new${environment.apiKey}` , request_token)
+  }
+
+  getToken(): Observable<Token>{
+    return this.http.get<Token>(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`);
   }
 
   sendMovie(data: AddMovie): Observable<AddMovie> {
@@ -131,7 +137,6 @@ export class MoviesService {
       success: false,
       request_token: token,
       session_id: ""
-      
     });
     this.sendToken(id).subscribe(id => {
       console.log(id)

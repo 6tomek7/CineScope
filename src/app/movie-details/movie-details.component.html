@@ -1,9 +1,18 @@
 <div *ngIf="data$ | async as data">
         <h3>
             {{data.title}}  
-            <button type="button" class="btn btn-primary btn-sm" title="Add this movie to list movies to watch" (click)="addMovie()" >Add to watch</button>
+            <button type="button" class="btn btn-primary btn-sm" title="Add this movie to list movies to watch" (click)="watchlist()" >Add to watch</button>
         </h3> 
+        <h1>{{request_token}}</h1>
+        <a target="_blank" href="{{this.permission}}{{request_token}}">Ask the user for permission</a>
+        <button (click)="getToken()">getToken</button>
+<div *ngIf="token$ | async as token">
     
+    
+   <button (click)="test(token.request_token)">Session_id</button> 
+</div>
+    
+
     <div class="container">
         <div class="left-column">
             <img  src="{{urlImage}}{{data.poster_path}}">

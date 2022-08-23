@@ -1,4 +1,4 @@
-import { MoviesGenres, Movies, Credits, CreditsResult, AddMovie, MoviesService } from './../movies.service';
+import { MoviesGenres, Movies, Credits, CreditsResult, AddMovie, MoviesService, Token } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -18,6 +18,10 @@ export class MovieDetailsComponent implements OnInit {
   data$!: Observable<Movies>
   genres: Array<MoviesGenres> | undefined
   persons$: Observable<Credits> | undefined
+  permission = environment.authenticate
+  token$: Observable<Token> | undefined
+  request_token: string | undefined
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -39,4 +43,33 @@ export class MovieDetailsComponent implements OnInit {
     this.moviesService.sendMovie(movie).subscribe(id => {
       console.log(id);
   })} 
+
+  getToken(){
+  this.moviesService.getToken().subscribe(request_token =>
+    this.request_token = request_token.request_token)
+  }
+
+  test(dane: string){
+    this.request_token = dane
+  }
+  
+  sendToken(data: string){
+   this.moviesService.sendRequestTokenn(data)
+   alert(data)
+  }
+
+  watchlist(){
+    if(this.moviesService.sessionId != undefined){
+      this.addMovie ()
+      alert("added to watchlist")
+    }
+    else if(this.request_token != undefined){
+      alert("token NO undefined")
+      this.sendToken(this.request_token)
+    }
+    else if(this.moviesService.request_token === undefined) {
+      this.getToken()
+      alert("token undefined")
+    }
+  }
 }
