@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { TrnsformTimePipe } from './shared/trnsform-time.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecommendationsMoviesComponent } from './recommendations-movies/recommendations-movies.component';
+import { NgToastModule } from 'ng-angular-popup';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RecommendationsMoviesComponent } from './recommendations-movies/recomme
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

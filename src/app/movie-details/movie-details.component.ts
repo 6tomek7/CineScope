@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-movie-details',
@@ -27,6 +28,7 @@ export class MovieDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private moviesService: MoviesService,
+    private toast: NgToastService
   ) { }
   
   ngOnInit(): void {
