@@ -23,18 +23,20 @@ export class MovieDetailsComponent implements OnInit {
   token$: Observable<Token> | undefined
   request_token: string | undefined
   name: string | undefined
+  
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private moviesService: MoviesService,
-    private toast: NgToastService
   ) { }
+  tokenNumber = "nrTokena"
   
   ngOnInit(): void {
     this._id = this.route.snapshot.params["id"] 
     this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
     this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`);
+    this.tokenNumber = this.moviesService.tokenRequest?.request_token
   }
 
   addMovie (){
@@ -47,30 +49,37 @@ export class MovieDetailsComponent implements OnInit {
       console.log(id);
   })} 
 
-  getToken(){
-  this.moviesService.getToken().subscribe(request_token =>
-    this.request_token = request_token.request_token)
-  }
   
   sendToken(data: string){
    this.moviesService.sendRequestToken(data)
   }
 
-  addToWatchlist(){
-    if(this.moviesService.sessionId != undefined){
-      this.addMovie ()
-    }
-    else if(this.request_token != undefined){
-      this.sendToken(this.request_token)
-      this.name = ""
+  addToWatchlist(){   
+    this.moviesService.getToken() 
+  }
 
-      if(this.moviesService.sessionId != undefined){
-        this.addMovie ()
-      }
-    }
-    else if(this.moviesService.request_token === undefined) {
-      this.getToken()
-      this.name = "allow data to be read and written on your behalf"
-    }
+  getToken(){
+    this.moviesService.getToken() 
   }
 }
+
+/*
+if(this.moviesService.sessionId != undefined){
+  this.addMovie ()
+}
+else if(this.request_token != undefined){
+  this.sendToken(this.request_token)
+  this.name = ""
+
+  if(this.moviesService.sessionId != undefined){
+    this.addMovie ()
+  }
+}
+else if(this.moviesService.tokenRequest?.request_token === undefined) {
+  this.moviesService.addToWatchlist()
+  this.name = "allow data to be read and written on your behalf"
+  this.nrTokena = this.moviesService.tokenRequest?.request_token
+  console.log("nrTokena...",this.nrTokena)
+}
+} 
+*/

@@ -86,7 +86,7 @@ export interface RecommendationsResult {
 
 export interface Token {
   expires_at: string
-  request_token: string
+  request_token: any
   success: boolean
 }
 
@@ -114,17 +114,14 @@ export interface WatchlistResult {
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   sessionId: string | undefined
-  request_token: string | undefined
+  tokenRequest: Token | undefined
   constructor( private http: HttpClient,
      ) {}
+     
      
   sendToken(request_token: SessionId): Observable<SessionId> {
     return this.http.post<SessionId>
     (`${environment.apiUrl}/authentication/session/new${environment.apiKey}` , request_token)
-  }
-
-  getToken(): Observable<Token>{
-    return this.http.get<Token>(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`);
   }
 
   sendMovie(data: AddMovie): Observable<AddMovie> {
@@ -143,6 +140,41 @@ export class MoviesService {
       this.sessionId = id.session_id
     })
   } 
-}
 
+  getToken(){
+    if(this.tokenRequest?.request_token === undefined){
+      // GET token
+      fetch(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`)
+      .then(response => response.json())
+      .then((data) =>{
+        this.tokenRequest = this.convertTokenRequest(data)
+        console.log(data)
+        console.log("tokenRequest...", this.tokenRequest.request_token)
+      })
+    }
+  }
+
+  addSessionId(){
+    if(this.tokenRequest?.request_token != undefined)
+    fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
+    method: "POST",
+    body: JSON.stringify({
+      success: false,
+      request_token: this.tokenRequest?.request_token,
+      session_id: ""
+    }),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+    .then(response => response.json())
+    .then(json => console.log(json));
+  }
+
+   convertTokenRequest(response: Token): Token {
+    return {
+        expires_at: response.expires_at,
+        request_token: response.request_token,
+        success: response.success,
+    }
+  }
+}
 

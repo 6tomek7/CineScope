@@ -1,8 +1,10 @@
 <h3>
      <button type="button" class="btn btn-primary btn-sm" title="Add this movie to list movies to watch" (click)="addToWatchlist()" >Add to watch</button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="getToken()">Get token</button>
 </h3> 
  <a target="_blank" href="{{this.permission}}{{request_token}}">{{this.name}}</a>
- 
+ <p>{{tokenNumber}}</p>
+
 <div *ngIf="data$ | async as data">
     <div class="container">
         <div class="left-column">

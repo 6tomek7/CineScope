@@ -1,4 +1,4 @@
-import { MoviesService, Token, Watchlist } from './../movies.service';
+import { MoviesService,  Watchlist } from './../movies.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +16,17 @@ export class ListOfMoviesComponent implements OnInit {
   ) { }
   watchlist$: Observable<Watchlist> | undefined
   ngOnInit(): void {
-   this.watchlist$ = this.http.get<Watchlist>
-    (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.sessionId}&sort_by=created_at.asc`);
+    console.log(  this.moviesService.tokenRequest?.request_token)
+  }
+  
+  showToast(){
+  
+  }
+
+  getToken(){
+    this.moviesService.getToken()
+  }
+  addSession(){
+    this.moviesService.addSessionId()
   }
 }
