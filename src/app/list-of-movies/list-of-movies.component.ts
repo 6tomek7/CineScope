@@ -21,14 +21,4 @@ export class ListOfMoviesComponent implements OnInit {
     this.watchlist$ = this.http.get<Watchlist>
     (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.session_Id?.session_id}&sort_by=created_at.asc`)
   }
-  
-  showToast(){
-  }
-
-  getToken(){
-    this.moviesService.getToken()
-  }
-  addSession(){
-    this.moviesService.addSessionId()
-  }
 }
