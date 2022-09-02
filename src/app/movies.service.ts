@@ -119,11 +119,6 @@ export class MoviesService {
     private http: HttpClient,
     private idService: IdService
      ) {}
-     
-  sendToken(request_token: SessionId): Observable<SessionId> {
-    return this.http.post<SessionId>
-    (`${environment.apiUrl}/authentication/session/new${environment.apiKey}` , request_token)
-  }
 
   getToken(){
     if(this.tokenRequest?.request_token === undefined){
