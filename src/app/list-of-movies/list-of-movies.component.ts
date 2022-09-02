@@ -17,6 +17,9 @@ export class ListOfMoviesComponent implements OnInit {
   watchlist$: Observable<Watchlist> | undefined
   ngOnInit(): void {
     console.log(  this.moviesService.tokenRequest?.request_token)
+    console.log("Session id in list-of-movies..",this.moviesService.session_Id?.session_id)
+    this.watchlist$ = this.http.get<Watchlist>
+    (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.session_Id?.session_id}&sort_by=created_at.asc`)
   }
   
   showToast(){
