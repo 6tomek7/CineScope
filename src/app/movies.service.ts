@@ -2,7 +2,6 @@ import { IdService } from './id.service';
 import { environment } from 'src/environments/environment';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
 
 export interface PopularMovies {
   results: Array<MoviesResult>
@@ -116,7 +115,6 @@ export class MoviesService {
   tokenRequest: Token | undefined
   session_Id: SessionId | undefined
   constructor(
-    private http: HttpClient,
     private idService: IdService
      ) {}
 
