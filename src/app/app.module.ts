@@ -10,13 +10,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecommendationsMoviesComponent } from './recommendations-movies/recommendations-movies.component';
 import { NgToastModule } from 'ng-angular-popup';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponents,
     TrnsformTimePipe,
-    RecommendationsMoviesComponent,
+    RecommendationsMoviesComponent
   ],
   imports: [
     BrowserModule,

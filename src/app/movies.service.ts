@@ -1,5 +1,6 @@
+import { IdService } from './id.service';
 import { environment } from 'src/environments/environment';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -91,7 +92,6 @@ export interface Token {
 }
 
 export interface SessionId {
-  request_token: string
   success: boolean
   session_id: string
 }
@@ -113,28 +113,24 @@ export interface WatchlistResult {
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
-  sessionId: string | undefined
   tokenRequest: Token | undefined
-  constructor( private http: HttpClient,
+  session_Id: SessionId | undefined
+  constructor(
+    private http: HttpClient,
+    private idService: IdService
      ) {}
-     
      
   sendToken(request_token: SessionId): Observable<SessionId> {
     return this.http.post<SessionId>
     (`${environment.apiUrl}/authentication/session/new${environment.apiKey}` , request_token)
   }
 
-  sendMovie(data: AddMovie): Observable<AddMovie> {
-    return this.http.post<AddMovie>
-    (`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.sessionId}`, data)
-  } 
-
   getToken(){
     if(this.tokenRequest?.request_token === undefined){
       // GET token
       fetch(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`)
       .then(response => response.json())
-      .then((data) =>{
+      .then((data) => {
         this.tokenRequest = this.convertTokenRequest(data)
         console.log(data)
         console.log("tokenRequest...", this.tokenRequest.request_token)
@@ -144,6 +140,7 @@ export class MoviesService {
 
   addSessionId(){
     if(this.tokenRequest?.request_token != undefined)
+    //GET session_id
     fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
     method: "POST",
     body: JSON.stringify({
@@ -152,7 +149,33 @@ export class MoviesService {
     headers: {"Content-type": "application/json; charset=UTF-8"}
     })
     .then(response => response.json())
-    .then(json => console.log(json));
+    .then((data) => {
+      console.log(data)
+      this.session_Id = this.convertSessionId(data)
+      console.log("SessionId number...", this.session_Id.session_id)
+    })
+    .then(() => fetch
+    //SEND movie to watchlist
+    (`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.session_Id?.session_id}`, {
+      method: "POST",
+      body: JSON.stringify({
+        media_type: "movie",
+        media_id: this.idService.id,
+        watchlist: true
+      }),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data)
+    }))
+  }
+
+  convertSessionId(respone: SessionId): SessionId {
+    return {
+        success: respone.success,
+        session_id: respone.session_id
+    }
   }
 
    convertTokenRequest(response: Token): Token {

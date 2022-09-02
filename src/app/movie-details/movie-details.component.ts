@@ -1,3 +1,4 @@
+import { IdService } from './../id.service';
 import { MoviesGenres, Movies, Credits, CreditsResult, AddMovie, MoviesService, Token } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +14,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 export class MovieDetailsComponent implements OnInit {
   urlImage = environment.urlImage
-  private _id: any
+  _id: any
   persons: Array<CreditsResult> | undefined
   data$!: Observable<Movies>
   genres: Array<MoviesGenres> | undefined
@@ -22,13 +23,14 @@ export class MovieDetailsComponent implements OnInit {
   token$: Observable<Token> | undefined
   request_token: string | undefined
   name: string | undefined
-  tokenNumber = ""
+  tokenNumber = this.moviesService.tokenRequest?.request_token
   activateButton = false
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private moviesService: MoviesService,
+    private moviesService: MoviesService, 
+    private id: IdService
   ) { }
  
   
@@ -36,6 +38,8 @@ export class MovieDetailsComponent implements OnInit {
     this._id = this.route.snapshot.params["id"] 
     this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
     this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`);
+    if(this.tokenNumber != undefined){this.activateButton = !this.activateButton}
+    this.id.add(this._id)
   }
 
   toggleStates(){
@@ -43,16 +47,6 @@ export class MovieDetailsComponent implements OnInit {
       this.activateButton = !this.activateButton
     }
   }
-
-  addMovie (){
-    const movie : AddMovie = ({
-      media_type: "movie",
-      media_id: this._id,
-      watchlist: true
-    });
-    this.moviesService.sendMovie(movie).subscribe(id => {
-      console.log(id);
-  })} 
 
   addToWatchlist(){   
     this.moviesService.addSessionId() 
