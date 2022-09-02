@@ -1,7 +1,6 @@
 import { IdService } from './id.service';
 import { environment } from 'src/environments/environment';
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 export interface PopularMovies {
   results: Array<MoviesResult>
