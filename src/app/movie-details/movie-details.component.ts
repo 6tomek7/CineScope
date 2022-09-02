@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
-import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-movie-details',
@@ -23,20 +22,26 @@ export class MovieDetailsComponent implements OnInit {
   token$: Observable<Token> | undefined
   request_token: string | undefined
   name: string | undefined
-  
+  tokenNumber = ""
+  activateButton = false
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private moviesService: MoviesService,
   ) { }
-  tokenNumber = "nrTokena"
+ 
   
   ngOnInit(): void {
     this._id = this.route.snapshot.params["id"] 
     this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
     this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`);
-    this.tokenNumber = this.moviesService.tokenRequest?.request_token
+  }
+
+  toggleStates(){
+    if(this.tokenNumber != ""){
+      this.activateButton = !this.activateButton
+    }
   }
 
   addMovie (){
@@ -49,17 +54,16 @@ export class MovieDetailsComponent implements OnInit {
       console.log(id);
   })} 
 
-  
-  sendToken(data: string){
-   this.moviesService.sendRequestToken(data)
-  }
-
   addToWatchlist(){   
-    this.moviesService.getToken() 
+    this.moviesService.addSessionId() 
   }
 
   getToken(){
     this.moviesService.getToken() 
+    setTimeout(() => {
+      this.tokenNumber = this.moviesService.tokenRequest?.request_token
+      this.toggleStates()
+    }, 1000);
   }
 }
 

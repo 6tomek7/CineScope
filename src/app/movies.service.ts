@@ -129,18 +129,6 @@ export class MoviesService {
     (`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.sessionId}`, data)
   } 
 
-  sendRequestToken(token: string){
-    const id : SessionId = ({
-      success: false,
-      request_token: token,
-      session_id: ""
-    });
-    this.sendToken(id).subscribe(id => {
-      console.log(id)
-      this.sessionId = id.session_id
-    })
-  } 
-
   getToken(){
     if(this.tokenRequest?.request_token === undefined){
       // GET token
@@ -159,9 +147,7 @@ export class MoviesService {
     fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
     method: "POST",
     body: JSON.stringify({
-      success: false,
       request_token: this.tokenRequest?.request_token,
-      session_id: ""
     }),
     headers: {"Content-type": "application/json; charset=UTF-8"}
     })

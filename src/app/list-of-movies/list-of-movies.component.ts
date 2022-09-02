@@ -20,7 +20,6 @@ export class ListOfMoviesComponent implements OnInit {
   }
   
   showToast(){
-  
   }
 
   getToken(){
