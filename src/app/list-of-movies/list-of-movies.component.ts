@@ -29,6 +29,5 @@ export class ListOfMoviesComponent implements OnInit {
 
   loadLocalData(){
     let data = localStorage.getItem("session")
-    alert(data)
   }
 }

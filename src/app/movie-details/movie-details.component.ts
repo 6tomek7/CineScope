@@ -32,7 +32,6 @@ export class MovieDetailsComponent implements OnInit {
     private moviesService: MoviesService, 
     private id: IdService
   ) { }
- 
   
   ngOnInit(): void {
     this._id = this.route.snapshot.params["id"] 
@@ -49,7 +48,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   addToWatchlist(){   
-    this.moviesService.addMovie() 
+    this.moviesService.logicAddMovie() 
   }
 
   getToken(){

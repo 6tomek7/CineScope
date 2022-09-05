@@ -2,6 +2,7 @@ import { IdService } from './id.service';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ToastService } from './toast.service';
 
 export interface PopularMovies {
   results: Array<MoviesResult>
@@ -117,78 +118,67 @@ export class MoviesService {
   constructor(
     private idService: IdService,
     private http: HttpClient,
+    public toastService: ToastService
      ) {}
 
   getToken(){
     if(this.tokenRequest?.request_token === undefined){
-      // GET token
       fetch(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`)
       .then(response => response.json())
       .then((data) => {
         this.tokenRequest = this.convertTokenRequest(data)
         console.log(data)
         console.log("tokenRequest...", this.tokenRequest.request_token)
+        this.toastService.show("Authentication Request", { classname: 'bg-danger text-light', delay: 15000 })
       })
     }
   }
 
-  addMovie(){
+  logicAddMovie(){
     if(this.tokenRequest?.request_token != undefined, this.session_Id?.session_id === undefined){
-    //GET session_id
-    fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
-    method: "POST",
-    body: JSON.stringify({
-      request_token: this.tokenRequest?.request_token,
-    }),
-    headers: {"Content-type": "application/json; charset=UTF-8"}
-    })
-    .then(response => response.json())
-    .then((data) => {
-      console.log(data)
-      this.session_Id = this.convertSessionId(data)
-      console.log("SessionId number...", this.session_Id.session_id)
-    })
-    .then(() => fetch
-    //SEND movie to watchlist
-    (`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.session_Id?.session_id}`, {
+      //GET session_id
+      fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
       method: "POST",
       body: JSON.stringify({
-        media_type: "movie",
-        media_id: this.idService.id,
-        watchlist: true
+        request_token: this.tokenRequest?.request_token,
       }),
       headers: {"Content-type": "application/json; charset=UTF-8"}
-    })
-    .then(response => response.json())
-    .then((data) => {
-      console.log(data)
-    }))}
+      })
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data)
+        this.session_Id = this.convertSessionId(data)
+        console.log("SessionId number...", this.session_Id.session_id)
+      })
+      .then(() => this.addMovie())
+    } else if (this.session_Id?.session_id != undefined) {
+      this.addMovie()
+    }
+  }
 
-    if (this.session_Id?.session_id != undefined) {
-    fetch
-    //SEND movie to watchlist
-    (`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.session_Id?.session_id}`, {
-      method: "POST",
-      body: JSON.stringify({
-        media_type: "movie",
-        media_id: this.idService.id,
-        watchlist: true
-      }),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
-    })
-    .then(response => response.json())
-    .then((data) => {
-      console.log(data)
-    })
-  .then(() => 
-  
-  this.http.get<Watchlist>
-  (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.session_Id?.session_id}&sort_by=created_at.asc`)
-  .subscribe((data) => {
-    let watchList = data.results
-    localStorage.clear()
-    localStorage.setItem("session", JSON.stringify(watchList))
-    console.log(watchList)}))}
+  addMovie(){
+      fetch(`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.session_Id?.session_id}`, {
+        method: "POST",
+        body: JSON.stringify({
+          media_type: "movie",
+          media_id: this.idService.id,
+          watchlist: true
+        }),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+      })
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data)
+        this.toastService.show('Added movie to watch list movies', { classname: 'bg-success text-light', delay: 10000 });
+      })
+    .then(() => 
+    this.http.get<Watchlist>
+    (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.session_Id?.session_id}&sort_by=created_at.asc`)
+    .subscribe((data) => {
+      let watchList = data.results
+      localStorage.clear()
+      localStorage.setItem("session", JSON.stringify(watchList))
+      console.log(watchList)}))
   }
 
   convertSessionId(respone: SessionId): SessionId {
