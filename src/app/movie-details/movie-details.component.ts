@@ -1,5 +1,5 @@
 import { IdService } from './../id.service';
-import { MoviesGenres, Movies, Credits, CreditsResult, AddMovie, MoviesService, Token } from './../movies.service';
+import { MoviesGenres, Movies, Credits, CreditsResult, AddMovie, MoviesService, Token, Watchlist } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -60,24 +60,3 @@ export class MovieDetailsComponent implements OnInit {
     }, 1000);
   }
 }
-
-/*
-if(this.moviesService.sessionId != undefined){
-  this.addMovie ()
-}
-else if(this.request_token != undefined){
-  this.sendToken(this.request_token)
-  this.name = ""
-
-  if(this.moviesService.sessionId != undefined){
-    this.addMovie ()
-  }
-}
-else if(this.moviesService.tokenRequest?.request_token === undefined) {
-  this.moviesService.addToWatchlist()
-  this.name = "allow data to be read and written on your behalf"
-  this.nrTokena = this.moviesService.tokenRequest?.request_token
-  console.log("nrTokena...",this.nrTokena)
-}
-} 
-*/
