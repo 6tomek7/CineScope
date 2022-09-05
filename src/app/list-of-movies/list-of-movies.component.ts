@@ -10,7 +10,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-of-movies.component.css']
 })
 export class ListOfMoviesComponent implements OnInit {
-  data: Watchlist | undefined
   watchlistResult: WatchlistResult | undefined
   info: string | undefined
   constructor(
