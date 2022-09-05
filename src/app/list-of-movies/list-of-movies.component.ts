@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListOfMoviesComponent implements OnInit {
   data: Watchlist | undefined
   watchlistResult: WatchlistResult | undefined
+  info: string | undefined
   constructor(
     private http: HttpClient,
     private moviesService: MoviesService
@@ -22,6 +23,7 @@ export class ListOfMoviesComponent implements OnInit {
     this.watchlist$ = this.http.get<Watchlist>
     (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.session_Id?.session_id}&sort_by=created_at.asc`)}
     if(this.moviesService.session_Id?.session_id === undefined){
+      this.info = "Local storage"
       this.loadLocalData()
     }
   }
