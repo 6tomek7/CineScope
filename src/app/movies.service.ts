@@ -132,7 +132,7 @@ export class MoviesService {
     }
   }
 
-  addSessionId(){
+  addMovie(){
     if(this.tokenRequest?.request_token != undefined, this.session_Id?.session_id === undefined){
     //GET session_id
     fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {

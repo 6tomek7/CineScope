@@ -49,7 +49,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   addToWatchlist(){   
-    this.moviesService.addSessionId() 
+    this.moviesService.addMovie() 
   }
 
   getToken(){
