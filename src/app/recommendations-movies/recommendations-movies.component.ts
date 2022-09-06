@@ -1,3 +1,4 @@
+import { MovieDetailsComponent } from './../movie-details/movie-details.component';
 import { Recommendations, RecommendationsResult } from './../movies.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -15,12 +16,15 @@ export class RecommendationsMoviesComponent implements OnInit {
   private _id: string | undefined
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient) {}
+    private http: HttpClient,
+    private movieDetailsComponent: MovieDetailsComponent) {}
   movies: Array<RecommendationsResult> | undefined;
   data$!: Observable<Recommendations>
 
   ngOnInit(): void {
-    this._id = this.route.snapshot.params["id"]
-    this.data$ = this.http.get<Recommendations>(`${environment.apiUrl}/movie/${this._id}/recommendations${environment.apiKey}`)
+    this.route.params.subscribe(params => {
+    this._id = params['id']
+    this.movieDetailsComponent.ngOnInit()
+    this.data$ = this.http.get<Recommendations>(`${environment.apiUrl}/movie/${this._id}/recommendations${environment.apiKey}`)})
   }
 }

@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class IdService {
-  id: number | undefined
+  id: string | undefined
   
   constructor() { }
  
-  add(id: number) {
+  add(id: string) {
    this.id = id
   }
 }
