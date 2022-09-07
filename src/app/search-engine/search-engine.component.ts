@@ -1,7 +1,7 @@
 import { SearchActors, SearchActorsResult } from './../movies.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { SearchMovies, MoviesResult } from '../movies.service';
+import { Movies, MoviesResult } from '../movies.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -19,7 +19,7 @@ export class SearchEngineComponent implements OnInit {
   searchFor = ""
 
   getMovies(){
-    this.http.get<SearchMovies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${this.name}`).subscribe((res)=>{
+    this.http.get<Movies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${this.name}`).subscribe((res)=>{
       this.movies = res.results.map(array => this.convertToMovies(array))
     })
   }

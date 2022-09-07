@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { PopularMovies } from '../movies.service';
+import { Movies } from '../movies.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -13,9 +13,9 @@ import { Observable } from 'rxjs/internal/Observable';
 export class PopularMoviesComponent implements OnInit {
   urlImage = environment.urlImage
   constructor(private http: HttpClient) {}
-  data$!: Observable<PopularMovies>
+  data$!: Observable<Movies>
     
   ngOnInit(): void {
-    this.data$ = this.http.get<PopularMovies>(`${environment.apiUrl}/movie/popular${environment.apiKey}`);
+    this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/popular${environment.apiKey}`);
   }
 }

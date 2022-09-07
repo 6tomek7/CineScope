@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from './toast.service';
 
-export interface PopularMovies {
+export interface Movies {
   results: Array<MoviesResult>
 }
 
@@ -14,10 +14,6 @@ export interface MoviesResult {
   overview: string
   genre_ids: number
   id: number
-}
-
-export interface SearchMovies {
-  results: Array<MoviesResult>
 }
 
 export interface Movies {
