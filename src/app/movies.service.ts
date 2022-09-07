@@ -149,10 +149,12 @@ export class MoviesService {
         this.session_Id = this.convertSessionId(data)
         console.log("SessionId number...", this.session_Id.session_id)
       })
-      .then(() => this.addMovie())
-    } else if (this.session_Id?.session_id != undefined) {
-      this.addMovie()
-    }
+      .then(() => { 
+        if(this.session_Id?.session_id != undefined){
+          this.addMovie()
+        }
+      })
+    } 
   }
 
   addMovie(){
@@ -170,14 +172,15 @@ export class MoviesService {
         console.log(data)
         this.toastService.show('Added movie to watch list movies', { classname: 'bg-success text-light', delay: 10000 });
       })
-    .then(() => 
-    this.http.get<WatchlistMovies>
-    (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.session_Id?.session_id}&sort_by=created_at.asc`)
-    .subscribe((data) => {
-      let watchList = data.results
-      localStorage.clear()
-      localStorage.setItem("session", JSON.stringify(watchList))
-      console.log(watchList)}))
+      .then(() => 
+        this.http.get<WatchlistMovies>
+        (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.session_Id?.session_id}&sort_by=created_at.asc`)
+        .subscribe((data) => {
+          let watchList = data.results
+          localStorage.clear()
+          localStorage.setItem("session", JSON.stringify(watchList))
+          console.log(watchList)
+      }))
   }
 
   convertSessionId(respone: SessionId): SessionId {
