@@ -1,5 +1,4 @@
-import { IdService } from './../id.service';
-import { MoviesGenres, Movies, Credits, CreditsResult, AddMovie, MoviesService, Token, Watchlist } from './../movies.service';
+import { MoviesGenres, Movies, Credits, CreditsResult, MoviesService, Token } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +13,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 export class MovieDetailsComponent implements OnInit {
   urlImage = environment.urlImage
-  _id: any
+  _id: string | undefined
   persons: Array<CreditsResult> | undefined
   data$!: Observable<Movies>
   genres: Array<MoviesGenres> | undefined
@@ -29,20 +28,22 @@ export class MovieDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private moviesService: MoviesService, 
-    private id: IdService
+    private moviesService: MoviesService
   ) { }
   
   ngOnInit(): void {
-    this._id = this.route.snapshot.params["id"] 
-    this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
-    this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`);
-    if(this.tokenNumber != undefined){this.activateButton = !this.activateButton}
-    this.id.add(this._id)
+    this.route.params.subscribe(params => {
+      this._id = params['id']
+      this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
+      this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`);
+      this.moviesService.getRoute(this._id)
+      window.scroll({top: 0, left: 0, behavior: 'smooth'})
+      this.toggleStates()
+    })
   }
 
   toggleStates(){
-    if(this.tokenNumber != ""){
+    if(this.tokenNumber != undefined){
       this.activateButton = !this.activateButton
     }
   }

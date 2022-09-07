@@ -1,8 +1,9 @@
-import { MoviesService, Watchlist, WatchlistResult } from './../movies.service';
+import { MoviesService, WatchlistMovies, WatchlistMoviesResult } from './../movies.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { map, of } from 'rxjs';
 
 @Component({
   selector: 'app-list-of-movies',
@@ -10,17 +11,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-of-movies.component.css']
 })
 export class ListOfMoviesComponent implements OnInit {
-  watchlistResult: WatchlistResult | undefined
   info: string | undefined
   constructor(
     private http: HttpClient,
     private moviesService: MoviesService
   ) { }
-  watchlist$: Observable<Watchlist> | undefined
+  watchlistMovies$: Observable<Array<WatchlistMoviesResult>> | undefined
+
   ngOnInit(): void {
     if(this.moviesService.session_Id?.session_id != undefined){
-    this.watchlist$ = this.http.get<Watchlist>
-    (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.session_Id?.session_id}&sort_by=created_at.asc`)}
+      this.watchlistMovies$ = this.http.get<WatchlistMovies>
+      (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.session_Id?.session_id}&sort_by=created_at.asc`)
+        .pipe(
+          map(results => results.results)
+        )
+    }
     if(this.moviesService.session_Id?.session_id === undefined){
       this.info = "Local storage"
       this.loadLocalData()
@@ -28,6 +33,7 @@ export class ListOfMoviesComponent implements OnInit {
   }
 
   loadLocalData(){
-    let data = localStorage.getItem("session")
+    localStorage.getItem("session")
+    this.watchlistMovies$ = of(JSON.parse(localStorage.getItem("session")||''))
   }
 }

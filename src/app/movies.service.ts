@@ -1,4 +1,3 @@
-import { IdService } from './id.service';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -102,11 +101,11 @@ export interface AddMovie {
   watchlist: boolean
 }
 
-export interface Watchlist {
-  results: Array<WatchlistResult>
+export interface WatchlistMovies {
+  results: Array<WatchlistMoviesResult>
 }
 
-export interface WatchlistResult {
+export interface WatchlistMoviesResult {
   title: string
   id: number
 }
@@ -115,11 +114,15 @@ export interface WatchlistResult {
 export class MoviesService {
   tokenRequest: Token | undefined
   session_Id: SessionId | undefined
+  routeId: string | undefined
   constructor(
-    private idService: IdService,
     private http: HttpClient,
     public toastService: ToastService
      ) {}
+
+  getRoute(id: string | undefined){
+    this.routeId = id
+  }
 
   getToken(){
     if(this.tokenRequest?.request_token === undefined){
@@ -161,7 +164,7 @@ export class MoviesService {
         method: "POST",
         body: JSON.stringify({
           media_type: "movie",
-          media_id: this.idService.id,
+          media_id: this.routeId,
           watchlist: true
         }),
         headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -172,7 +175,7 @@ export class MoviesService {
         this.toastService.show('Added movie to watch list movies', { classname: 'bg-success text-light', delay: 10000 });
       })
     .then(() => 
-    this.http.get<Watchlist>
+    this.http.get<WatchlistMovies>
     (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.session_Id?.session_id}&sort_by=created_at.asc`)
     .subscribe((data) => {
       let watchList = data.results

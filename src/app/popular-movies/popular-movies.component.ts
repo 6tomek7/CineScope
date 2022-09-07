@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { MoviesResult, PopularMovies } from '../movies.service';
+import { PopularMovies } from '../movies.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -13,7 +13,6 @@ import { Observable } from 'rxjs/internal/Observable';
 export class PopularMoviesComponent implements OnInit {
   urlImage = environment.urlImage
   constructor(private http: HttpClient) {}
-  movies: Array<MoviesResult> | undefined;
   data$!: Observable<PopularMovies>
     
   ngOnInit(): void {
