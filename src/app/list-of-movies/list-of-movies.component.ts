@@ -22,9 +22,7 @@ export class ListOfMoviesComponent implements OnInit {
     if(this.moviesService.session_Id?.session_id != undefined){
       this.watchlistMovies$ = this.http.get<WatchlistMovies>
       (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.session_Id?.session_id}&sort_by=created_at.asc`)
-        .pipe(
-          map(results => results.results)
-        )
+        .pipe(map(results => results.results)) 
     }
     if(this.moviesService.session_Id?.session_id === undefined){
       this.info = "Local storage"

@@ -23,15 +23,15 @@
 </div>
 
 <h3 class="mt-3">Cast</h3>
-<div class="persons" *ngIf="persons$ |async as persons">
-    <div *ngFor="let person of persons.cast">
-     <ul>
-             <li>
-            <a routerLink="/person/{{person.id}}">{{person.name}}</a>
-        </li>
+<section class="persons">
+    <div *ngFor="let person of persons$ | async">
+        <ul>
+            <li>
+                <a routerLink="/person/{{person.id}}">{{person.name}}</a>
+            </li>
         </ul>
-    </div>
-</div>
+     </div>
+</section>
 
 <app-recommendations-movies [parentId]="_id"></app-recommendations-movies>
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

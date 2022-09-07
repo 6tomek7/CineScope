@@ -8,6 +8,6 @@
 
 .persons {
     display: flex;
-    overflow-y: auto;
     width: 1000px;
+    overflow-y: auto;
 }
