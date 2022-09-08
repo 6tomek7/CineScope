@@ -19,7 +19,6 @@ export class MovieDetailsComponent implements OnInit {
   persons$: Observable<Array<CreditsResult>> | undefined
   permission = environment.authenticate
   tokenNumber = this.moviesService.tokenRequest?.request_token
-  activateButton = false
   actuallyUrl = window.location
   approved: string | undefined
   show: boolean | undefined
@@ -34,37 +33,26 @@ export class MovieDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this._id = params['id']
       this.approved = params['token']
+      this.moviesService.getApproved(this.approved)
       this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
       this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`)
       .pipe(map(cast => cast.cast))
       this.moviesService.getRoute(this._id)
       window.scroll({top: 0, left: 0, behavior: 'smooth'})
-      this.toggleStates()
       if(this.approved != undefined){
         this.moviesService.logicAddMovie()
       }
     })
   }
 
-  toggleStates(){
-    if(this.tokenNumber != undefined){
-      this.activateButton = !this.activateButton
-    }
-  }
-
   addToWatchlist(){   
-    this.moviesService.logicAddMovie() 
-  }
-
-  getToken(){
     this.moviesService.getToken() 
+    this.moviesService.logicAddMovie() 
     setTimeout(() => {
       this.tokenNumber = this.moviesService.tokenRequest?.request_token
-      this.toggleStates()
-      if(this.tokenNumber === undefined,this.approved === undefined){
+      if(this.moviesService.session_Id === undefined){
         this.show = true
       } else this.show = false
     }, 1000);
-    
   }
 }

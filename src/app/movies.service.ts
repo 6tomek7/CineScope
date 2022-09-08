@@ -112,6 +112,7 @@ export class MoviesService {
   session_Id: SessionId | undefined
   routeId: string | undefined
   approved: boolean | undefined
+  approvedToken:string | undefined
   constructor(
     private http: HttpClient,
     public toastService: ToastService
@@ -121,8 +122,12 @@ export class MoviesService {
     this.routeId = id
   }
 
+  getApproved(token: string | undefined){
+    this.approvedToken = token
+  }
+
   getToken(){
-    if(this.tokenRequest?.request_token === undefined){
+    if(this.tokenRequest?.request_token === undefined, this.approvedToken === undefined,this.session_Id?.session_id === undefined){
       fetch(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`)
       .then(response => response.json())
       .then((data) => {
@@ -131,11 +136,12 @@ export class MoviesService {
         console.log("tokenRequest...", this.tokenRequest.request_token)
         localStorage.setItem("token", this.tokenRequest.request_token)
       })
+      .then(() => this.logicAddMovie())
     }
   }
 
   logicAddMovie(){
-    if(this.tokenRequest?.request_token === undefined, this.approved === false){
+    if(this.session_Id?.session_id === undefined, this.approvedToken != undefined){
       fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
         method: "POST",
         body: JSON.stringify({
@@ -155,31 +161,11 @@ export class MoviesService {
           this.addMovie()
         }
       })
-    }
-    if(this.session_Id?.session_id === undefined){
-      //GET session_id
-      fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
-      method: "POST",
-      body: JSON.stringify({
-        request_token: this.tokenRequest?.request_token,
-      }),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
-      })
-      .then(response => response.json())
-      .then((data) => {
-        console.log(data)
-        this.session_Id = this.convertSessionId(data)
-        console.log("SessionId number...", this.session_Id.session_id)
-      })
-      .then(() => { 
-        if(this.session_Id?.session_id != undefined){
-          this.addMovie()
-        }
-      })
     } 
-    if (this.session_Id?.session_id != undefined){
+    if(this.session_Id?.session_id != undefined){
       this.addMovie()
     }
+  
   }
 
   addMovie(){
@@ -195,7 +181,7 @@ export class MoviesService {
       .then(response => response.json())
       .then((data) => {
         console.log("addMovie", data)
-        this.toastService.show('Added movie to watch list movies', { classname: 'bg-success text-light', delay: 10000 });
+        this.toastService.show('Added movie to watch list movies', { classname: 'bg-success text-light', delay: 4000 });
       })
       .then(() => 
         this.http.get<WatchlistMovies>
