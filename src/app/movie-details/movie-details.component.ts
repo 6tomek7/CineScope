@@ -45,10 +45,6 @@ export class MovieDetailsComponent implements OnInit {
     })
   }
 
-  add(){
-    this.moviesService.addMovie()
-  }
-
   toggleStates(){
     if(this.tokenNumber != undefined){
       this.activateButton = !this.activateButton
