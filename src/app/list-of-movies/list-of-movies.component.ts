@@ -12,11 +12,12 @@ import { map, of } from 'rxjs';
 })
 export class ListOfMoviesComponent implements OnInit {
   info: string | undefined
+  watchlistMovies$: Observable<Array<WatchlistMoviesResult>> | undefined
   constructor(
     private http: HttpClient,
     private moviesService: MoviesService
   ) { }
-  watchlistMovies$: Observable<Array<WatchlistMoviesResult>> | undefined
+
 
   ngOnInit(): void {
     if(this.moviesService.session_Id?.session_id != undefined){

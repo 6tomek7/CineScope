@@ -14,8 +14,8 @@ import { map } from 'rxjs';
 
 export class MovieDetailsComponent implements OnInit {
   urlImage = environment.urlImage
-  _id: string | undefined
-  data$!: Observable<Movies>
+  id: string | undefined
+  data$: Observable<Movies> | undefined
   persons$: Observable<Array<CreditsResult>> | undefined
   permission = environment.authenticate
   tokenNumber = this.moviesService.tokenRequest?.request_token
@@ -31,13 +31,13 @@ export class MovieDetailsComponent implements OnInit {
   
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this._id = params['id']
+      this.id = params['id']
       this.approved = params['token']
       this.moviesService.getApproved(this.approved)
-      this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
-      this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`)
+      this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this.id}${environment.apiKey}`);
+      this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this.id}/credits${environment.apiKey}`)
       .pipe(map(cast => cast.cast))
-      this.moviesService.getRoute(this._id)
+      this.moviesService.getRoute(this.id)
       window.scroll({top: 0, left: 0, behavior: 'smooth'})
       if(this.approved != undefined){
         this.moviesService.logicAddMovie()

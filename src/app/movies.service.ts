@@ -152,7 +152,6 @@ export class MoviesService {
       .then(response => response.json())
       .then((data) => {
         this.approved = true
-        console.log(data)
         this.session_Id = this.convertSessionId(data)
         console.log("SessionId number...", this.session_Id.session_id)
       })
