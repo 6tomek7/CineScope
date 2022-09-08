@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: "popular-movies", component: PopularMoviesComponent },
   { path: "search-engine", component: SearchEngineComponent },
   { path: "details/:id", component: MovieDetailsComponent },
+  { path: "details/:id/:token", component: MovieDetailsComponent },
   { path: "person/:id", component: PersonDetailsComponent },
   { path: "genre/:id/:name", component: PopularMoviesInTheGenreComponent },
   { path: "movies-list", component: ListOfMoviesComponent }

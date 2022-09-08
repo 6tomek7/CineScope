@@ -2,7 +2,8 @@
     <button type="button" class="btn btn-primary btn-sm m-1" (click)="getToken()" [disabled]="activateButton">Get token</button>
     <button type="button" class="btn btn-primary btn-sm" title="Add this movie to list movies to watch" (click)="addToWatchlist()" >Add to watch</button>
 </h3> 
- <a target="_blank" href="{{this.permission}}{{tokenNumber}}">{{tokenNumber}}</a>
+ <a target="_blank" href="{{permission}}{{tokenNumber}}?redirect_to={{actuallyUrl}}/approved">{{tokenNumber}}
+ </a>
 
 <div *ngIf="data$ | async as data">
     <div class="container">

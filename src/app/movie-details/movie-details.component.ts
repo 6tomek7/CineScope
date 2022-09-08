@@ -20,6 +20,8 @@ export class MovieDetailsComponent implements OnInit {
   permission = environment.authenticate
   tokenNumber = this.moviesService.tokenRequest?.request_token
   activateButton = false
+  actuallyUrl = window.location
+  approved: string | undefined
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +32,7 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this._id = params['id']
+      this.approved = params['token']
       this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this._id}${environment.apiKey}`);
       this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this._id}/credits${environment.apiKey}`)
       .pipe(map(cast => cast.cast))
@@ -37,6 +40,7 @@ export class MovieDetailsComponent implements OnInit {
       window.scroll({top: 0, left: 0, behavior: 'smooth'})
       this.toggleStates()
     })
+    
   }
 
   toggleStates(){
