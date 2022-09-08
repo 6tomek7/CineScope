@@ -39,8 +39,14 @@ export class MovieDetailsComponent implements OnInit {
       this.moviesService.getRoute(this._id)
       window.scroll({top: 0, left: 0, behavior: 'smooth'})
       this.toggleStates()
+      if(this.approved != undefined){
+        this.moviesService.logicAddMovie()
+      }
     })
-    
+  }
+
+  add(){
+    this.moviesService.addMovie()
   }
 
   toggleStates(){

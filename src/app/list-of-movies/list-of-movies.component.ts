@@ -31,7 +31,6 @@ export class ListOfMoviesComponent implements OnInit {
   }
 
   loadLocalData(){
-    localStorage.getItem("session")
     this.watchlistMovies$ = of(JSON.parse(localStorage.getItem("session")||''))
   }
 }

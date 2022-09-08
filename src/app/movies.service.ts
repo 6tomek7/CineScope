@@ -111,6 +111,7 @@ export class MoviesService {
   tokenRequest: Token | undefined
   session_Id: SessionId | undefined
   routeId: string | undefined
+  approved = false
   constructor(
     private http: HttpClient,
     public toastService: ToastService
@@ -128,13 +129,35 @@ export class MoviesService {
         this.tokenRequest = this.convertTokenRequest(data)
         console.log(data)
         console.log("tokenRequest...", this.tokenRequest.request_token)
+        localStorage.setItem("token", this.tokenRequest.request_token)
         this.toastService.show("Authentication Request", { classname: 'bg-danger text-light', delay: 15000 })
       })
     }
   }
 
   logicAddMovie(){
-    if(this.tokenRequest?.request_token != undefined, this.session_Id?.session_id === undefined){
+    if(this.tokenRequest?.request_token === undefined, this.approved === false){
+      fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
+        method: "POST",
+        body: JSON.stringify({
+          request_token: localStorage.getItem("token"),
+        }),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+      })
+      .then(response => response.json())
+      .then((data) => {
+        this.approved = true
+        console.log(data)
+        this.session_Id = this.convertSessionId(data)
+        console.log("SessionId number...", this.session_Id.session_id)
+      })
+      .then(() => { 
+        if(this.session_Id?.session_id != undefined){
+          this.addMovie()
+        }
+      })
+    }
+    if(this.session_Id?.session_id === undefined){
       //GET session_id
       fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
       method: "POST",
@@ -155,6 +178,9 @@ export class MoviesService {
         }
       })
     } 
+    if (this.session_Id?.session_id != undefined){
+      this.addMovie()
+    }
   }
 
   addMovie(){
@@ -169,7 +195,7 @@ export class MoviesService {
       })
       .then(response => response.json())
       .then((data) => {
-        console.log(data)
+        console.log("addMovie", data)
         this.toastService.show('Added movie to watch list movies', { classname: 'bg-success text-light', delay: 10000 });
       })
       .then(() => 
@@ -179,7 +205,7 @@ export class MoviesService {
           let watchList = data.results
           localStorage.clear()
           localStorage.setItem("session", JSON.stringify(watchList))
-          console.log(watchList)
+          console.log("Watchlist", watchList)
       }))
   }
 
