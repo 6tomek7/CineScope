@@ -111,7 +111,7 @@ export class MoviesService {
   tokenRequest: Token | undefined
   session_Id: SessionId | undefined
   routeId: string | undefined
-  approved = false
+  approved: boolean | undefined
   constructor(
     private http: HttpClient,
     public toastService: ToastService
@@ -130,7 +130,6 @@ export class MoviesService {
         console.log(data)
         console.log("tokenRequest...", this.tokenRequest.request_token)
         localStorage.setItem("token", this.tokenRequest.request_token)
-        this.toastService.show("Authentication Request", { classname: 'bg-danger text-light', delay: 15000 })
       })
     }
   }

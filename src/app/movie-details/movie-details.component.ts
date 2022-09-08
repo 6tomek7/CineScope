@@ -22,6 +22,7 @@ export class MovieDetailsComponent implements OnInit {
   activateButton = false
   actuallyUrl = window.location
   approved: string | undefined
+  show: boolean | undefined
 
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +61,10 @@ export class MovieDetailsComponent implements OnInit {
     setTimeout(() => {
       this.tokenNumber = this.moviesService.tokenRequest?.request_token
       this.toggleStates()
+      if(this.tokenNumber === undefined,this.approved === undefined){
+        this.show = true
+      } else this.show = false
     }, 1000);
+    
   }
 }
