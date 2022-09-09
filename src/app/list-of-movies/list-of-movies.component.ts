@@ -26,7 +26,7 @@ export class ListOfMoviesComponent implements OnInit {
         .pipe(map(results => results.results)) 
     }
     if(this.moviesService.session_Id?.session_id === undefined){
-      this.info = "Local storage"
+      this.info = "Local storage:"
       this.loadLocalData()
     }
   }
