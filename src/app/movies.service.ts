@@ -115,7 +115,7 @@ export class MoviesService {
   approvedToken:string | undefined
   constructor(
     private http: HttpClient,
-    public toastService: ToastService
+    private toastService: ToastService
      ) {}
 
   getRoute(id: string | undefined){
@@ -132,8 +132,6 @@ export class MoviesService {
       .then(response => response.json())
       .then((data) => {
         this.tokenRequest = this.convertTokenRequest(data)
-        console.log(data)
-        console.log("tokenRequest...", this.tokenRequest.request_token)
         localStorage.setItem("token", this.tokenRequest.request_token)
       })
       .then(() => this.logicAddMovie())
@@ -153,7 +151,6 @@ export class MoviesService {
       .then((data) => {
         this.approved = true
         this.session_Id = this.convertSessionId(data)
-        console.log("SessionId number...", this.session_Id.session_id)
       })
       .then(() => { 
         if(this.session_Id?.session_id != undefined){
@@ -179,7 +176,6 @@ export class MoviesService {
       })
       .then(response => response.json())
       .then((data) => {
-        console.log("addMovie", data)
         this.toastService.show('Added movie to watch list movies', { classname: 'bg-success text-light', delay: 4000 });
       })
       .then(() => 
@@ -189,7 +185,6 @@ export class MoviesService {
           let watchList = data.results
           localStorage.clear()
           localStorage.setItem("session", JSON.stringify(watchList))
-          console.log("Watchlist", watchList)
       }))
   }
 
