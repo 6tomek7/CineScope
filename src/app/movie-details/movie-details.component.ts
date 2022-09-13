@@ -1,4 +1,4 @@
-import { Movies, Credits, CreditsResult, MoviesService, AddMovie } from './../movies.service';
+import { Movies, Credits, CreditsResult, MoviesService } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
