@@ -1,4 +1,4 @@
-import { Movies, Credits, CreditsResult, MoviesService } from './../movies.service';
+import { Movies, Credits, CreditsResult, MoviesService, AddMovie } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +13,7 @@ import { map } from 'rxjs';
 })
 
 export class MovieDetailsComponent implements OnInit {
+  rate = 5
   urlImage = environment.urlImage
   id: string | undefined
   data$: Observable<Movies> | undefined
@@ -43,6 +44,19 @@ export class MovieDetailsComponent implements OnInit {
         this.moviesService.logicAddMovie()
       }
     })
+  }
+  addClick(){
+    if (this.rate < 10)
+    this.rate ++
+  }
+
+  subtractClick(){
+    if (this.rate > 0)
+    this.rate --
+  }
+
+  rateMovie(value: number){
+    this.moviesService.rateMovie(value)
   }
 
   addToWatchlist(){   

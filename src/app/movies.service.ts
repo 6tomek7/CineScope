@@ -134,7 +134,6 @@ export class MoviesService {
         this.tokenRequest = this.convertTokenRequest(data)
         localStorage.setItem("token", this.tokenRequest.request_token)
       })
-      .then(() => this.logicAddMovie())
     }
   }
 
@@ -161,7 +160,6 @@ export class MoviesService {
     if(this.session_Id?.session_id != undefined){
       this.addMovie()
     }
-  
   }
 
   addMovie(){
@@ -175,7 +173,7 @@ export class MoviesService {
         headers: {"Content-type": "application/json; charset=UTF-8"}
       })
       .then(response => response.json())
-      .then((data) => {
+      .then(() => {
         this.toastService.show('Added movie to watch list movies', { classname: 'bg-success text-light', delay: 4000 });
       })
       .then(() => 
@@ -201,6 +199,20 @@ export class MoviesService {
         request_token: response.request_token,
         success: response.success,
     }
+  }
+
+  rateMovie(value: number){
+    fetch(`${environment.apiUrl}/movie/${this.routeId}/rating${environment.apiKey}&session_id=${this.session_Id?.session_id}`,{
+      method: "POST",
+      body: JSON.stringify({"value": value}),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+    .then(res => {
+      if (res.ok){
+        this.toastService.show(`You rating is ${value} out of 10`, { classname: 'bg-success text-light', delay: 4000 })
+      } else
+        this.toastService.show('Error.', { classname: 'bg-danger text-light', delay: 4000 })
+    })
   }
 }
 
