@@ -214,5 +214,24 @@ export class MoviesService {
         this.toastService.show('Error.', { classname: 'bg-danger text-light', delay: 4000 })
     })
   }
+
+  postLogin(){
+    fetch
+    (`${environment.apiUrl}/authentication/token/validate_with_login${environment.apiKey}`, {
+      method: "POST",
+      body: JSON.stringify({
+        username: "Your username",
+        password: "Your password",
+        request_token: this.tokenRequest?.request_token
+      }),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    }) 
+    .then(response => response.json())
+    .then((data) => {
+      console.log("Request_token is: ", this.tokenRequest?.request_token)
+      console.log(data)
+      this.toastService.show(`Login successful`, { classname: 'bg-success text-light', delay: 4000 })
+    })
+  }
 }
 
