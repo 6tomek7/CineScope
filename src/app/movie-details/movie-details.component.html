@@ -13,17 +13,6 @@
     <button ngbDropdownItem (click)="rateMovie(this.rate)">Save</button>
 </div>
 
-<ngb-toast
-*ngIf="show"
-header="Request for access"
-[autohide]="false"
->
-Angular is asking for your permission to read and write data on your behalf. 
-This is necessary if you want to do things like maintain your lists or rate movies outside of TMDB.
-<a target="_blank" href="{{permission}}{{tokenNumber}}?redirect_to={{actuallyUrl}}/approved">
-<button class="btn btn-primary" >Approve</button></a>
-</ngb-toast>      
-
 <div *ngIf="data$ | async as data">
     <div class="container">
         <div class="left-column">

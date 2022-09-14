@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-movie-details',
@@ -18,16 +20,14 @@ export class MovieDetailsComponent implements OnInit {
   id: string | undefined
   data$: Observable<Movies> | undefined
   persons$: Observable<Array<CreditsResult>> | undefined
-  permission = environment.authenticate
-  tokenNumber = this.moviesService.tokenRequest?.request_token
-  actuallyUrl = window.location
   approved: string | undefined
   show: boolean | undefined
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private moviesService: MoviesService
+    private moviesService: MoviesService,
+    private modalService: NgbModal
   ) { }
   
   ngOnInit(): void {
@@ -45,6 +45,10 @@ export class MovieDetailsComponent implements OnInit {
       }
     })
   }
+  openModal() {
+    const modalRef = this.modalService.open(ModalComponent);
+  }
+
   addClick(){
     if (this.rate < 10)
     this.rate ++
@@ -63,10 +67,9 @@ export class MovieDetailsComponent implements OnInit {
     this.moviesService.getToken() 
     this.moviesService.logicAddMovie() 
     setTimeout(() => {
-      this.tokenNumber = this.moviesService.tokenRequest?.request_token
       if(this.moviesService.session_Id === undefined){
-        this.show = true
-      } else this.show = false
+        this.openModal()
+      } 
     }, 1000);
   }
 }
