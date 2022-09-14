@@ -113,6 +113,7 @@ export class MoviesService {
   routeId: string | undefined
   approved: boolean | undefined
   approvedToken:string | undefined
+  loginSuccess: Token | undefined
   constructor(
     private http: HttpClient,
     private toastService: ToastService
@@ -215,19 +216,22 @@ export class MoviesService {
     })
   }
 
-  postLogin(){
+  postLogin(nick:string, password: string){
+    if(this.tokenRequest?.request_token != undefined, this.loginSuccess?.success === undefined)
     fetch
     (`${environment.apiUrl}/authentication/token/validate_with_login${environment.apiKey}`, {
       method: "POST",
       body: JSON.stringify({
-        username: "Your username",
-        password: "Your password",
+        username: nick,
+        password: password,
         request_token: this.tokenRequest?.request_token
       }),
       headers: {"Content-type": "application/json; charset=UTF-8"}
     }) 
     .then(response => response.json())
     .then((data) => {
+      this.loginSuccess = this.convertTokenRequest(data)
+      console.log("LoginSuccess value: ", this.loginSuccess.success)
       console.log("Request_token is: ", this.tokenRequest?.request_token)
       console.log(data)
       this.toastService.show(`Login successful`, { classname: 'bg-success text-light', delay: 4000 })

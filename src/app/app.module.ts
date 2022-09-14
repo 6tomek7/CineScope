@@ -11,6 +11,7 @@ import { RecommendationsMoviesComponent } from './recommendations-movies/recomme
 import { NgToastModule } from 'ng-angular-popup';
 import { ToastComponent } from './toast/toast.component';
 import { ModalComponent } from './modal/modal.component';
+import { LoginWindowComponent } from './login-window/login-window.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ModalComponent } from './modal/modal.component';
     TrnsformTimePipe,
     RecommendationsMoviesComponent,
     ToastComponent,
-    ModalComponent
+    ModalComponent,
+    LoginWindowComponent
   ],
   imports: [
     BrowserModule,

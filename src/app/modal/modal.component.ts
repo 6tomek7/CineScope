@@ -1,7 +1,8 @@
 import { MoviesService } from './../movies.service';
 import { Component } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
+import { LoginWindowComponent } from '../login-window/login-window.component';
 
 @Component({
   selector: 'app-modal',
@@ -13,12 +14,12 @@ import { environment } from 'src/environments/environment';
     <div class="modal-body">
       <p>
         Angular is asking for your permission to read and write data on your behalf. 
-        This is necessary if you want to do things like maintain your lists or rate movies outside of TMDB.
+        This is necessary if you want to do things like maintain your lists or rate movies outside of TMDB. 
+        Go to <a target="_blank" href="{{permission}}{{tokenNumber}}?redirect_to={{actuallyUrl}}/approved">TMDB</a> to confirm or login here.
       </p>
     </div>
     <div class="modal-footer">
-      <a target="_blank" href="{{permission}}{{tokenNumber}}?redirect_to={{actuallyUrl}}/approved">
-      <button class="btn btn-primary" >Approve</button></a>
+      <button class="btn btn-primary" (click)="openModal()" (click)="activeModal.close('Close click')">Login</button>
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
     </div>`
 
@@ -29,5 +30,10 @@ export class ModalComponent {
   tokenNumber = this.moviesService.tokenRequest?.request_token
   constructor(
     public activeModal: NgbActiveModal,
-    private moviesService: MoviesService) { }
+    private moviesService: MoviesService,
+    private modalService: NgbModal) { }
+
+    openModal() {
+      const modalRef = this.modalService.open(LoginWindowComponent);
+    }
 }
