@@ -10,19 +10,18 @@ import { LoginWindowComponent } from './login-window/login-window.component';
 })
 
 export class AppComponent implements OnInit{
+  constructor(private modalService: NgbModal,
+    public moviesService: MoviesService){if (isDevMode()) {
+    console.log('Development!');
+  } else {
+    console.log('Production!');
+  }}
   
-    constructor(private modalService: NgbModal,
-      private moviesService: MoviesService){if (isDevMode()) {
-      console.log('Development!');
-    } else {
-      console.log('Production!');
-    }}
-
-    ngOnInit(): void {
-      this.moviesService.getToken()
-    }
-    
-    openModal() {
-      const modalRef = this.modalService.open(LoginWindowComponent);
-    }
+  ngOnInit(): void {
+    this.moviesService.getToken()
+  }
+  
+  openModal() {
+    const modalRef = this.modalService.open(LoginWindowComponent);
+  }
 }

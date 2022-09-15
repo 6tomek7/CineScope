@@ -108,12 +108,13 @@ export interface WatchlistMoviesResult {
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
+  userName: string[] = []
   tokenRequest: Token | undefined
   session_Id: SessionId | undefined
   routeId: string | undefined
   approved: boolean | undefined
   approvedToken:string | undefined
-  loginSuccess: Token | undefined
+  login: Token | undefined
   constructor(
     private http: HttpClient,
     private toastService: ToastService
@@ -134,6 +135,7 @@ export class MoviesService {
       .then((data) => {
         this.tokenRequest = this.convertTokenRequest(data)
         localStorage.setItem("token", this.tokenRequest.request_token)
+        console.log("getToken: ", this.tokenRequest.request_token)
       })
     }
   }
@@ -154,17 +156,20 @@ export class MoviesService {
       })
       .then(() => { 
         if(this.session_Id?.session_id != undefined){
-          this.addMovie()
+          this.addMovie(this.session_Id?.session_id)
         }
       })
     } 
     if(this.session_Id?.session_id != undefined){
-      this.addMovie()
+      this.addMovie(this.session_Id?.session_id)
+    }
+    if(this.login?.success === true){
+      this.addMovie(this.login.request_token)
     }
   }
 
-  addMovie(){
-      fetch(`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.session_Id?.session_id}`, {
+  addMovie(value: string){
+      fetch(`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${value}`, {
         method: "POST",
         body: JSON.stringify({
           media_type: "movie",
@@ -179,7 +184,7 @@ export class MoviesService {
       })
       .then(() => 
         this.http.get<WatchlistMovies>
-        (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.session_Id?.session_id}&sort_by=created_at.asc`)
+        (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${value}&sort_by=created_at.asc`)
         .subscribe((data) => {
           let watchList = data.results
           localStorage.clear()
@@ -217,7 +222,7 @@ export class MoviesService {
   }
 
   postLogin(nick:string, password: string){
-    if(this.tokenRequest?.request_token != undefined, this.loginSuccess?.success === undefined)
+    if(this.tokenRequest?.request_token != undefined, this.login?.success === undefined)
     fetch
     (`${environment.apiUrl}/authentication/token/validate_with_login${environment.apiKey}`, {
       method: "POST",
@@ -230,11 +235,15 @@ export class MoviesService {
     }) 
     .then(response => response.json())
     .then((data) => {
-      this.loginSuccess = this.convertTokenRequest(data)
-      console.log("LoginSuccess value: ", this.loginSuccess.success)
+      this.login = this.convertTokenRequest(data)
+      console.log("LoginSuccess value: ", this.login.success)
       console.log("Request_token is: ", this.tokenRequest?.request_token)
       console.log(data)
       this.toastService.show(`Login successful`, { classname: 'bg-success text-light', delay: 4000 })
+      this.userName = []
+      if(this.login.success === true){
+        this.userName.push("Hi " + nick + " !")
+      }
     })
   }
 }

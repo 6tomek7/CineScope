@@ -33,7 +33,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     </div>`
 })
 export class LoginWindowComponent implements OnInit {
-
   constructor(
     public activeModal: NgbActiveModal,
     private movieService: MoviesService) { }

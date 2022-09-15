@@ -64,7 +64,6 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   addToWatchlist(){   
-    this.moviesService.getToken() 
     this.moviesService.logicAddMovie() 
     setTimeout(() => {
       if(this.moviesService.session_Id === undefined){
