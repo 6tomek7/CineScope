@@ -14,6 +14,7 @@ import { ModalComponent } from './modal/modal.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { PopularOnTvComponent } from './popular-on-tv/popular-on-tv.component';
 import { PopulaActorsComponent } from './popula-actors/popula-actors.component';
+import { SupportForPopularComponent } from './support-for-popular/support-for-popular.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PopulaActorsComponent } from './popula-actors/popula-actors.component';
     ModalComponent,
     LoginWindowComponent,
     PopularOnTvComponent,
-    PopulaActorsComponent
+    PopulaActorsComponent,
+    SupportForPopularComponent
   ],
   imports: [
     BrowserModule,
