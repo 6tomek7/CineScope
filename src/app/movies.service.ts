@@ -9,6 +9,8 @@ export interface Movies {
 
 export interface MoviesResult {
   title: string
+  name?: string
+  vote_average: number
   poster_path: string
   release_date: string
   overview: string
