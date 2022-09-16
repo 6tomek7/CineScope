@@ -16,6 +16,7 @@ import { PopularOnTvComponent } from './popular-on-tv/popular-on-tv.component';
 import { PopulaActorsComponent } from './popula-actors/popula-actors.component';
 import { SupportForPopularComponent } from './support-for-popular/support-for-popular.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PopularOnTvComponent,
     PopulaActorsComponent,
     SupportForPopularComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
