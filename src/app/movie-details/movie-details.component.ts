@@ -41,10 +41,11 @@ export class MovieDetailsComponent implements OnInit {
       this.moviesService.getRoute(this.id)
       window.scroll({top: 0, left: 0, behavior: 'smooth'})
       if(this.approved != undefined){
-        this.moviesService.logicAddMovie()
+        this.moviesService.sendRequestToken()
       }
     })
   }
+  
   openModal() {
     const modalRef = this.modalService.open(ModalComponent);
   }
@@ -64,7 +65,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   addToWatchlist(){   
-    this.moviesService.logicAddMovie() 
+    this.moviesService.addMovie() 
     setTimeout(() => {
       if(this.moviesService.session_Id === undefined){
         this.openModal()

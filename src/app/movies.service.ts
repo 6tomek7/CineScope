@@ -129,47 +129,32 @@ export class MoviesService {
   }
 
   getToken(){
-    if(this.tokenRequest?.request_token === undefined, this.approvedToken === undefined,this.session_Id?.session_id === undefined){
       fetch(`${environment.apiUrl}/authentication/token/new${environment.apiKey}`)
       .then(response => response.json())
       .then((data) => {
         this.tokenRequest = this.convertTokenRequest(data)
         localStorage.setItem("token", this.tokenRequest.request_token)
-        console.log("getToken: ", this.tokenRequest.request_token)
       })
-    }
   }
 
-  logicAddMovie(){
-    if(this.session_Id?.session_id === undefined, this.approvedToken != undefined){
-      fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
-        method: "POST",
-        body: JSON.stringify({
-          request_token: localStorage.getItem("token"),
-        }),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-      })
-      .then(response => response.json())
-      .then((data) => {
-        this.approved = true
-        this.session_Id = this.convertSessionId(data)
-      })
-      .then(() => { 
-        if(this.session_Id?.session_id != undefined){
-          this.addMovie(this.session_Id?.session_id)
-        }
-      })
-    } 
-    if(this.session_Id?.session_id != undefined){
-      this.addMovie(this.session_Id?.session_id)
-    }
-    if(this.login?.success === true){
-      this.addMovie(this.login.request_token)
-    }
+  sendRequestToken(){
+    fetch(`${environment.apiUrl}/authentication/session/new${environment.apiKey}`, {
+      method: "POST",
+      body: JSON.stringify({
+        request_token: localStorage.getItem("token"),
+      }),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+    .then(response => response.json())
+    .then((data) => {
+      this.approved = true
+      this.session_Id = this.convertSessionId(data)
+    })
   }
 
-  addMovie(value: string){
-      fetch(`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${value}`, {
+  addMovie(){
+    if(this.session_Id?.session_id != undefined)
+      fetch(`${environment.apiUrl}/account/{account_id}/watchlist${environment.apiKey}&session_id=${this.session_Id?.session_id}`, {
         method: "POST",
         body: JSON.stringify({
           media_type: "movie",
@@ -184,7 +169,7 @@ export class MoviesService {
       })
       .then(() => 
         this.http.get<WatchlistMovies>
-        (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${value}&sort_by=created_at.asc`)
+        (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.session_Id?.session_id}&sort_by=created_at.asc`)
         .subscribe((data) => {
           let watchList = data.results
           localStorage.clear()
@@ -215,7 +200,7 @@ export class MoviesService {
     })
     .then(res => {
       if (res.ok){
-        this.toastService.show(`You rating is ${value} out of 10`, { classname: 'bg-success text-light', delay: 4000 })
+        this.toastService.show(`You rating is ${value} / 10`, { classname: 'bg-success text-light', delay: 4000 })
       } else
         this.toastService.show('Error.', { classname: 'bg-danger text-light', delay: 4000 })
     })
@@ -236,15 +221,14 @@ export class MoviesService {
     .then(response => response.json())
     .then((data) => {
       this.login = this.convertTokenRequest(data)
-      console.log("LoginSuccess value: ", this.login.success)
-      console.log("Request_token is: ", this.tokenRequest?.request_token)
-      console.log(data)
-      this.toastService.show(`Login successful`, { classname: 'bg-success text-light', delay: 4000 })
       this.userName = []
-      if(this.login.success === true){
-        this.userName.push("Hi " + nick + " !")
-      }
-    })
+    }).then(() => { if(this.login?.success === true){
+      this.sendRequestToken()
+      this.userName.push("Hi " + nick + " !")
+      this.toastService.show(`Login successful`, { classname: 'bg-success text-light', delay: 4000 })
+    } if(this.login?.success === false){
+      this.toastService.show(`Invalid username and/or password.`, { classname: 'bg-danger text-light', delay: 4000 })
+    }})
   }
 }
 

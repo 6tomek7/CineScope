@@ -18,8 +18,10 @@ export class AppComponent implements OnInit{
   }}
   
   ngOnInit(): void {
-    this.moviesService.getToken()
-  }
+    if(window.location.search === ""){
+      this.moviesService.getToken()
+    }
+  }  
   
   openModal() {
     const modalRef = this.modalService.open(LoginWindowComponent);
