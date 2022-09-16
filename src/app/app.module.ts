@@ -15,6 +15,7 @@ import { LoginWindowComponent } from './login-window/login-window.component';
 import { PopularOnTvComponent } from './popular-on-tv/popular-on-tv.component';
 import { PopulaActorsComponent } from './popula-actors/popula-actors.component';
 import { SupportForPopularComponent } from './support-for-popular/support-for-popular.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SupportForPopularComponent } from './support-for-popular/support-for-po
     LoginWindowComponent,
     PopularOnTvComponent,
     PopulaActorsComponent,
-    SupportForPopularComponent
+    SupportForPopularComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
