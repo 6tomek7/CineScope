@@ -49,6 +49,20 @@ export interface Person {
   place_of_birth: string
 }
 
+export interface PopularPeople {
+  results: Array<PopularPeopleResult>
+}
+
+export interface PopularPeopleResult {
+  adult: boolean 
+  gender: number
+  id: number
+  known_for_department: string
+  name: string
+  popularity: number
+  profile_path: string
+}
+
 export interface PopularMoviesInTheGenre {
   results: Array<PopularMoviesInTheGenreResult>
 }

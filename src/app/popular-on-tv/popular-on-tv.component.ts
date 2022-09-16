@@ -10,11 +10,10 @@ import { Movies } from '../movies.service';
   styleUrls: ['./popular-on-tv.component.css']
 })
 export class PopularOnTvComponent implements OnInit {
-  urlImage = environment.urlImage
   constructor(private http: HttpClient) {}
   popularOnTv$: Observable<Movies> | undefined
     
   ngOnInit(): void {
-    this.popularOnTv$ = this.http.get<Movies>(`${environment.apiUrl}/movie/popular${environment.apiKey}`);
+    this.popularOnTv$ = this.http.get<Movies>(`${environment.apiUrl}/tv/popular${environment.apiKey}`);
   }
 }
