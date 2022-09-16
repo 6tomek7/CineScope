@@ -13,6 +13,7 @@ import { ToastComponent } from './toast/toast.component';
 import { ModalComponent } from './modal/modal.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { PopularOnTvComponent } from './popular-on-tv/popular-on-tv.component';
+import { PopulaActorsComponent } from './popula-actors/popula-actors.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PopularOnTvComponent } from './popular-on-tv/popular-on-tv.component';
     ToastComponent,
     ModalComponent,
     LoginWindowComponent,
-    PopularOnTvComponent
+    PopularOnTvComponent,
+    PopulaActorsComponent
   ],
   imports: [
     BrowserModule,
