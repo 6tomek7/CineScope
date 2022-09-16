@@ -13,3 +13,7 @@
     min-height: 700px;
     min-width: 180px;
 }
+
+h1 {
+    cursor: pointer;
+}

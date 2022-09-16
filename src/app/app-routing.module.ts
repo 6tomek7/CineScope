@@ -6,8 +6,10 @@ import { PopularMoviesComponent } from './popular-movies/popular-movies.componen
 import { SearchEngineComponent } from './search-engine/search-engine.component';
 import { PopularMoviesInTheGenreComponent } from './popular-movies-in-the-genre/popular-movies-in-the-genre.component';
 import { ListOfMoviesComponent } from './list-of-movies/list-of-movies.component';
+import { SupportForPopularComponent } from './support-for-popular/support-for-popular.component';
 
 const routes: Routes = [
+  { path: "", component: SupportForPopularComponent },
   { path: "popular-movies", component: PopularMoviesComponent },
   { path: "search-engine", component: SearchEngineComponent },
   { path: "details/:id", component: MovieDetailsComponent },
@@ -29,5 +31,6 @@ export const RoutingComponents =
   MovieDetailsComponent,
   PersonDetailsComponent, 
   PopularMoviesInTheGenreComponent, 
-  ListOfMoviesComponent
+  ListOfMoviesComponent,
+  SupportForPopularComponent 
 ]
