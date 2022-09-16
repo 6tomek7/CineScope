@@ -12,6 +12,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import { ToastComponent } from './toast/toast.component';
 import { ModalComponent } from './modal/modal.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
+import { PopularOnTvComponent } from './popular-on-tv/popular-on-tv.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoginWindowComponent } from './login-window/login-window.component';
     RecommendationsMoviesComponent,
     ToastComponent,
     ModalComponent,
-    LoginWindowComponent
+    LoginWindowComponent,
+    PopularOnTvComponent
   ],
   imports: [
     BrowserModule,
