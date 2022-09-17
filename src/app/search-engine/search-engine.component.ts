@@ -1,7 +1,6 @@
-import { SearchActors, SearchActorsResult } from './../movies.service';
+import { SearchActors, SearchActorsResult, MoviesResult, Movies } from './../movies.service';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Movies, MoviesResult } from '../movies.service';
+import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,7 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./search-engine.component.css']
 })
 
-export class SearchEngineComponent implements OnInit {
+export class SearchEngineComponent {
   urlImage = environment.urlImage
   movies: Array<MoviesResult> | undefined
   actors: Array<SearchActorsResult> | undefined
@@ -71,6 +70,4 @@ export class SearchEngineComponent implements OnInit {
     this.movies = []
     this.actors = []
   }
-  
-  ngOnInit(): void {}
 }
