@@ -1,3 +1,48 @@
+<h1>{{this.name}}</h1>
 <div class="search-engine mb-3">
     <app-search-engine></app-search-engine>
+</div>
+
+<div class="container d-flex m-4">
+    <div class="categories me-4">
+        <div class="header p-2 m-2">
+            <h4>Search results</h4>
+        </div>
+        <div class="categories-list ps-2">
+            <ul>
+                <li>
+                    <a id="movies" title="Movies" alt="Movies">Movies</a>
+                    <span>{{moviesTotalResults}}</span>
+                </li>
+                <li>
+                    <a id="actors" title="Actors" alt="Actors">Actors</a>
+                    <span>{{actorsTotalResults}}</span>
+                </li>
+            </ul>
+         
+            
+
+        </div>
+    </div>
+    <div class="search-results">
+        <div *ngFor="let movie of moviesResult$">
+            <ul>
+                <li>
+                    <a routerLink="/details/{{movie.id}}"><h3>Title: {{movie.title}}</h3></a>
+                     <p>Release date: {{movie.release_date}}</p>
+                    <img  src="{{urlImage}}{{movie.poster_path}}">
+                </li>
+            </ul>
+        </div>
+
+        <div *ngFor="let actor of actors">
+            <ul>
+                <li>
+                    <a routerLink="/person/{{actor.id}}"><h3>Title: {{actor.name}}</h3></a>
+                    <img  src="{{urlImage}}{{actor.profile_path}}">
+                </li>
+            </ul>
+        </div>
+        <p><b>Total pages</b></p>
+    </div>
 </div>

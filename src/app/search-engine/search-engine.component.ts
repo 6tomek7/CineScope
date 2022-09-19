@@ -10,43 +10,12 @@ import { environment } from 'src/environments/environment';
 })
 
 export class SearchEngineComponent {
-  urlImage = environment.urlImage
-  movies: Array<MoviesResult> | undefined
-  actors: Array<SearchActorsResult> | undefined
+  
   searchFor: string | undefined
   name = ""
   constructor(private http: HttpClient) {}
 
-  getMovies(){
-    this.http.get<Movies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${this.name}`).subscribe((res)=>{
-      this.movies = res.results.map(array => this.convertToMovies(array))
-    })
-  }
 
-  convertToMovies (dto:any) : MoviesResult {
-    return {
-      title: dto.title,
-      poster_path: dto.poster_path,
-      release_date: dto.release_date,
-      overview: dto.overview,
-      genre_ids: dto.genre_ids,
-      id: dto.id
-    }
-  }  
-
-  getActors(){
-    this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${this.name}`).subscribe((res)=>{
-      this.actors = res.results.map(array => this.convertToActors(array))
-    })
-  }
-
-  convertToActors (dto:any) : SearchActorsResult {
-    return {
-      id: dto.id,
-      name: dto.name,
-      profile_path: dto.profile_path
-    }
-  }
   
   searchActors() {
     this.searchFor = "actors"
@@ -57,17 +26,11 @@ export class SearchEngineComponent {
   }
 
   choice() {
-    if (this.searchFor === "actors"){
-      this.getActors()   
+    if (this.searchFor === "actors"){ 
     }
     else if (this.searchFor === "movies")
     {
-      this.getMovies()
+     
     }
-  }
-
-  clear(){
-    this.movies = []
-    this.actors = []
   }
 }

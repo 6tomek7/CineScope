@@ -1,4 +1,4 @@
-import { Movies, Credits, CreditsResult, MoviesService } from './../movies.service';
+import { Credits, CreditsResult, MoviesService, Genres } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -18,7 +18,7 @@ export class MovieDetailsComponent implements OnInit {
   rate = 5
   urlImage = environment.urlImage
   id: string | undefined
-  data$: Observable<Movies> | undefined
+  data$: Observable<Genres> | undefined
   persons$: Observable<Array<CreditsResult>> | undefined
   approved: string | undefined
   show: boolean | undefined
@@ -35,7 +35,7 @@ export class MovieDetailsComponent implements OnInit {
       this.id = params['id']
       this.approved = params['token']
       this.moviesService.getApproved(this.approved)
-      this.data$ = this.http.get<Movies>(`${environment.apiUrl}/movie/${this.id}${environment.apiKey}`);
+      this.data$ = this.http.get<Genres>(`${environment.apiUrl}/movie/${this.id}${environment.apiKey}`);
       this.persons$ = this.http.get<Credits>(`${environment.apiUrl}/movie/${this.id}/credits${environment.apiKey}`)
       .pipe(map(cast => cast.cast))
       this.moviesService.getRoute(this.id)

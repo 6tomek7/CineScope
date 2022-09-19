@@ -5,6 +5,8 @@ import { ToastService } from './toast.service';
 
 export interface Movies {
   results: Array<MoviesResult>
+  total_pages: number
+  total_results: number
 }
 
 export interface MoviesResult {
@@ -18,7 +20,7 @@ export interface MoviesResult {
   id: number
 }
 
-export interface Movies {
+export interface Genres {
   title: string
   poster_path: string
   release_date: string
@@ -78,12 +80,15 @@ export interface PopularMoviesInTheGenreResult {
 
 export interface SearchActors {
   results: Array<SearchActorsResult>
+  total_pages: number
+  total_results: number
 }
 
 export interface SearchActorsResult {
   id: number
   name: string
   profile_path: string
+  known_for_department?: string
 }
 
 export interface Recommendations {
