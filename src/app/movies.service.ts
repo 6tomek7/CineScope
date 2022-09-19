@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -127,6 +128,74 @@ export interface WatchlistMoviesResult {
   id: number
 }
 
+export interface SearchTvShows {
+  page: number
+  results: Array<SearchTvShowsResult>
+  total_pages: number
+  total_results: number
+}
+
+export interface SearchTvShowsResult {
+  backdrop_path?: string
+  first_air_date?: string
+  genre_ids: number[]
+  id: number
+  name: string
+  origin_country: string[]
+  original_language: string
+  original_name: string
+  overview: string
+  popularity: number
+  poster_path?: string
+  vote_average: number
+  vote_count: number
+}
+
+export interface SearchKeywoards {
+  page: number
+  results: Array<SearchKeywoardsResult>
+  total_pages: number
+  total_results: number
+}
+
+export interface SearchKeywoardsResult {
+  name: string
+  id: number
+}
+
+export interface SearchCollections {
+  page: number
+  results: Array<SearchCollectionsResult>
+  total_pages: number
+  total_results: number
+}
+
+export interface SearchCollectionsResult {
+  adult: boolean
+  backdrop_path: string
+  id: number
+  name: string
+  original_language: string
+  original_name: string
+  overview: string
+  poster_path: string
+}
+
+export interface SearchCompanies {
+  page: number
+  results: Array<SearchCompaniesResult>
+  total_pages: number
+  total_results: number
+}
+
+export interface SearchCompaniesResult {
+  id: number
+  logo_path: any
+  name: string
+  origin_country: string
+}
+
+
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   userName: string[] = []
@@ -136,6 +205,9 @@ export class MoviesService {
   approved: boolean | undefined
   approvedToken:string | undefined
   login: Token | undefined
+  searchValue = "pila"
+  page = 1
+  
   constructor(
     private http: HttpClient,
     private toastService: ToastService
@@ -250,6 +322,38 @@ export class MoviesService {
     } if(this.login?.success === false){
       this.toastService.show(`Invalid username and/or password.`, { classname: 'bg-danger text-light', delay: 4000 })
     }})
+  }
+
+  searchResults(name: string | undefined){
+    name = this.searchValue
+  }
+
+  pageNumber(page: number | undefined){
+    page = this.page
+  }
+
+  searchMovies(search:string, page: number){
+    this.http.get<Movies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&page=${search}&page=${page}`)
+  }
+
+  searchActors(search:string, page: number){
+    this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${search}&page=${page}`)
+  }
+
+  searchCompanies(search:string, page: number){
+    this.http.get<SearchCompanies>(`${environment.apiUrl}/search/company${environment.apiKey}&query=${search}&page=${page}`)
+  }
+
+  searchCollections(search:string, page: number){
+    this.http.get(`${environment.apiUrl}/search/collection${environment.apiKey}&query=${search}&page=${page}`)
+  }
+
+  searchKeywoards(search:string, page: number){
+    this.http.get(`${environment.apiUrl}/search/keyword${environment.apiKey}&query=${search}&page=${page}`)
+  }
+
+  searchTvShows(search:string, page: number){
+    this.http.get(`${environment.apiUrl}/search/tv${environment.apiKey}&query=${search}&page=${page}`)
   }
 }
 

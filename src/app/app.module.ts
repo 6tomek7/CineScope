@@ -17,6 +17,13 @@ import { PopulaActorsComponent } from './popula-actors/popula-actors.component';
 import { SupportForPopularComponent } from './support-for-popular/support-for-popular.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { SearchCompaniesComponent } from './search-companies/search-companies.component';
+import { SearchMoviesComponent } from './search-movies/search-movies.component';
+import { SearchActorsComponent } from './search-actors/search-actors.component';
+import { SeachCollectionsComponent } from './seach-collections/seach-collections.component';
+import { SearchCollectionsComponent } from './search-collections/search-collections.component';
+import { SearchKeywordsComponent } from './search-keywords/search-keywords.component';
+import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +38,14 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     PopulaActorsComponent,
     SupportForPopularComponent,
     DashboardComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    SearchCompaniesComponent,
+    SearchMoviesComponent,
+    SearchActorsComponent,
+    SeachCollectionsComponent,
+    SearchCollectionsComponent,
+    SearchKeywordsComponent,
+    SearchTvShowsComponent
   ],
   imports: [
     BrowserModule,

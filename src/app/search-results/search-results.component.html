@@ -3,13 +3,18 @@
     <app-search-engine></app-search-engine>
 </div>
 
+
 <div class="container d-flex m-4">
     <div class="categories me-4">
         <div class="header p-2 m-2">
             <h4>Search results</h4>
         </div>
         <div class="categories-list ps-2">
-            <ul>
+            <ul><div *ngFor="let actor of actors">
+                <li>
+                    <a id="all" title="All" alt="All">All</a>
+                    <span>{{allResults}}</span>
+                </li>
                 <li>
                     <a id="movies" title="Movies" alt="Movies">Movies</a>
                     <span>{{moviesTotalResults}}</span>
@@ -17,7 +22,7 @@
                 <li>
                     <a id="actors" title="Actors" alt="Actors">Actors</a>
                     <span>{{actorsTotalResults}}</span>
-                </li>
+                </li></div>
             </ul>
          
             
