@@ -20,7 +20,6 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { SearchCompaniesComponent } from './search-companies/search-companies.component';
 import { SearchMoviesComponent } from './search-movies/search-movies.component';
 import { SearchActorsComponent } from './search-actors/search-actors.component';
-import { SeachCollectionsComponent } from './seach-collections/seach-collections.component';
 import { SearchCollectionsComponent } from './search-collections/search-collections.component';
 import { SearchKeywordsComponent } from './search-keywords/search-keywords.component';
 import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.component';
@@ -38,14 +37,7 @@ import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.compon
     PopulaActorsComponent,
     SupportForPopularComponent,
     DashboardComponent,
-    SearchResultsComponent,
-    SearchCompaniesComponent,
-    SearchMoviesComponent,
-    SearchActorsComponent,
-    SeachCollectionsComponent,
-    SearchCollectionsComponent,
-    SearchKeywordsComponent,
-    SearchTvShowsComponent
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,

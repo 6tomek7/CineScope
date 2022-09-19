@@ -1,3 +1,5 @@
+import { SearchActorsComponent } from './search-actors/search-actors.component';
+import { SearchCollectionsComponent } from './search-collections/search-collections.component';
 import { SearchEngineComponent } from './search-engine/search-engine.component';
 import { PersonDetailsComponent } from './person-details/person-details.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
@@ -8,6 +10,10 @@ import { PopularMoviesInTheGenreComponent } from './popular-movies-in-the-genre/
 import { ListOfMoviesComponent } from './list-of-movies/list-of-movies.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { SearchCompaniesComponent } from './search-companies/search-companies.component';
+import { SearchMoviesComponent } from './search-movies/search-movies.component';
+import { SearchKeywordsComponent } from './search-keywords/search-keywords.component';
+import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.component';
 
 
 const routes: Routes = [
@@ -35,5 +41,11 @@ export const RoutingComponents =
   PopularMoviesInTheGenreComponent, 
   ListOfMoviesComponent,
   DashboardComponent,
-  SearchEngineComponent
+  SearchEngineComponent,
+  SearchCompaniesComponent,
+  SearchMoviesComponent,
+  SearchActorsComponent,
+  SearchCollectionsComponent,
+  SearchKeywordsComponent,
+  SearchTvShowsComponent
 ]

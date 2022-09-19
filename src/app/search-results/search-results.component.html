@@ -30,24 +30,12 @@
         </div>
     </div>
     <div class="search-results">
-        <div *ngFor="let movie of moviesResult$">
-            <ul>
-                <li>
-                    <a routerLink="/details/{{movie.id}}"><h3>Title: {{movie.title}}</h3></a>
-                     <p>Release date: {{movie.release_date}}</p>
-                    <img  src="{{urlImage}}{{movie.poster_path}}">
-                </li>
-            </ul>
-        </div>
-
-        <div *ngFor="let actor of actors">
-            <ul>
-                <li>
-                    <a routerLink="/person/{{actor.id}}"><h3>Title: {{actor.name}}</h3></a>
-                    <img  src="{{urlImage}}{{actor.profile_path}}">
-                </li>
-            </ul>
-        </div>
+      <app-search-actors></app-search-actors>
+      <app-search-collections></app-search-collections>
+      <app-search-companies></app-search-companies>
+      <app-search-keywords></app-search-keywords>
+      <app-search-movies></app-search-movies>
+      <app-search-tv-shows></app-search-tv-shows>
         <p><b>Total pages</b></p>
     </div>
 </div>
