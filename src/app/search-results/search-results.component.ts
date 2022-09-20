@@ -1,5 +1,4 @@
-import { SearchActors, SearchActorsResult, MoviesService, SearchCompanies } from './../movies.service';
-import { HttpClient } from '@angular/common/http';
+import { MoviesService} from './../movies.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -14,12 +13,17 @@ export class SearchResultsComponent implements OnInit {
   name: string | undefined
   allResults: number | undefined
   showMovies = false
-  showCompanies: boolean | undefined
-  showActors: boolean | undefined
-  showCollections: boolean | undefined
-  showKeywoards: boolean | undefined
-  showTvShows: boolean | undefined
+  showCompanies = false
+  showActors = false
+  showCollections = false
+  showKeywords = false
+  showTvShows = false
   moviesTotalResults: number | undefined
+  companiesTotalResults: number | undefined
+  actorsTotalResults: number | undefined
+  collectionsTotalResults: number | undefined
+  keywoardsTotalResults: number | undefined
+  tvShowsTotalResults: number | undefined
 
   constructor(
     private route: ActivatedRoute,
@@ -33,29 +37,49 @@ export class SearchResultsComponent implements OnInit {
   moviesResults(results: number){
     this.moviesTotalResults = results
   }
+  
+  actorsResults(result: number) {
+    this.actorsTotalResults = result
+  }
 
+  collectionsResults(result: number) {
+    this.collectionsTotalResults = result
+  }
+
+  companiesResults(result: number){
+    this.companiesTotalResults = result
+  }
+
+  keywordsResults(result: number) {
+    this.keywoardsTotalResults = result
+  }
+
+  tvShowsResults(result: number){
+    this.tvShowsTotalResults = result
+  }
+  
   previewMovies(){
-    this.showMovies = true
+    this.showMovies = !this.showMovies
   }
 
   previewCompanies(){
-    this.showCompanies = true
+    this.showCompanies = !this.showCompanies
   }
 
   previewActors(){
-    this.showActors = true
+    this.showActors = !this.showActors
   }
 
   previewCollections(){
-    this.showCollections = true
+    this.showCollections = !this.showCollections
   }
 
-  previewKeywoards(){
-    this.showKeywoards = true
+  previewKeywords(){
+    this.showKeywords = !this.showKeywords
   }
 
   previewTvShows(){
-    this.showTvShows = true
+    this.showTvShows = !this.showTvShows
   }
 
 

@@ -138,27 +138,27 @@ export interface SearchTvShows {
 export interface SearchTvShowsResult {
   backdrop_path?: string
   first_air_date?: string
-  genre_ids: number[]
+  genre_ids?: number[]
   id: number
   name: string
-  origin_country: string[]
-  original_language: string
-  original_name: string
-  overview: string
-  popularity: number
-  poster_path?: string
-  vote_average: number
-  vote_count: number
+  origin_country?: string[]
+  original_language?: string
+  original_name?: string
+  overview?: string
+  popularity?: number
+  poster_path: string
+  vote_average?: number
+  vote_count?: number
 }
 
-export interface SearchKeywoards {
+export interface SearchKeywords {
   page: number
-  results: Array<SearchKeywoardsResult>
+  results: Array<SearchKeywordsResult>
   total_pages: number
   total_results: number
 }
 
-export interface SearchKeywoardsResult {
+export interface SearchKeywordsResult {
   name: string
   id: number
 }
@@ -171,13 +171,13 @@ export interface SearchCollections {
 }
 
 export interface SearchCollectionsResult {
-  adult: boolean
-  backdrop_path: string
+  adult?: boolean
+  backdrop_path?: string
   id: number
   name: string
-  original_language: string
-  original_name: string
-  overview: string
+  original_language?: string
+  original_name?: string
+  overview?: string
   poster_path: string
 }
 
@@ -192,7 +192,7 @@ export interface SearchCompaniesResult {
   id: number
   logo_path: any
   name: string
-  origin_country: string
+  origin_country?: string
 }
 
 
@@ -340,20 +340,20 @@ export class MoviesService {
     return this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${search}&page=${page}`)
   }
 
-  searchCompanies(search:string, page: number){
-    this.http.get<SearchCompanies>(`${environment.apiUrl}/search/company${environment.apiKey}&query=${search}&page=${page}`)
+  searchCompanies(search:string, page: number): Observable<SearchCompanies>{
+    return this.http.get<SearchCompanies>(`${environment.apiUrl}/search/company${environment.apiKey}&query=${search}&page=${page}`)
   }
 
-  searchCollections(search:string, page: number){
-    this.http.get(`${environment.apiUrl}/search/collection${environment.apiKey}&query=${search}&page=${page}`)
+  searchCollections(search:string, page: number): Observable<SearchCollections>{
+    return this.http.get<SearchCollections>(`${environment.apiUrl}/search/collection${environment.apiKey}&query=${search}&page=${page}`)
   }
 
-  searchKeywoards(search:string, page: number){
-    this.http.get(`${environment.apiUrl}/search/keyword${environment.apiKey}&query=${search}&page=${page}`)
+  searchKeywords(search:string, page: number): Observable<SearchKeywords>{
+    return this.http.get<SearchKeywords>(`${environment.apiUrl}/search/keyword${environment.apiKey}&query=${search}&page=${page}`)
   }
 
-  searchTvShows(search:string, page: number){
-    this.http.get(`${environment.apiUrl}/search/tv${environment.apiKey}&query=${search}&page=${page}`)
+  searchTvShows(search:string, page: number): Observable<SearchTvShows>{
+    return this.http.get<SearchTvShows>(`${environment.apiUrl}/search/tv${environment.apiKey}&query=${search}&page=${page}`)
   }
 }
 

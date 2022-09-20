@@ -12,16 +12,28 @@
         <div class="categories-list ps-2">
             <ul>
                 <li>
-                    <a id="all" title="All" alt="All">All</a>
-                    <span>{{allResults}}</span>
+                    <button (click)="previewActors()">Actors</button>
+                    <span>{{actorsTotalResults}}</span>
+                </li>
+                <li>
+                    <button (click)="previewCollections()">Collections</button>
+                    <span>{{collectionsTotalResults}}</span>
+                </li>
+                <li>
+                    <button (click)="previewCompanies()">Companies</button>
+                    <span>{{companiesTotalResults}}</span>
+                </li>
+                <li>
+                    <button (click)="previewKeywords()">Keywords</button>
+                    <span>{{keywoardsTotalResults}}</span>
                 </li>
                 <li>
                     <button (click)="previewMovies()">Movies</button>
                     <span>{{moviesTotalResults}}</span>
                 </li>
                 <li>
-                    <a id="actors" title="Actors" alt="Actors">Actors</a>
-                    <span>0</span>
+                    <button (click)="previewTvShows()">Tv shows</button>
+                    <span>{{tvShowsTotalResults}}</span>
                 </li>
             </ul>
          
@@ -30,11 +42,11 @@
         </div>
     </div>
     <div class="search-results">
-      <app-search-actors></app-search-actors>
-      <app-search-collections></app-search-collections>
-      <app-search-companies></app-search-companies>
-      <app-search-keywords></app-search-keywords>
-      <app-search-movies [resultsActivator]="showMovies" (totalResults)="moviesResults($event)"><h1>Tekst</h1></app-search-movies>
-      <app-search-tv-shows></app-search-tv-shows>
+      <app-search-actors [resultsActivator]="showActors" (totalResults)="actorsResults($event)"></app-search-actors>
+      <app-search-collections [resultsActivator]="showCollections" (totalResults)="collectionsResults($event)"></app-search-collections>
+      <app-search-companies [resultsActivator]="showCompanies" (totalResults)="companiesResults($event)"></app-search-companies>
+      <app-search-keywords [resultsActivator]="showKeywords" (totalResults)="keywordsResults($event)"></app-search-keywords>
+      <app-search-movies [resultsActivator]="showMovies" (totalResults)="moviesResults($event)"></app-search-movies>
+      <app-search-tv-shows [resultsActivator]="showTvShows" (totalResults)="tvShowsResults($event)"></app-search-tv-shows>
     </div>
 </div>
