@@ -332,12 +332,12 @@ export class MoviesService {
     page = this.page
   }
 
-  searchMovies(search:string, page: number){
-    this.http.get<Movies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&page=${search}&page=${page}`)
+  searchMovies(search:string, page: number): Observable<Movies>{
+    return this.http.get<Movies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${search}&page=${page}`)
   }
 
-  searchActors(search:string, page: number){
-    this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${search}&page=${page}`)
+  searchActors(search:string, page: number): Observable<SearchActors>{
+    return this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${search}&page=${page}`)
   }
 
   searchCompanies(search:string, page: number){
