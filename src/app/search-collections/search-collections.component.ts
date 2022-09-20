@@ -1,5 +1,5 @@
 import { MoviesService, SearchCollectionsResult } from './../movies.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -7,9 +7,15 @@ import { environment } from 'src/environments/environment';
   templateUrl: './search-collections.component.html',
   styleUrls: ['./search-collections.component.css']
 })
-export class SearchCollectionsComponent implements OnInit {
-  @Input()
-  resultsActivator: boolean | undefined
+export class SearchCollectionsComponent {
+  @Input() set parentName(value: string | undefined){
+    this.moviesService.searchCollections(value, 1).subscribe((res) => {
+      this.collections$ = res.results.map(array => this.convertToCollections(array))
+      this.collectionsTotalPages = res.total_pages
+      this.totalResults.emit(res.total_results)
+    })
+  }
+  @Input() resultsActivator: boolean | undefined
 
   @Output()
   totalResults = new EventEmitter<number>()
@@ -18,18 +24,6 @@ export class SearchCollectionsComponent implements OnInit {
   collectionsTotalPages: number | undefined
 
   constructor( private moviesService: MoviesService) { }
-
-  ngOnInit(): void {
-    this.getCollections()
-  }
-
-  getCollections(){
-    this.moviesService.searchCollections("Tina", 1).subscribe((res) => {
-      this.collections$ = res.results.map(array => this.convertToCollections(array))
-      this.collectionsTotalPages = res.total_pages
-      this.totalResults.emit(res.total_results)
-    })
-  }
 
   convertToCollections(dto: any): SearchCollectionsResult {
     return {

@@ -1,17 +1,10 @@
 <div class="body">
     <div class="search-engine m-3">
         <h2 class="mb-2">Search for {{this.searchFor}}</h2>
-        
-        <div class="btn-group mb-2" role="group">
-            <button type="button" class="btn btn-outline-primary"(click)="searchMovies()">Movie</button>
-            <button type="button" class="btn btn-outline-primary" (click)="searchActors()">Actors</button>
-        </div>
         <div>
             <input [(ngModel)]="name" placeholder="Search...">
-            <button [disabled]="name === ''" (click)="choice(); name=''" routerLink="search/{{name}}">Search</button>
+            <button type="button" class="btn btn-outline-primary" [disabled]="name === ''" (click)="name=''" routerLink="/search/{{name}}">Search</button>
         </div>
-
-       
     </div>
 </div>
 

@@ -1,4 +1,3 @@
-import { MoviesService} from './../movies.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -27,11 +26,11 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private moviesService: MoviesService
   ) { }
 
   ngOnInit(): void {
-    this.name = this.route.snapshot.params["name"]
+    this.route.params.subscribe(params => {
+      this.name = params['name']})
   }
 
   moviesResults(results: number){
@@ -80,18 +79,5 @@ export class SearchResultsComponent implements OnInit {
 
   previewTvShows(){
     this.showTvShows = !this.showTvShows
-  }
-
-
-  allSearchMethod(search:string, page: number){
-    this.moviesService.searchCompanies(search, page)
-    
-    
-      // this.moviesService.searchCompanies
-      // this.moviesService.searchActors
-      // this.moviesService.searchCollections
-      // this.moviesService.searchKeywoards
-      // this.moviesService.searchMovies
-      // this.moviesService.searchTvShows
   }
 }

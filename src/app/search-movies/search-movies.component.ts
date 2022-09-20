@@ -1,6 +1,6 @@
 import { environment } from './../../environments/environment';
 import { MoviesService } from './../movies.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MoviesResult } from '../movies.service';
 
 @Component({
@@ -8,31 +8,23 @@ import { MoviesResult } from '../movies.service';
   templateUrl: './search-movies.component.html',
   styleUrls: ['./search-movies.component.css']
 })
-export class SearchMoviesComponent implements OnInit {
+export class SearchMoviesComponent {
+  @Input() set parentName(value: string | undefined){
+    this.moviesService.searchMovies(value, 1).subscribe((res) => {
+      this.moviesResult$ = res.results.map(array => this.convertToMovies(array))
+      this.moviesTotalPages = res.total_pages
+      this.totalResults.emit(res.total_results)
+    })
+  }
+  @Input() resultsActivator: boolean | undefined
+
+  @Output() totalResults = new EventEmitter<number>()
+  
   urlImage = environment.urlImage
   moviesResult$: Array<MoviesResult> | undefined
   moviesTotalPages: number | undefined
   moviesTotalResults!: number
-
-  @Input()
-  resultsActivator: boolean | undefined
-
-  @Output()
-  totalResults = new EventEmitter<number>()
-
   constructor(private moviesService: MoviesService) { }
-
-  ngOnInit(): void {
-    this.getMovies()
-  }
-
-  getMovies(){
-      this.moviesService.searchMovies("tina",1).subscribe((res) => {
-        this.moviesResult$ = res.results.map(array => this.convertToMovies(array))
-        this.moviesTotalPages = res.total_pages
-        this.totalResults.emit(res.total_results)
-      })
-  }
 
   convertToMovies (dto:any) : MoviesResult {
     return {
