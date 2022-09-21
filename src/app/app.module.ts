@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RoutingComponents } from './app-routing.module'
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TrnsformTimePipe } from './shared/trnsform-time.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecommendationsMoviesComponent } from './recommendations-movies/recommendations-movies.component';
@@ -17,12 +17,7 @@ import { PopulaActorsComponent } from './popula-actors/popula-actors.component';
 import { SupportForPopularComponent } from './support-for-popular/support-for-popular.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
-import { SearchCompaniesComponent } from './search-companies/search-companies.component';
-import { SearchMoviesComponent } from './search-movies/search-movies.component';
-import { SearchActorsComponent } from './search-actors/search-actors.component';
-import { SearchCollectionsComponent } from './search-collections/search-collections.component';
-import { SearchKeywordsComponent } from './search-keywords/search-keywords.component';
-import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.component';
+import { FacebookLoginProvider, SocialLoginModule, SocialAuthServiceConfig, } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -45,9 +40,24 @@ import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.compon
     HttpClientModule,
     FormsModule,
     NgbModule,
-    NgToastModule
+    NgToastModule,
+    ReactiveFormsModule,
+    SocialLoginModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('431115505718006'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

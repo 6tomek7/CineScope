@@ -14,6 +14,7 @@ import { SearchCompaniesComponent } from './search-companies/search-companies.co
 import { SearchMoviesComponent } from './search-movies/search-movies.component';
 import { SearchKeywordsComponent } from './search-keywords/search-keywords.component';
 import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: "details/:id/:token", component: MovieDetailsComponent },
   { path: "person/:id", component: PersonDetailsComponent },
   { path: "genre/:id/:name", component: PopularMoviesInTheGenreComponent },
-  { path: "movies-list", component: ListOfMoviesComponent }
+  { path: "movies-list", component: ListOfMoviesComponent },
+  { path: "profile", component: ProfileComponent }
 ];
 
 @NgModule({
@@ -47,5 +49,6 @@ export const RoutingComponents =
   SearchActorsComponent,
   SearchCollectionsComponent,
   SearchKeywordsComponent,
-  SearchTvShowsComponent
+  SearchTvShowsComponent,
+  ProfileComponent
 ]

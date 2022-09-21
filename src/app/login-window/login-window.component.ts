@@ -1,6 +1,7 @@
 import { MoviesService } from './../movies.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SocialAuthService, FacebookLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login-window',
@@ -28,19 +29,22 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
         </div>
     </div>
     <div class="modal-footer">
+      <button type="button" (click)="loginWithFacebook()" class="btn btn-primary btn-block">Signin with Facebook</button>
       <button class="btn btn-primary" (click)="login(nick.value, password.value)">Approve</button>
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
     </div>`
 })
-export class LoginWindowComponent implements OnInit {
+export class LoginWindowComponent {
   constructor(
     public activeModal: NgbActiveModal,
-    private movieService: MoviesService) { }
-
-  ngOnInit(): void {
-  }
+    private movieService: MoviesService,
+    private socialAuthService: SocialAuthService) { }
 
   login(nick: string, password: string){
     this.movieService.postLogin(nick, password)
+  }
+
+  loginWithFacebook(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 }
