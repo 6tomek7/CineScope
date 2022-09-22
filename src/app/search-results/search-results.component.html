@@ -4,7 +4,7 @@
 </div>
 
 
-<div class="container d-flex m-4">
+<div class="d-flex m-4">
     <div class="categories me-4">
         <div class="header p-2 m-2">
             <h4>Search results</h4>
@@ -41,7 +41,7 @@
 
         </div>
     </div>
-    <div class="search-results">
+    <div class="search-results flex-grow-1">
       <app-search-actors [parentName]="name" [resultsActivator]="showActors" (totalResults)="actorsResults($event)"></app-search-actors>
       <app-search-collections [parentName]="name" [resultsActivator]="showCollections" (totalResults)="collectionsResults($event)"></app-search-collections>
       <app-search-companies [parentName]="name" [resultsActivator]="showCompanies" (totalResults)="companiesResults($event)"></app-search-companies>

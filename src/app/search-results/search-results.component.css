@@ -10,3 +10,7 @@
     justify-content: space-between;
     display: inline-flex;
 }
+
+.search-results {
+    background-color: bisque;
+}
