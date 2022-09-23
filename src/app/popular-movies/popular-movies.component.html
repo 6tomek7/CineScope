@@ -1,8 +1,8 @@
 <div class="popular-movies mt-3" *ngIf="data$ | async as data">
     <div class="container" *ngFor="let result of data.results">    
         <img  src="{{urlImage}}{{result.poster_path}}">
-        <div class="title">
-            <a routerLink="/details/{{result.id}}"><b>Title: {{result.title}}</b></a> 
+        <div class="title ms-1">
+            <a routerLink="/details/{{result.id}}"><b>{{result.title}}</b></a> 
         </div>
     </div>
 </div>
