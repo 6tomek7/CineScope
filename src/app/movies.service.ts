@@ -57,9 +57,10 @@ export interface PopularPeople {
 }
 
 export interface PopularPeopleResult {
-  adult: boolean 
+  adult: boolean
   gender: number
   id: number
+  known_for: string[]
   known_for_department: string
   name: string
   popularity: number

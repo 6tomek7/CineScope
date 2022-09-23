@@ -1,1 +1,8 @@
-<p>popula-actors works!</p>
+<div class="popular-actors mt-3" *ngIf="popularActors$ | async as popularActor">
+    <div class="container" *ngFor="let result of popularActor.results">    
+        <img  src="{{urlImage}}{{result.profile_path}}">
+        <div class="title">
+            <a routerLink="/details/{{result.id}}"><b>Title: {{result.name}}</b></a> 
+        </div>
+    </div>
+</div>
