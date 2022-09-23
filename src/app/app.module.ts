@@ -17,6 +17,7 @@ import { PopulaActorsComponent } from './popula-actors/popula-actors.component';
 import { SupportForPopularComponent } from './support-for-popular/support-for-popular.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FacebookLoginProvider, SocialLoginModule, SocialAuthServiceConfig, } from 'angularx-social-login';
+import { SearchEngineModule } from './search-engine/search-engine.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FacebookLoginProvider, SocialLoginModule, SocialAuthServiceConfig, } fr
     NgToastModule,
     ReactiveFormsModule,
     SocialLoginModule,
+    SearchEngineModule
   ],
   providers: [
     {
