@@ -42,11 +42,11 @@
         </div>
     </div>
     <div class="search-results">
-      <app-search-actors [parentName]="name" [resultsActivator]="showActors" (totalResults)="actorsResults($event)"></app-search-actors>
-      <app-search-collections [parentName]="name" [resultsActivator]="showCollections" (totalResults)="collectionsResults($event)"></app-search-collections>
-      <app-search-companies [parentName]="name" [resultsActivator]="showCompanies" (totalResults)="companiesResults($event)"></app-search-companies>
-      <app-search-keywords [parentName]="name" [resultsActivator]="showKeywords" (totalResults)="keywordsResults($event)"></app-search-keywords>
-      <app-search-movies [parentName]="name" [resultsActivator]="showMovies" (totalResults)="moviesResults($event)"></app-search-movies>
-      <app-search-tv-shows [parentName]="name" [resultsActivator]="showTvShows" (totalResults)="tvShowsResults($event)"></app-search-tv-shows>
+      <app-search-actors [parentName]="name" [resultsActivator]="showElements.showActors" (totalResults)="actorsResults($event)"></app-search-actors>
+      <app-search-collections [parentName]="name" [resultsActivator]="showElements.showCollections" (totalResults)="collectionsResults($event)"></app-search-collections>
+      <app-search-companies [parentName]="name" [resultsActivator]="showElements.showCompanies" (totalResults)="companiesResults($event)"></app-search-companies>
+      <app-search-keywords [parentName]="name" [resultsActivator]="showElements.showKeywords" (totalResults)="keywordsResults($event)"></app-search-keywords>
+      <app-search-movies [parentName]="name" [resultsActivator]="showElements.showMovies" (totalResults)="moviesResults($event)"></app-search-movies>
+      <app-search-tv-shows [parentName]="name" [resultsActivator]="showElements.showTvShows" (totalResults)="tvShowsResults($event)"></app-search-tv-shows>
     </div>
 </div>
