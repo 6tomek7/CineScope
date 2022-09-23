@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 
 export class PopularMoviesComponent implements OnInit {
-  urlImage = environment.urlImage
+  urlImage = environment.urlImage200
   constructor(private http: HttpClient) {}
   data$: Observable<Movies> | undefined
     

@@ -17,19 +17,19 @@ export class SupportForPopularComponent implements OnInit {
   }
 
   viewMovies(){
-    this.showMovies = !this.showMovies
+    this.showMovies = true
     this.showActors = false
     this.showOnTv = false
   }
 
   viewActors(){
-    this.showActors = !this.showActors
+    this.showActors = true
     this.showMovies = false
     this.showOnTv= false
   }
 
   viewOnTv(){
-    this.showOnTv = !this.showOnTv
+    this.showOnTv = true
     this.showMovies = false
     this.showActors = false
   }
