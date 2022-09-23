@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 export class SearchResultsComponent implements OnInit {
   urlImage = environment.urlImage
   name: string | undefined
-  allResults: number | undefined
   showElements = {
     showMovies: false,
     showCompanies: false,
