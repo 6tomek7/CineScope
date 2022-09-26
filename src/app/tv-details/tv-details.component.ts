@@ -22,6 +22,5 @@ export class TvDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"] 
     this.tv$ = this.http.get<TvDetails>(`${environment.apiUrl}/tv/${this.id}${environment.apiKey}`)
-    this.tv$.subscribe((a) => console.log(a))
   }
 }
