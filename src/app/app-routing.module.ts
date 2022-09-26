@@ -7,21 +7,18 @@ import { PopularMoviesInTheGenreComponent } from './popular-movies-in-the-genre/
 import { ListOfMoviesComponent } from './list-of-movies/list-of-movies.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
-import { TvDetailsComponent } from './tv-details/tv-details.component';
-
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
   { path: "popular-movies", component: PopularMoviesComponent },
-  { path: "detailsTv/:id", component: TvDetailsComponent },
   { path: "details/:id", component: MovieDetailsComponent },
   { path: "details/:id/:token", component: MovieDetailsComponent },
-  { path: "person/:id", component: PersonDetailsComponent },
   { path: "genre/:id/:name", component: PopularMoviesInTheGenreComponent },
   { path: "movies-list", component: ListOfMoviesComponent },
   { path: "profile", component: ProfileComponent },
   { path: 'search/:name', loadChildren: () => import('./search-results/search-results.module').then(m => m.SearchResultsModule) },
   { path: 'search-engine', loadChildren: () => import('./search-engine/search-engine.module').then(m => m.SearchEngineModule) },
+  { path: 'detailss', loadChildren: () => import('./details/details.module').then(m => m.DetailsModule) },
 ];
 
 @NgModule({
@@ -33,10 +30,8 @@ export const RoutingComponents =
 [
   PopularMoviesComponent,
   MovieDetailsComponent,
-  PersonDetailsComponent, 
   PopularMoviesInTheGenreComponent, 
   ListOfMoviesComponent,
   DashboardComponent,
   ProfileComponent,
-  TvDetailsComponent
 ]
