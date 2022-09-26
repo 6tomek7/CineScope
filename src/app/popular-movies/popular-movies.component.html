@@ -2,7 +2,7 @@
     <div class="container" *ngFor="let result of data.results">    
         <img  src="{{urlImage}}{{result.poster_path}}">
         <div class="title ms-1">
-            <a routerLink="/details/{{result.id}}"><b>{{result.title}}</b></a> 
+            <a routerLink="/details/movies/{{result.id}}"><b>{{result.title}}</b></a> 
         </div>
     </div>
 </div>

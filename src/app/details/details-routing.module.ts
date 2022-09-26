@@ -20,4 +20,5 @@ export const RoutingComponents =
 [
   TvDetailsComponent,
   PersonDetailsComponent, 
+  MovieDetailsComponent
 ]

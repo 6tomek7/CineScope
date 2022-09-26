@@ -5,9 +5,7 @@ import { AppComponent } from './app.component';
 import { RoutingComponents } from './app-routing.module'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TrnsformTimePipe } from './shared/trnsform-time.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RecommendationsMoviesComponent } from './recommendations-movies/recommendations-movies.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { ToastComponent } from './toast/toast.component';
 import { ModalComponent } from './modal/modal.component';
@@ -18,16 +16,16 @@ import { SupportForPopularComponent } from './support-for-popular/support-for-po
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FacebookLoginProvider, SocialLoginModule, SocialAuthServiceConfig, } from 'angularx-social-login';
 import { SearchEngineModule } from './search-engine/search-engine.module';
+import { PopularMoviesComponent } from './popular-movies/popular-movies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponents,
-    TrnsformTimePipe,
-    RecommendationsMoviesComponent,
     ToastComponent,
     ModalComponent,
     LoginWindowComponent,
+    PopularMoviesComponent,
     PopularOnTvComponent,
     PopulaActorsComponent,
     SupportForPopularComponent,
