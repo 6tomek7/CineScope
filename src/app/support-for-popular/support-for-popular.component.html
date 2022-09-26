@@ -1,22 +1,25 @@
-<div class="btn-group" role="group" aria-label="Button group">
-    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-    <label class="btn btn-outline-primary" for="btnradio1">Popular movies</label>
-  
-    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-    <label class="btn btn-outline-primary" for="btnradio2">Popular on tv</label>
-  
-    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-    <label class="btn btn-outline-primary" for="btnradio3">Popular actors</label>
+<div class="header d-flex ms-4"><h3>What's Popular:</h3>
+  <div class="btn-group shadow-0 ms-2" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-outline-secondary" data-mdb-color="dark" (click)="viewMovies()">
+        Movies
+      </button>
+      <button type="button" class="btn btn-outline-secondary" data-mdb-color="dark" (click)="viewOnTv()">
+        On tv
+      </button>
+      <button type="button" class="btn btn-outline-secondary" data-mdb-color="dark" (click)="viewActors()">
+        Actors  
+      </button>
   </div>
+</div>
 
-<div class="content">
-    <div>  
+<div class="content me-4 ms-4"> 
+    <div *ngIf="showMovies">  
          <app-popular-movies></app-popular-movies>
     </div>
-    <div>
+    <div *ngIf="showOnTv">
         <app-popular-on-tv></app-popular-on-tv>
     </div>
-    <div>
+    <div *ngIf="showActors">
         <app-popula-actors></app-popula-actors>
     </div>
 </div>

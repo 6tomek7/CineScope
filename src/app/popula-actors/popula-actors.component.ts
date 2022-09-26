@@ -10,7 +10,8 @@ import { PopularPeople } from '../movies.service';
   styleUrls: ['./popula-actors.component.css']
 })
 export class PopulaActorsComponent implements OnInit {
-  popularActors$!: Observable<PopularPeople>
+  urlImage = environment.urlImage200
+  popularActors$: Observable<PopularPeople> | undefined
 
   constructor(
     private http: HttpClient
@@ -18,5 +19,6 @@ export class PopulaActorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.popularActors$ = this.http.get<PopularPeople>(`${environment.apiUrl}/person/popular${environment.apiKey}`);
+    console.log(this.popularActors$)
   }
 }

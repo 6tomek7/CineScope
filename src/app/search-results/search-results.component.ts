@@ -10,13 +10,15 @@ import { environment } from 'src/environments/environment';
 export class SearchResultsComponent implements OnInit {
   urlImage = environment.urlImage
   name: string | undefined
-  allResults: number | undefined
-  showMovies = false
-  showCompanies = false
-  showActors = false
-  showCollections = false
-  showKeywords = false
-  showTvShows = false
+  showElements = {
+    showMovies: false,
+    showCompanies: false,
+    showActors: false,
+    showCollections: false,
+    showKeywords: false,
+    showTvShows: false
+  }
+ 
   moviesTotalResults: number | undefined
   companiesTotalResults: number | undefined
   actorsTotalResults: number | undefined
@@ -58,26 +60,26 @@ export class SearchResultsComponent implements OnInit {
   }
   
   previewMovies(){
-    this.showMovies = !this.showMovies
+    this.showElements.showMovies = !this.showElements.showMovies
   }
 
   previewCompanies(){
-    this.showCompanies = !this.showCompanies
+    this.showElements.showCompanies = !this.showElements.showCompanies
   }
 
   previewActors(){
-    this.showActors = !this.showActors
+    this.showElements.showActors = !this.showElements.showActors
   }
 
   previewCollections(){
-    this.showCollections = !this.showCollections
+    this.showElements.showCollections = !this.showElements.showCollections
   }
 
   previewKeywords(){
-    this.showKeywords = !this.showKeywords
+    this.showElements.showKeywords = !this.showElements.showKeywords
   }
 
   previewTvShows(){
-    this.showTvShows = !this.showTvShows
+    this.showElements.showTvShows = !this.showElements.showTvShows
   }
 }

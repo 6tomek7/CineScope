@@ -10,6 +10,7 @@ import { Movies } from '../movies.service';
   styleUrls: ['./popular-on-tv.component.css']
 })
 export class PopularOnTvComponent implements OnInit {
+  urlImage = environment.urlImage200
   constructor(private http: HttpClient) {}
   popularOnTv$: Observable<Movies> | undefined
     

@@ -14,7 +14,7 @@ import { SocialAuthService, SocialUser } from 'angularx-social-login';
 export class AppComponent implements OnInit{
   loginForm!: FormGroup;
   socialUser!: SocialUser;
-  isLoggedin?: boolean = undefined;
+  isLoggedin = false
   constructor(private modalService: NgbModal,
     public moviesService: MoviesService,
     private socialAuthService: SocialAuthService) { }

@@ -17,7 +17,7 @@ export class SearchActorsComponent {
     })
   }
 
-  @Input() resultsActivator: boolean | undefined;
+  @Input() resultsActivator = false
 
   @Output() totalResults = new EventEmitter<number>()
   

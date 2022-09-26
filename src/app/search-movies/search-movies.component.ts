@@ -16,7 +16,7 @@ export class SearchMoviesComponent {
       this.totalResults.emit(res.total_results)
     })
   }
-  @Input() resultsActivator: boolean | undefined
+  @Input() resultsActivator = false
 
   @Output() totalResults = new EventEmitter<number>()
   
