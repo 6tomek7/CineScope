@@ -32,7 +32,6 @@ import { SearchEngineModule } from './search-engine/search-engine.module';
     PopulaActorsComponent,
     SupportForPopularComponent,
     DashboardComponent,
-    
   ],
   imports: [
     BrowserModule,

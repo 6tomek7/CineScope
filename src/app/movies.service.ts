@@ -196,6 +196,39 @@ export interface SearchCompaniesResult {
   origin_country?: string
 }
 
+export interface  TvDetails{
+  adult: boolean
+  backdrop_path: string
+  created_by: string[]
+  episode_run_time: string[]
+  first_air_date: string
+  genres: string[]
+  homepage: string
+  id: number
+  in_production: boolean
+  languages: string[]
+  last_air_date: string
+  last_episode_to_air: string
+  next_episode_to_air: string
+  networks: string[]
+  number_of_episodes: number
+  number_of_seasons: number
+  origin_country: string[]
+  original_language: string
+  original_name: string
+  overview: string
+  popularity: number
+  poster_path: string
+  production_companies: string[]
+  production_countries: string[]
+  seasons: string[]
+  spoken_languages: string[]
+  status: string
+  tagline: string
+  type: string
+  vote_average: number
+  vote_count: number
+}
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {

@@ -2,7 +2,7 @@
     <div class="container" *ngFor="let result of popularOnTv.results">    
         <img  src="{{urlImage}}{{result.poster_path}}">
         <div class="title ms-1">
-            <a routerLink="/details/{{result.id}}"><b>{{result.name}}</b></a> 
+            <a routerLink="/detailsTv/{{result.id}}"><b>{{result.name}}</b></a> 
         </div>
     </div>
 </div>

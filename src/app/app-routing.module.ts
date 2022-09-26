@@ -7,11 +7,13 @@ import { PopularMoviesInTheGenreComponent } from './popular-movies-in-the-genre/
 import { ListOfMoviesComponent } from './list-of-movies/list-of-movies.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TvDetailsComponent } from './tv-details/tv-details.component';
 
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
   { path: "popular-movies", component: PopularMoviesComponent },
+  { path: "detailsTv/:id", component: TvDetailsComponent },
   { path: "details/:id", component: MovieDetailsComponent },
   { path: "details/:id/:token", component: MovieDetailsComponent },
   { path: "person/:id", component: PersonDetailsComponent },
@@ -35,5 +37,6 @@ export const RoutingComponents =
   PopularMoviesInTheGenreComponent, 
   ListOfMoviesComponent,
   DashboardComponent,
-  ProfileComponent
+  ProfileComponent,
+  TvDetailsComponent
 ]
