@@ -1,21 +1,35 @@
 <div class="top-bar">
   <div class="dashboard">
     <h1 routerLink="">Home page</h1>
+    {{this.aouthActive}}
+    
   </div>
-  <div *ngFor="let userName of moviesService.userName">
+  <!-- <h3>{{ userInfo?.info?.name }}</h3> -->
+  <!-- <div *ngFor="let userName of moviesService.userName">
     <h3>{{userName}}</h3>
+  </div> -->
+  <div *ngIf="true">
+    {{this.moviesService.userName}}
   </div>
   <div class="buttons">
+    <button (click)="signOutGoogle()">Logout google</button>
+    <div ngbDropdown class="d-inline-block">
+      <button type="button" class="btn btn-outline-success" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem (click)="loginWithFacebook()">Log in with Facebook</button>
+        <button ngbDropdownItem (click)="loginWithGoogle()">Log in with Google</button>
+      </div>
+    </div>
     <div class="profile-buttons">
-      <div *ngIf="!isLoggedin">
+      <div *ngIf="true">
         <button type="button" class="btn btn-outline-success" (click)="openModal()">Login</button>
       </div>
-      <div *ngIf="isLoggedin === true">
+      <div *ngIf="isLoggedinFb === true">
         <div ngbDropdown class="d-inline-block">
           <button type="button" class="btn btn-outline-success" id="dropdownBasic1" ngbDropdownToggle>{{socialUser.firstName}}</button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <button ngbDropdownItem routerLink="profile">View profile</button>
-            <button ngbDropdownItem (click)="signOut()">Logout</button>
+            <button ngbDropdownItem (click)="signOutFb()">Logout</button>
           </div>
         </div>
       </div>

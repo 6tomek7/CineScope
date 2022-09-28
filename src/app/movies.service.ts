@@ -1,3 +1,4 @@
+import { GoogleService } from './google.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
@@ -244,12 +245,13 @@ export class MoviesService {
   
   constructor(
     private http: HttpClient,
-    private toastService: ToastService
-     ) {}
-
-  getRoute(id: string | undefined){
-    this.routeId = id
-  }
+    private toastService: ToastService,
+    private googleService: GoogleService
+  ) {
+      this.googleService.googleLogin()}
+      getRoute(id: string | undefined){
+      this.routeId = id
+    }
 
   getApproved(token: string | undefined){
     this.approvedToken = token

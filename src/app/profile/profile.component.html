@@ -17,3 +17,12 @@
     <input type="text" class="form-control" [value]="socialUser.email" id="email" readonly>
   </div>
 </div>
+
+<div *ngIf="isLoggedInGoogle()">
+  <div class="container">Hi and welcome!</div>
+  <div class="container">Name: {{ userInfo?.info?.name }}</div>
+  <div class="container"><img src="{{ userInfo?.info?.picture }}"></div>
+  <div class="container">Email: {{ userInfo?.info?.email }} 
+    <p>Email_verified: {{userInfo?.info?.email_verified}}</p>
+  </div>
+</div>

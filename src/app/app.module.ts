@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FacebookLoginProvider, SocialLoginModule, SocialAuthServiceConfig, } from 'angularx-social-login';
 import { SearchEngineModule } from './search-engine/search-engine.module';
 import { PopularMoviesComponent } from './popular-movies/popular-movies.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PopularMoviesComponent } from './popular-movies/popular-movies.componen
     NgToastModule,
     ReactiveFormsModule,
     SocialLoginModule,
-    SearchEngineModule
+    SearchEngineModule,
+    OAuthModule.forRoot()
   ],
   providers: [
     {
