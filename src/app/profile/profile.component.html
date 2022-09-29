@@ -1,28 +1,3 @@
-<div *ngIf="!isLoggedin">
-  <p>You are not logged</p>
-</div>
-
-<div *ngIf="isLoggedin === true">
-  <h2 class="text-center mb-4">Login with Facebook in Angular</h2>
-  <div class="form-group">
-    <label>First Name</label>
-    <input type="text" class="form-control" [value]="socialUser.firstName" id="firstname" readonly>
-  </div>
-  <div class="form-group">
-    <label>Last Name</label>
-    <input type="text" class="form-control" [value]="socialUser.lastName" id="lastname" readonly>
-  </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input type="text" class="form-control" [value]="socialUser.email" id="email" readonly>
-  </div>
-</div>
-
-<div *ngIf="isLoggedInGoogle()">
-  <div class="container">Hi and welcome!</div>
-  <div class="container">Name: {{ userInfo?.info?.name }}</div>
-  <div class="container"><img src="{{ userInfo?.info?.picture }}"></div>
-  <div class="container">Email: {{ userInfo?.info?.email }} 
-    <p>Email_verified: {{userInfo?.info?.email_verified}}</p>
-  </div>
-</div>
+<app-profile-facebook></app-profile-facebook>
+<app-profile-google></app-profile-google>
+<app-profile-tmdb></app-profile-tmdb>
