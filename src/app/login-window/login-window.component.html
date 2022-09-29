@@ -1,8 +1,6 @@
 <div class="modal-header">
-    <h4>Login to your account. </h4>
-</div>
-<div class="modal-body">
     <div class="login-table">
+        <h4>Login to your account. </h4>
         <div class="nick">
             <div>
                 <b>Nick:</b>
@@ -21,6 +19,17 @@
             <button class="btn btn-primary" (click)="login(nick.value, password.value)">Log in</button>
         </div>
     </div>
+</div>
+<div class="modal-body d-flex flex-column align-items-center">
+    <div *ngIf="!isLoggedinFb">
+        <button (click)="loginWithFacebook()" class="btn btn-primary m-2">Login in with Facebook</button>
+    </div>
+    <div *ngIf="isLoggedinFb">
+        <a routerLink="/profile">
+            <button class="btn btn-success m-2">You are logged with Facebook</button>
+        </a>
+    </div>
+    <div><button (click)="loginWithGoogle()" class="btn btn-primary m-2">Login in with Google</button></div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

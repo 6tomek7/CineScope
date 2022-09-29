@@ -1,5 +1,5 @@
 <div *ngIf="isLoggedin === true">
-    <h2 class="text-center mb-4">Login with Facebook in Angular</h2>
+    <h2 class="text-center mb-4 mt-2">Login with Facebook in Angular</h2>
     <div class="form-group">
       <label>First Name</label>
       <input type="text" class="form-control" [value]="socialUser.firstName" id="firstname" readonly>
@@ -12,6 +12,7 @@
       <label>Email</label>
       <input type="text" class="form-control" [value]="socialUser.email" id="email" readonly>
     </div>
+    <button (click)="signOutFb()">Logout</button>
 </div>
   
   

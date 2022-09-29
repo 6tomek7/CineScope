@@ -30,4 +30,7 @@ export class ProfileFacebookComponent implements OnInit {
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
+  signOutFb(): void {
+    this.socialAuthService.signOut();
+  }
 }

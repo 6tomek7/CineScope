@@ -1,18 +1,38 @@
+import { GoogleService } from './../google.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { MoviesService } from './../movies.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FacebookLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login-window',
   templateUrl: './login-window.component.html',
   styleUrls: ['./login-window.component.css']
 })
-export class LoginWindowComponent {
+export class LoginWindowComponent implements OnInit {
+  isLoggedinFb = false
   constructor(
     public activeModal: NgbActiveModal,
-    private movieService: MoviesService) { }
+    private movieService: MoviesService,
+    private oAuthService: OAuthService,
+    private socialAuthService: SocialAuthService) { }
 
+    ngOnInit(): void {
+      this.socialAuthService.authState.subscribe((user) => {
+        this.isLoggedinFb = user != null;
+        console.log("userFb:", user)
+      });
+    }
   login(nick: string, password: string){
     this.movieService.postLogin(nick, password)
+  }
+
+  loginWithFacebook(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  loginWithGoogle(){
+    this.oAuthService.initLoginFlow()
   }
 }
