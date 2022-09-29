@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from './toast.service';
+import { Subject } from 'rxjs';
 
 export interface Movies {
   results: Array<MoviesResult>
@@ -253,6 +254,7 @@ export class MoviesService {
   searchValue: string | undefined
   page = 1
   profileTmdb$: Observable<Profile> | undefined
+  userProfileTmdbSubject = new Subject<Profile>()
   
   constructor(
     private http: HttpClient,
@@ -362,10 +364,13 @@ export class MoviesService {
     .then((data) => {
       this.login = this.convertTokenRequest(data)
       this.userName = []
-    }).then(() => { if(this.login?.success === true){
+    }).then((a) => { if(this.login?.success === true){
       this.sendRequestToken()
       this.userName.push("Hi " + nick + " !")
       this.toastService.show(`Login successful`, { classname: 'bg-success text-light', delay: 4000 })
+      setTimeout(() => {
+        this.profileDetailsTmdb()
+      }, 2000);
     } if(this.login?.success === false){
       this.toastService.show(`Invalid username and/or password.`, { classname: 'bg-danger text-light', delay: 4000 })
     }})
@@ -399,8 +404,16 @@ export class MoviesService {
     return this.http.get<SearchTvShows>(`${environment.apiUrl}/search/tv${environment.apiKey}&query=${value}&page=${page}`)
   }
 
-  getProfileDetails(){
-   this.profileTmdb$ = this.http.get<Profile>(`${environment.apiUrl}/account${environment.apiKey}&session_id=${this.session_Id?.session_id}`)
+  getProfileDetails():Observable<Profile>{
+   return this.http.get<Profile>(`${environment.apiUrl}/account${environment.apiKey}&session_id=${this.session_Id?.session_id}`)
+  }
+
+  profileDetailsTmdb(){
+    fetch(`${environment.apiUrl}/account${environment.apiKey}&session_id=${this.session_Id?.session_id}`)
+    .then(response => response.json())
+    .then((a) => {
+      this.userProfileTmdbSubject.next(a as Profile)
+    })
   }
 }
 

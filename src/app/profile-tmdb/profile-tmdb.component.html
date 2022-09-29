@@ -1,6 +1,6 @@
-<div *ngIf="this.moviesService.profileTmdb$ | async as profile">
+<div *ngIf="isLoggedin" class="mt-2">
     <h1>Tmdb profile:</h1>
-    <p>User name: <b>{{profile.username}}</b></p>
-    <p>Profile id: <b>{{profile.id}}</b></p>
+    <p>User name: <b>{{userInfo?.username}}</b></p>
+    <p>Profile id: <b>{{userInfo?.id}}</b></p>
 </div>
 
