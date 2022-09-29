@@ -18,6 +18,9 @@ import { FacebookLoginProvider, SocialLoginModule, SocialAuthServiceConfig, } fr
 import { SearchEngineModule } from './search-engine/search-engine.module';
 import { PopularMoviesComponent } from './popular-movies/popular-movies.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { ProfileFacebookComponent } from './profile-facebook/profile-facebook.component';
+import { ProfileGoogleComponent } from './profile-google/profile-google.component';
+import { ProfileTmdbComponent } from './profile-tmdb/profile-tmdb.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     PopulaActorsComponent,
     SupportForPopularComponent,
     DashboardComponent,
+    ProfileFacebookComponent,
+    ProfileGoogleComponent,
+    ProfileTmdbComponent,
   ],
   imports: [
     BrowserModule,
