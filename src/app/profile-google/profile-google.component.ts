@@ -24,6 +24,5 @@ export class ProfileGoogleComponent implements OnInit {
 
   signOutGoogle() {
     this.googleService.signOut()
-    console.log("sign out from Google")
   }
 }

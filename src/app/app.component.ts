@@ -31,11 +31,9 @@ export class AppComponent implements OnInit{
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedinFb = user != null;
-      console.log("user:", user)
     });
     this.googleService.userProfileSubject.subscribe( info => {
       this.userInfo = info
-      console.log(info)
     })
   }  
     

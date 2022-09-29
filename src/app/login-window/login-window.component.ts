@@ -21,7 +21,6 @@ export class LoginWindowComponent implements OnInit {
     ngOnInit(): void {
       this.socialAuthService.authState.subscribe((user) => {
         this.isLoggedinFb = user != null;
-        console.log("userFb:", user)
       });
     }
   login(nick: string, password: string){

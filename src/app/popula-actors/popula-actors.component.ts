@@ -19,6 +19,5 @@ export class PopulaActorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.popularActors$ = this.http.get<PopularPeople>(`${environment.apiUrl}/person/popular${environment.apiKey}`);
-    console.log(this.popularActors$)
   }
 }
