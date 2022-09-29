@@ -16,7 +16,8 @@ export class LoginWindowComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private movieService: MoviesService,
     private oAuthService: OAuthService,
-    private socialAuthService: SocialAuthService) { }
+    private socialAuthService: SocialAuthService,
+    private googleService: GoogleService) { }
 
     ngOnInit(): void {
       this.socialAuthService.authState.subscribe((user) => {
@@ -33,5 +34,9 @@ export class LoginWindowComponent implements OnInit {
 
   loginWithGoogle(){
     this.oAuthService.initLoginFlow()
+  }
+
+  isLoggedInGoogle(): boolean {
+    return this.googleService.isLoggedIn()
   }
 }

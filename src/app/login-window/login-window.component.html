@@ -29,7 +29,14 @@
             <button class="btn btn-success m-2" (click)="activeModal.close()">You are logged with Facebook</button>
         </a>
     </div>
-    <div><button (click)="loginWithGoogle()" class="btn btn-primary m-2">Login in with Google</button></div>
+    <div *ngIf="!isLoggedInGoogle()">
+        <button (click)="loginWithGoogle()" class="btn btn-primary m-2">Login in with Google</button>
+    </div>
+    <div *ngIf="isLoggedInGoogle()">
+        <a routerLink="/profile">
+            <button class="btn btn-success m-2" (click)="activeModal.close()">You are logged with Google</button>
+        </a>
+    </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

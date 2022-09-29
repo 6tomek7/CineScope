@@ -47,7 +47,10 @@ export class GoogleService {
     this.oAuthService.logoutUrl = "https://www.google.com/accounts/Logout";
     this.oAuthService.loadDiscoveryDocument().then( () => {
       this.oAuthService.tryLoginImplicitFlow().then( () => {
-        if (this.oAuthService.hasValidAccessToken()) {
+        if (!this.oAuthService.hasValidAccessToken()) {
+          this.oAuthService.initLoginFlow()
+          alert("test")
+        } else {
           this.oAuthService.loadUserProfile().then( (userProfile) => {
             this.userProfileSubject.next(userProfile as UserInfo)
           })
