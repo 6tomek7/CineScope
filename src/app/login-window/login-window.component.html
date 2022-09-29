@@ -26,7 +26,7 @@
     </div>
     <div *ngIf="isLoggedinFb">
         <a routerLink="/profile">
-            <button class="btn btn-success m-2">You are logged with Facebook</button>
+            <button class="btn btn-success m-2" (click)="activeModal.close()">You are logged with Facebook</button>
         </a>
     </div>
     <div><button (click)="loginWithGoogle()" class="btn btn-primary m-2">Login in with Google</button></div>
