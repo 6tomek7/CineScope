@@ -51,13 +51,9 @@ export class AppComponent implements OnInit{
   isLoggedInGoogle(): boolean {
     return this.googleService.isLoggedIn()
   }
+
   signOutFb(): void {
     this.socialAuthService.signOut();
-  }
-
-  signOutGoogle() {
-    this.googleService.signOut()
-    console.log("sign out from Google")
   }
   
   loginWithGoogle(){

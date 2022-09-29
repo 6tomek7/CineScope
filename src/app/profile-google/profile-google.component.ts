@@ -21,4 +21,9 @@ export class ProfileGoogleComponent implements OnInit {
   isLoggedInGoogle(): boolean{
     return this.oAuthService.hasValidAccessToken()
   }
+
+  signOutGoogle() {
+    this.googleService.signOut()
+    console.log("sign out from Google")
+  }
 }
