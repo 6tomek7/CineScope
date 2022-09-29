@@ -231,6 +231,16 @@ export interface  TvDetails{
   vote_count: number
 }
 
+export interface Profile {
+  avatar: string
+  id: number
+  iso_639_1: string
+  iso_3166_1: string
+  name: string
+  include_adult: boolean
+  username: string
+}
+
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
   userName: string[] = []
@@ -242,6 +252,7 @@ export class MoviesService {
   login: Token | undefined
   searchValue: string | undefined
   page = 1
+  profileTmdb$: Observable<Profile> | undefined
   
   constructor(
     private http: HttpClient,
@@ -386,6 +397,10 @@ export class MoviesService {
 
   searchTvShows(value: string | undefined, page: number): Observable<SearchTvShows>{
     return this.http.get<SearchTvShows>(`${environment.apiUrl}/search/tv${environment.apiKey}&query=${value}&page=${page}`)
+  }
+
+  getProfileDetails(){
+   this.profileTmdb$ = this.http.get<Profile>(`${environment.apiUrl}/account${environment.apiKey}&session_id=${this.session_Id?.session_id}`)
   }
 }
 

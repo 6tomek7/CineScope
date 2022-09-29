@@ -1,1 +1,6 @@
-<p>profile-tmdb works!</p>
+<div *ngIf="this.moviesService.profileTmdb$ | async as profile">
+    <h1>Tmdb profile:</h1>
+    <p>User name: <b>{{profile.username}}</b></p>
+    <p>Profile id: <b>{{profile.id}}</b></p>
+</div>
+

@@ -1,8 +1,4 @@
-<div *ngIf="!isLoggedin">
-    <p>You are not logged</p>
-  </div>
-  
-  <div *ngIf="isLoggedin === true">
+<div *ngIf="isLoggedin === true">
     <h2 class="text-center mb-4">Login with Facebook in Angular</h2>
     <div class="form-group">
       <label>First Name</label>
@@ -16,6 +12,6 @@
       <label>Email</label>
       <input type="text" class="form-control" [value]="socialUser.email" id="email" readonly>
     </div>
-  </div>
+</div>
   
   

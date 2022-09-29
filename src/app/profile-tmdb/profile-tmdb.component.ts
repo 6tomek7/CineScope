@@ -1,3 +1,4 @@
+import { MoviesService } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileTmdbComponent implements OnInit {
 
-  constructor() { }
+  constructor(public moviesService: MoviesService) { }
 
   ngOnInit(): void {
+    if(this.moviesService.session_Id?.session_id != undefined){
+      this.moviesService.getProfileDetails()
+    }
   }
-
 }
