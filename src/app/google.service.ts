@@ -49,7 +49,6 @@ export class GoogleService {
       this.oAuthService.tryLoginImplicitFlow().then( () => {
         if (!this.oAuthService.hasValidAccessToken()) {
           this.oAuthService.initLoginFlow()
-          alert("test")
         } else {
           this.oAuthService.loadUserProfile().then( (userProfile) => {
             this.userProfileSubject.next(userProfile as UserInfo)
