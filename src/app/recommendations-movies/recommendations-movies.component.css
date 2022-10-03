@@ -1,5 +1,4 @@
-.container {
+.movies {
     display: flex;
     overflow-y: auto;
-    width: 1000px;
 }

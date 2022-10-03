@@ -1,38 +1,36 @@
-<h3>
-    <button type="button" class="btn btn-primary btn-sm" title="Add this movie to list movies to watch" (click)="addToWatchlist()" >Add to watch</button>
-</h3> 
 
-<div ngbDropdown class="d-inline-block">
-    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Rate movie</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <div class="d-flex justify-content-between">  
-                <button (click)="addClick()" class="btn btn-outline-warning  btn-sm">+</button>
-                <button class="btn btn-secondary"><b>{{this.rate}}</b></button>
-                <button (click)="subtractClick()" class="btn btn-outline-info">-</button>
-            </div>
-    <button ngbDropdownItem (click)="rateMovie(this.rate)">Save</button>
-</div>
-
-<div *ngIf="data$ | async as data">
+<div class="movie-details" *ngIf="data$ | async as data">
     <div class="container">
         <div class="left-column">
             <img  src="{{urlImage}}{{data.poster_path}}">
         </div>
         <div class="right-column">
-            <p><b>Runtime:</b> {{data.runtime | trnsformTime}}</p>
-            <p><b>Date:</b> {{data.release_date}}</p>
-            <p><b>Genres: </b>
-                <span *ngFor="let genre of data.genres">
-                    <a routerLink="/genre/{{genre.id}}/{{genre.name}}">{{genre.name}},</a>
-                </span>
-            </p>
-            <p><b>Overview:</b>{{data.overview}}</p>
+            <div class="functionality">
+                <div>
+                    <ngb-rating [(rate)]="rate" (rateChange)="rateMovie(rate)">
+                    </ngb-rating>
+                </div>
+                <h3>
+                    <button type="button" class="btn btn-primary btn-sm" title="Add this movie to list movies to watch" (click)="addToWatchlist()" >Add to watch</button>
+                </h3> 
+                
+            </div>
+            <div class="details">
+                <p><b>Runtime:</b> {{data.runtime | trnsformTime}}</p>
+                <p><b>Date:</b> {{data.release_date}}</p>
+                <p><b>Genres: </b>
+                    <span *ngFor="let genre of data.genres">
+                        <a routerLink="/genre/{{genre.id}}/{{genre.name}}">{{genre.name}},</a>
+                    </span>
+                </p>
+                <p><b>Overview:</b>{{data.overview}}</p>
+            </div>
         </div>
     </div>
 </div>
 
-<h3 class="mt-3">Cast</h3>
-<section class="persons">
+<h3 class="mt-3 ms-4">Cast</h3>
+<div class="container persons me-4 ms-4">
     <div *ngFor="let person of persons$ | async">
         <ul>
             <li>
@@ -40,8 +38,13 @@
             </li>
         </ul>
      </div>
-</section>
+</div>
+<div class="content me-4 ms-4"> 
+    <div>
+        <app-recommendations-movies [parentId]="id"></app-recommendations-movies>
+    </div>
+</div>
 
-<app-recommendations-movies [parentId]="id"></app-recommendations-movies>
+
 
 

@@ -50,16 +50,6 @@ export class MovieDetailsComponent implements OnInit {
     const modalRef = this.modalService.open(ModalComponent);
   }
 
-  addClick(){
-    if (this.rate < 10)
-    this.rate ++
-  }
-
-  subtractClick(){
-    if (this.rate > 0)
-    this.rate --
-  }
-
   rateMovie(value: number){
     this.moviesService.rateMovie(value)
   }
