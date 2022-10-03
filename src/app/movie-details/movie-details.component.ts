@@ -17,6 +17,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class MovieDetailsComponent implements OnInit {
   rate = 5
   urlImage = environment.urlImage
+  urlImage200 = environment.urlImage200
   id: string | undefined
   data$: Observable<Genres> | undefined
   persons$: Observable<Array<CreditsResult>> | undefined
