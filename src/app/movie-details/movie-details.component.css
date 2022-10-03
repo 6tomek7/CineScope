@@ -10,3 +10,8 @@
     display: flex;
     overflow-y: auto;
 }
+
+.star, .rate {
+    color: rgb(233, 215, 53);
+    font-size: xx-large;
+}
