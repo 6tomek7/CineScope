@@ -1,22 +1,16 @@
-<div class="modal-header">
+<div class="modal-header d-flex flex-column align-items-center">
     <div class="login-table">
         <h4>Login to your account. </h4>
-        <div class="nick">
-            <div>
-                <b>Nick:</b>
-            </div>
+        <div class="nick mt-3">
             <div>
                 <input placeholder="Your nick" #nick>
             </div>  
         </div>
-        <div type="text" class="password mb-4">
-            <div>
-                <b>Password:</b>
-            </div>
+        <div type="text" class="password mt-3">
             <div>
                 <input type="password" placeholder="Your password" #password>
             </div>   
-            <button class="btn btn-primary" (click)="login(nick.value, password.value)">Log in</button>
+            <button class="btn btn-primary mt-3 mb-2" (click)="login(nick.value, password.value)">Log in</button>
         </div>
     </div>
 </div>
@@ -38,6 +32,6 @@
         </a>
     </div>
 </div>
-<div class="modal-footer">
+<div class="modal-footer d-flex flex-column">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>
