@@ -7,8 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class SearchEngineComponent {
-  
-  searchFor: string | undefined
   name = ""
-  constructor() {}
 }
