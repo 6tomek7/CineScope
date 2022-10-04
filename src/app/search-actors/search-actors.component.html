@@ -1,10 +1,13 @@
 <div *ngIf="resultsActivator">
-    <div class="actors d-flex mb-2" *ngFor="let actor of actors">
-        <div class="img-thumbnail">
-            <img  src="{{urlImage}}{{actor.profile_path}}" height="200">
+    <div class="actors d-flex m-3" *ngFor="let actor of actors"> 
+        <div class="p-1">
+            <img  src="{{urlImage}}{{actor.profile_path}}">
         </div>
-        <div>
-            <a routerLink="/details/person/{{actor.id}}"><h3>Title: {{actor.name}}</h3></a>
+        <div class="p-1 ms-2">
+            <a routerLink="/details/person/{{actor.id}}">
+                <h3>Title: {{actor.name}}</h3>
+            </a>
+            <p>{{actor.known_for_department}}</p>
         </div>
     </div>
 </div>

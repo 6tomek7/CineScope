@@ -31,7 +31,8 @@ export class SearchActorsComponent {
     return {
       id: dto.id,
       name: dto.name,
-      profile_path: dto.profile_path
+      profile_path: dto.profile_path,
+      known_for_department: dto.known_for_department
     }
   }
 }
