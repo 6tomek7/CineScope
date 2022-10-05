@@ -1,7 +1,10 @@
 <div *ngIf="resultsActivator">
     <div class="actors d-flex m-3" *ngFor="let actor of actors"> 
-        <div class="p-1">
+        <div class="p-1" *ngIf="actor.profile_path">
             <img  src="{{urlImage}}{{actor.profile_path}}">
+        </div>
+        <div class="p-1" *ngIf="!actor.profile_path">
+            <img src="../assets/Profile.png">
         </div>
         <div class="p-1 ms-2">
             <a routerLink="/details/person/{{actor.id}}">
