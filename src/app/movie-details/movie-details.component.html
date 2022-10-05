@@ -40,7 +40,7 @@
 <div class="persons me-4 ms-4">
     <div *ngFor="let person of persons$ | async">
         <ul>       
-            <a routerLink="/person/{{person.id}}">
+            <a routerLink="/details/person/{{person.id}}">
                 <img src="{{urlImage200}}{{person.profile_path}}">
                 <b>{{person.name}}</b>
             </a>
