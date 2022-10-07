@@ -23,5 +23,4 @@ export class SearchActorsComponent implements OnInit {
       .pipe(map(results => results.results)) 
     })
   }
-  // this.route.queryParams.subscribe(value => this.name = value['query'])
 }

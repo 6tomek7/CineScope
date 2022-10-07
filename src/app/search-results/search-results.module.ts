@@ -10,6 +10,7 @@ import { SearchKeywordsComponent } from './search-keywords/search-keywords.compo
 import { SearchEngineModule } from '../search-engine/search-engine.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.compon
     SearchCollectionsComponent,
     SearchKeywordsComponent,
     SearchTvShowsComponent,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
