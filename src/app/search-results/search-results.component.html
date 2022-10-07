@@ -1,5 +1,6 @@
 <div class="search-engine mb-3">
     <app-search-engine [name]="name"></app-search-engine>
+
 </div>
 
 <div class="d-flex m-4">
@@ -11,37 +12,49 @@
             <ul>
                 <li>
                     <nav>
-                        <a routerLink="./people/{{name}}">People</a>
+                        <a routerLink="./people"
+                            [queryParams]="{query:this.name, page: 1}"
+                        >People</a>
                     </nav>
                     <span>{{actorsTotalResults}}</span>
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./collection/{{name}}">Collection</a>
+                        <a routerLink="./collection"
+                            [queryParams]="{query:this.name, page: 1}">
+                            Collection</a>
                     </nav>
                     <span>{{collectionsTotalResults}}</span>
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./companies/{{name}}">Companies</a>
+                        <a routerLink="./companies"
+                        [queryParams]="{query:this.name, page: 1}"
+                        >Companies</a>
                     </nav>
                     <span>{{companiesTotalResults}}</span>
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./keywords/{{name}}">Keywords</a>
+                        <a routerLink="./keywords"
+                        [queryParams]="{query:this.name, page: 1}"
+                        >Keywords</a>
                     </nav>
                     <span>{{keywoardsTotalResults}}</span>
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./movies/{{name}}">Movies</a>
+                        <a routerLink="./movies"
+                        [queryParams]="{query:this.name, page: 1}"
+                        >Movies</a>
                     </nav>
                     <span>{{moviesTotalResults}}</span>
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./tvShows/{{name}}">Tv shows</a>
+                        <a routerLink="./tvShows"
+                        [queryParams]="{query:this.name, page: 1}"
+                        >Tv shows</a>
                     </nav>
                     <span>{{tvShowsTotalResults}}</span>
                 </li>

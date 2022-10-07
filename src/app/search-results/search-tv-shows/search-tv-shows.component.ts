@@ -19,8 +19,8 @@ export class SearchTvShowsComponent {
     private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.tvShows = this.searchResults.searchTvShows(params['name'], 1)
+    this.route.queryParams.subscribe(params => {
+      this.tvShows = this.searchResults.searchTvShows(params['query'], params['page'])
       .pipe(map(results => results.results)) 
     })
   }

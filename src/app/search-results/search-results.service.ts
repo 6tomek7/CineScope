@@ -119,8 +119,8 @@ export class SearchResultsService {
     return this.http.get<Movies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${value}&page=${page}`)
   }
 
-  searchActors(name: string | undefined): Observable<SearchActors>{
-    return this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${name}&page=1`)
+  searchActors(value: string | undefined, page: number): Observable<SearchActors>{
+    return this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${value}&page=${page}`)
 
   }
 
@@ -128,8 +128,8 @@ export class SearchResultsService {
     return this.http.get<SearchCompanies>(`${environment.apiUrl}/search/company${environment.apiKey}&query=${value}&page=${page}`)
   }
 
-  searchCollections(value: string | undefined, page: number): Observable<SearchCollections>{
-    return this.http.get<SearchCollections>(`${environment.apiUrl}/search/collection${environment.apiKey}&query=${value}&page=${page}`)
+  searchCollections(value:string, number: number): Observable<SearchCollections>{
+    return this.http.get<SearchCollections>(`${environment.apiUrl}/search/collection${environment.apiKey}&query=${value}&page=${number}`)
   }
 
   searchKeywords(value: string | undefined, page: number): Observable<SearchKeywords>{

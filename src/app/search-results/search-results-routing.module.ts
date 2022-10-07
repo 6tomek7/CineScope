@@ -12,12 +12,12 @@ import { SearchTvShowsComponent } from './search-tv-shows/search-tv-shows.compon
 const routes: Routes = [
   { path: '', component: SearchResultsComponent,
       children: [
-        { path: 'people/:name', component: SearchActorsComponent },
-        { path: 'collection/:name', component: SearchCollectionsComponent },
-        { path: 'companies/:name', component: SearchCompaniesComponent },
-        { path: 'keywords/:name', component: SearchKeywordsComponent },
-        { path: 'movies/:name', component: SearchMoviesComponent },
-        { path: 'tvShows/:name', component: SearchTvShowsComponent }
+        { path: 'people', component: SearchActorsComponent },
+        { path: 'collection', component: SearchCollectionsComponent },
+        { path: 'companies', component: SearchCompaniesComponent },
+        { path: 'keywords', component: SearchKeywordsComponent },
+        { path: 'movies', component: SearchMoviesComponent },
+        { path: 'tvShows', component: SearchTvShowsComponent }
       ] }
 ];
 

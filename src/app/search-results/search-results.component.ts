@@ -24,14 +24,10 @@ export class SearchResultsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(location.pathname.split("/")[3] === undefined){
-     this.name = location.pathname.split("/")[2]
-    } else {
-     this.name = location.pathname.split("/")[3]
-    }
+    this.route.queryParams.subscribe(value => this.name = value['query'])
     this.actorsResults()
     this.moviesResults()
-    this.collectionsResults()
+    // this.collectionsResults()
     this.companiesResults()
     this.keywordsResults()
     this.moviesResults()
@@ -43,12 +39,12 @@ export class SearchResultsComponent implements OnInit {
   }
   
   actorsResults() {
-    this.searchResults.searchActors(this.name).subscribe
+    this.searchResults.searchActors(this.name, 1).subscribe
       (result => this.actorsTotalResults = result.total_results)
   }
 
   collectionsResults() {
-    this.searchResults.searchCollections(this.name, 1).subscribe
+    this.searchResults.searchCollections("name", 1).subscribe
     (result => this.collectionsTotalResults= result.total_results)
   }
 

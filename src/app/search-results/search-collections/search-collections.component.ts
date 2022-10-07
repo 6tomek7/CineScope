@@ -10,18 +10,16 @@ import { map, Observable } from 'rxjs';
   styleUrls: ['./search-collections.component.css']
 })
 export class SearchCollectionsComponent implements OnInit{
-
-  urlImage = environment.urlImage
   collections: Observable <Array<SearchCollectionsResult>> | undefined
+  urlImage = environment.urlImage
   collectionsTotalPages: number | undefined
 
   constructor( private searchResults: SearchResultsService,
     private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.collections = this.searchResults.searchCollections(params['name'], 1)
-      .pipe(map(results => results.results)) 
-    })
+    this.route.queryParams.subscribe(value => 
+      this.collections = this.searchResults.searchCollections(value['query'], value['page'])
+      .pipe(map(results => results.results))) 
   }
 }

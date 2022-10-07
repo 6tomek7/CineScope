@@ -11,16 +11,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./search-actors.component.css']
 })
 export class SearchActorsComponent implements OnInit {
-  actors$: Observable <Array<SearchActorsResult>> | undefined
+  actors: Observable <Array<SearchActorsResult>> | undefined
   urlImage = environment.urlImage
 
   constructor( private searchResults: SearchResultsService,
     private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.actors$ = this.searchResults.searchActors(params['name'])
+    this.route.queryParams.subscribe(params => {
+      this.actors = this.searchResults.searchActors(params['query'], params['page'])
       .pipe(map(results => results.results)) 
     })
   }
+  // this.route.queryParams.subscribe(value => this.name = value['query'])
 }

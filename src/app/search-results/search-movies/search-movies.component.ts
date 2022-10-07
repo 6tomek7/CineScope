@@ -22,8 +22,8 @@ export class SearchMoviesComponent implements OnInit {
     private route: ActivatedRoute ) { }
  
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.moviesResult = this.searchResults.searchMovies(params['name'], 1)
+    this.route.queryParams.subscribe(params => {
+      this.moviesResult = this.searchResults.searchMovies(params['query'], params['page'])
       .pipe(map(results => results.results)) 
     })
   }

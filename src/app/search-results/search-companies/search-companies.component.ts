@@ -19,8 +19,8 @@ export class SearchCompaniesComponent implements OnInit {
     private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.companies = this.searchResults.searchCompanies(params['name'], 1)
+    this.route.queryParams.subscribe(params => {
+      this.companies = this.searchResults.searchCompanies(params['query'], params['page'])
       .pipe(map(results => results.results)) 
     })
   }
