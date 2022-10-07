@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { SearchResultsService } from './search-results.service';
 
 @Component({
   selector: 'app-search-results',
@@ -9,16 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SearchResultsComponent implements OnInit {
   urlImage = environment.urlImage
-  name: string | undefined
-  showElements = {
-    showMovies: false,
-    showCompanies: false,
-    showActors: false,
-    showCollections: false,
-    showKeywords: false,
-    showTvShows: false
-  }
- 
+  name: string | undefined 
   moviesTotalResults: number | undefined
   companiesTotalResults: number | undefined
   actorsTotalResults: number | undefined
@@ -28,58 +20,50 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private searchResults: SearchResultsService
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.name = params['name']})
+    if(location.pathname.split("/")[3] === undefined){
+     this.name = location.pathname.split("/")[2]
+    } else {
+     this.name = location.pathname.split("/")[3]
+    }
+    this.actorsResults()
+    this.moviesResults()
+    this.collectionsResults()
+    this.companiesResults()
+    this.keywordsResults()
+    this.moviesResults()
   }
 
-  moviesResults(results: number){
-    this.moviesTotalResults = results
+  moviesResults(){
+    this.searchResults.searchMovies(this.name, 1).subscribe
+    (result => this.moviesTotalResults = result.total_results)
   }
   
-  actorsResults(result: number) {
-    this.actorsTotalResults = result
+  actorsResults() {
+    this.searchResults.searchActors(this.name).subscribe
+      (result => this.actorsTotalResults = result.total_results)
   }
 
-  collectionsResults(result: number) {
-    this.collectionsTotalResults = result
+  collectionsResults() {
+    this.searchResults.searchCollections(this.name, 1).subscribe
+    (result => this.collectionsTotalResults= result.total_results)
   }
 
-  companiesResults(result: number){
-    this.companiesTotalResults = result
+  companiesResults(){
+    this.searchResults.searchCompanies(this.name, 1).subscribe
+    (result => this.companiesTotalResults = result.total_results)
   }
 
-  keywordsResults(result: number) {
-    this.keywoardsTotalResults = result
+  keywordsResults() {
+    this.searchResults.searchKeywords(this.name, 1).subscribe
+    (result => this.keywoardsTotalResults = result.total_results)
   }
 
-  tvShowsResults(result: number){
-    this.tvShowsTotalResults = result
-  }
-  
-  previewMovies(){
-    this.showElements.showMovies = !this.showElements.showMovies
-  }
-
-  previewCompanies(){
-    this.showElements.showCompanies = !this.showElements.showCompanies
-  }
-
-  previewActors(){
-    this.showElements.showActors = !this.showElements.showActors
-  }
-
-  previewCollections(){
-    this.showElements.showCollections = !this.showElements.showCollections
-  }
-
-  previewKeywords(){
-    this.showElements.showKeywords = !this.showElements.showKeywords
-  }
-
-  previewTvShows(){
-    this.showElements.showTvShows = !this.showElements.showTvShows
+  tvShowsResults(){
+    this.searchResults.searchTvShows(this.name, 1).subscribe
+    (result => this.tvShowsTotalResults = result.total_results)
   }
 }

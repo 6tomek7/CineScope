@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: "", component: DashboardComponent },
   { path: "genre/:id/:name", component: PopularMoviesInTheGenreComponent },
   { path: "movies-list", component: ListOfMoviesComponent },
+  { path: 'search', loadChildren: () => import('./search-results/search-results.module').then(m => m.SearchResultsModule) },
   { path: 'search/:name', loadChildren: () => import('./search-results/search-results.module').then(m => m.SearchResultsModule) },
   { path: 'search-engine', loadChildren: () => import('./search-engine/search-engine.module').then(m => m.SearchEngineModule) },
   { path: 'details', loadChildren: () => import('./details/details.module').then(m => m.DetailsModule) },

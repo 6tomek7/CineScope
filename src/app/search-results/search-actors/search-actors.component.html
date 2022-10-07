@@ -1,5 +1,5 @@
-<div *ngIf="resultsActivator">
-    <div class="actors d-flex m-3" *ngFor="let actor of actors"> 
+<div >
+    <div class="actors d-flex m-3" *ngFor="let actor of actors$ | async"> 
         <div class="p-1" *ngIf="actor.profile_path">
             <img  src="{{urlImage}}{{actor.profile_path}}">
         </div>
@@ -7,10 +7,9 @@
             <img src="../assets/Profile.png">
         </div>
         <div class="p-1 ms-2">
-            <a routerLink="/details/person/{{actor.id}}">
+            <!-- <a routerLink="./../details/person/{{actor.id}}"> -->
                 <h3>Title: {{actor.name}}</h3>
-            </a>
+            <!-- </a> -->
             <p>{{actor.known_for_department}}</p>
         </div>
-    </div>
 </div>
