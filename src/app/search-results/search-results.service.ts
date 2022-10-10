@@ -108,35 +108,34 @@ export class SearchResultsService {
   searchName: string | undefined
 
 
-  constructor(private http: HttpClient,
-    private route: ActivatedRoute) { }
+  constructor(private http: HttpClient) { }
 
   getName(name: string | undefined){
    this.searchName = name
   }
 
-  searchMovies(value: string | undefined, page: number): Observable<Movies>{
+  searchMovies(value: string | undefined, page: number | undefined): Observable<Movies>{
     return this.http.get<Movies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${value}&page=${page}`)
   }
 
-  searchActors(value: string | undefined, page: number): Observable<SearchActors>{
+  searchActors(value: string | undefined, page: number | undefined): Observable<SearchActors>{
     return this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${value}&page=${page}`)
 
   }
 
-  searchCompanies(value: string | undefined, page: number): Observable<SearchCompanies>{
+  searchCompanies(value: string | undefined, page: number | undefined): Observable<SearchCompanies>{
     return this.http.get<SearchCompanies>(`${environment.apiUrl}/search/company${environment.apiKey}&query=${value}&page=${page}`)
   }
 
-  searchCollections(value:string, number: number): Observable<SearchCollections>{
+  searchCollections(value: string | undefined, number: number | undefined): Observable<SearchCollections>{
     return this.http.get<SearchCollections>(`${environment.apiUrl}/search/collection${environment.apiKey}&query=${value}&page=${number}`)
   }
 
-  searchKeywords(value: string | undefined, page: number): Observable<SearchKeywords>{
+  searchKeywords(value: string | undefined, page: number | undefined): Observable<SearchKeywords>{
     return this.http.get<SearchKeywords>(`${environment.apiUrl}/search/keyword${environment.apiKey}&query=${value}&page=${page}`)
   }
 
-  searchTvShows(value: string | undefined, page: number): Observable<SearchTvShows>{
+  searchTvShows(value: string | undefined, page: number | undefined): Observable<SearchTvShows>{
     return this.http.get<SearchTvShows>(`${environment.apiUrl}/search/tv${environment.apiKey}&query=${value}&page=${page}`)
   }
 }
