@@ -10,6 +10,7 @@ import { SearchResultsService } from './search-results.service';
 })
 export class SearchResultsComponent implements OnInit {
   showPagination: boolean | undefined
+  totalPages: number | undefined
   pathName: string | undefined
   urlImage = environment.urlImage
   name: string | undefined 
@@ -49,19 +50,18 @@ export class SearchResultsComponent implements OnInit {
   }
 
   moviesResults(){
-    this.searchResults.searchMovies(this.name, 1).subscribe
+    this.searchResults.searchMovies(this.name, this.page).subscribe
     (result => {
-      this.showPagination = false
-      this.moviesTotalResults = result.total_pages
+      this.moviesTotalResults = result.total_results
       this.checkPagination(result.total_pages, "movies")
     })
   }
   
   actorsResults() {
-    this.searchResults.searchActors(this.name, 1).subscribe
+    this.searchResults.searchActors(this.name, this.page).subscribe
     (result => {
       this.actorsTotalResults = result.total_results
-      this.checkPagination(result.total_pages, "actors")
+      this.checkPagination(result.total_pages, "people")
     })
   }
 
@@ -95,12 +95,12 @@ export class SearchResultsComponent implements OnInit {
 
   checkPagination(totalPages: number, category: string){
     if(this.pathName === category && totalPages > 1 ){
+      console.log("hej")
       this.showPagination = true
-      console.log("true")
+      this.totalPages = totalPages
     } 
     if(this.pathName === category && totalPages === 1 ){
       this.showPagination = false
-      console.log("false")
     } 
   }
 }

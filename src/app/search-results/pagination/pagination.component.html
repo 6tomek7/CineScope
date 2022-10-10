@@ -7,16 +7,18 @@
         >Previous
         </a>
       </li>
-      <li class="page-item">
+      <li class="page-item {{firstButton}}">
         <a class="page-link"
         routerLink="../{{this.pathName}}"
         [queryParams]="{query: this.query, page: this.firstNumber}">{{firstNumber}}
         </a>
       </li>
-      <li class="page-item active" aria-current="page">
-        <a class="page-link">{{secondNumber}}</a>
+      <li class="page-item {{secondButton}}" aria-current="page">
+        <a class="page-link"
+        routerLink="../{{this.pathName}}"
+        [queryParams]="{query: this.query, page: this.secondNumber}">{{secondNumber}}</a>
       </li>
-      <li class="page-item">
+      <li *ngIf="thirdButtonActivated" class="page-item {{thirdButton}}">
         <a class="page-link" 
         routerLink="../{{this.pathName}}"
         [queryParams]="{query: this.query, page: this.thirdNumber}">{{thirdNumber}}
