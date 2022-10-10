@@ -9,6 +9,7 @@ import { SearchResultsService } from './search-results.service';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit {
+  showPagination: true | undefined
   urlImage = environment.urlImage
   name: string | undefined 
   page: number | undefined
@@ -35,7 +36,6 @@ export class SearchResultsComponent implements OnInit {
     this.companiesResults()
     this.keywordsResults()
     this.moviesResults()
-    console.log(this.page)
   }
 
   moviesResults(){
