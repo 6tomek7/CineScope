@@ -95,7 +95,6 @@ export class SearchResultsComponent implements OnInit {
 
   checkPagination(totalPages: number, category: string){
     if(this.pathName === category && totalPages > 1 ){
-      console.log("hej")
       this.showPagination = true
       this.totalPages = totalPages
     } 
