@@ -9,7 +9,8 @@ import { SearchResultsService } from './search-results.service';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit {
-  showPagination: true | undefined
+  showPagination: boolean | undefined
+  pathName: string | undefined
   urlImage = environment.urlImage
   name: string | undefined 
   page: number | undefined
@@ -17,7 +18,7 @@ export class SearchResultsComponent implements OnInit {
   companiesTotalResults: number | undefined
   actorsTotalResults: number | undefined
   collectionsTotalResults: number | undefined
-  keywoardsTotalResults: number | undefined
+  keywordsTotalResults: number | undefined
   tvShowsTotalResults: number | undefined
 
   constructor(
@@ -29,42 +30,77 @@ export class SearchResultsComponent implements OnInit {
     this.route.queryParams.subscribe(value => {
       this.page = value['page']
       this.name = value['query']
+      this.tvShowsResults()
+      this.moviesResults()
+      this.actorsResults()
+      this.collectionsResults()
+      this.companiesResults()
+      this.keywordsResults()
     })
-    this.actorsResults()
-    this.moviesResults()
-    this.collectionsResults()
-    this.companiesResults()
-    this.keywordsResults()
-    this.moviesResults()
+    this.route.params.subscribe(() => {
+      this.pathName = location.pathname.substr(8,6) 
+      this.tvShowsResults()
+      this.moviesResults()
+      this.actorsResults()
+      this.collectionsResults()
+      this.companiesResults()
+      this.keywordsResults()
+    })
   }
 
   moviesResults(){
-    this.searchResults.searchMovies(this.name, this.page).subscribe
-    (result => this.moviesTotalResults = result.total_results)
+    this.searchResults.searchMovies(this.name, 1).subscribe
+    (result => {
+      this.showPagination = false
+      this.moviesTotalResults = result.total_pages
+      this.checkPagination(result.total_pages, "movies")
+    })
   }
   
   actorsResults() {
-    this.searchResults.searchActors(this.name, this.page).subscribe
-      (result => this.actorsTotalResults = result.total_results)
+    this.searchResults.searchActors(this.name, 1).subscribe
+    (result => {
+      this.actorsTotalResults = result.total_results
+      this.checkPagination(result.total_pages, "actors")
+    })
   }
 
   collectionsResults() {
     this.searchResults.searchCollections(this.name, this.page).subscribe
-    (result => this.collectionsTotalResults= result.total_results)
+    (result => {
+      this.checkPagination(result.total_pages, "collec")
+      this.collectionsTotalResults = result.total_results})
   }
 
   companiesResults(){
     this.searchResults.searchCompanies(this.name, this.page).subscribe
-    (result => this.companiesTotalResults = result.total_results)
+    (result => {
+      this.checkPagination(result.total_pages, "compan")
+      this.companiesTotalResults = result.total_results})
   }
 
   keywordsResults() {
     this.searchResults.searchKeywords(this.name, this.page).subscribe
-    (result => this.keywoardsTotalResults = result.total_results)
+    (result => {
+      this.checkPagination(result.total_pages, "keywor")
+      this.keywordsTotalResults = result.total_results})
   }
 
   tvShowsResults(){
     this.searchResults.searchTvShows(this.name, this.page).subscribe
-    (result => this.tvShowsTotalResults = result.total_results)
+    (result => {
+      this.checkPagination(result.total_pages, "tvShow")
+      this.tvShowsTotalResults = result.total_results})
+  }
+
+  checkPagination(totalPages: number, category: string){
+    if(this.pathName === category && totalPages > 1 ){
+      this.showPagination = true
+      console.log("true")
+    } 
+    if(this.pathName === category && totalPages === 1 ){
+      this.showPagination = false
+      console.log("false")
+    } 
   }
 }

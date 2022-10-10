@@ -2,14 +2,14 @@
     <ul class="pagination">
       <li class="page-item">
         <a class="page-link"  tabindex="-1" aria-disabled="true"
-        routerLink=".{{this.pathName}}"
+        routerLink="../{{this.pathName}}"
         [queryParams]="{query: this.query, page: this.firstNumber}"
         >Previous
         </a>
       </li>
       <li class="page-item">
         <a class="page-link"
-        routerLink=".{{this.pathName}}"
+        routerLink="../{{this.pathName}}"
         [queryParams]="{query: this.query, page: this.firstNumber}">{{firstNumber}}
         </a>
       </li>
@@ -18,13 +18,13 @@
       </li>
       <li class="page-item">
         <a class="page-link" 
-        routerLink=".{{this.pathName}}"
+        routerLink="../{{this.pathName}}"
         [queryParams]="{query: this.query, page: this.thirdNumber}">{{thirdNumber}}
         </a>
       </li>
       <li class="page-item">
         <a class="page-link" 
-        routerLink=".{{this.pathName}}"
+        routerLink="../{{this.pathName}}"
         [queryParams]="{query: this.query, page: this.thirdNumber}">
         Next
         </a>

@@ -12,7 +12,7 @@
             <ul>
                 <li>
                     <nav>
-                        <a routerLink="./people"
+                        <a routerLink="../people/people"
                             [queryParams]="{query:this.name, page: 1}"
                         >People</a>
                     </nav>
@@ -20,7 +20,7 @@
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./collection"
+                        <a routerLink="../collection/collection"
                             [queryParams]="{query:this.name, page: 1}">
                             Collection</a>
                     </nav>
@@ -28,7 +28,7 @@
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./companies"
+                        <a routerLink="../companies/companies"
                         [queryParams]="{query:this.name, page: 1}"
                         >Companies</a>
                     </nav>
@@ -36,15 +36,15 @@
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./keywords"
+                        <a routerLink="../keywords/keywords"
                         [queryParams]="{query:this.name, page: 1}"
                         >Keywords</a>
                     </nav>
-                    <span>{{keywoardsTotalResults}}</span>
+                    <span>{{keywordsTotalResults}}</span>
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./movies"
+                        <a routerLink="../movies/movies"
                         [queryParams]="{query:this.name, page: 1}"
                         >Movies</a>
                     </nav>
@@ -52,7 +52,7 @@
                 </li>
                 <li>
                     <nav>
-                        <a routerLink="./tvShows"
+                        <a routerLink="../tvShows/tvShows"
                         [queryParams]="{query:this.name, page: 1}"
                         >Tv shows</a>
                     </nav>
