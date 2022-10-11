@@ -1,64 +1,49 @@
 <div class="search-engine mb-3">
     <app-search-engine [name]="name"></app-search-engine>
-
 </div>
 
 <div class="d-flex m-4">
     <div class="categories me-4">
-        <div class="header p-2 m-2">
-            <h4>Search results</h4>
+        <div class="header p-2">
+            <h3>Search results:</h3>
         </div>
-        <div class="categories-list ps-2">
-            <ul>
-                <li>
-                    <nav>
-                        <a routerLink="../people/people"
-                            [queryParams]="{query:this.name, page: 1}"
-                        >People</a>
-                    </nav>
-                    <span>{{actorsTotalResults}}</span>
-                </li>
-                <li>
-                    <nav>
-                        <a routerLink="../collection/collection"
-                            [queryParams]="{query:this.name, page: 1}">
-                            Collection</a>
-                    </nav>
+        <div class="categories-list">
+            <nav>
+                <a routerLink="../people/people"
+                    [queryParams]="{query:this.name, page: 1}"
+                >People</a>
+                <span>{{actorsTotalResults}}</span>
+            </nav>
+            <nav>
+                <a routerLink="../collection/collection"
+                    [queryParams]="{query:this.name, page: 1}">
+                    Collection</a>
                     <span>{{collectionsTotalResults}}</span>
-                </li>
-                <li>
-                    <nav>
-                        <a routerLink="../companies/companies"
-                        [queryParams]="{query:this.name, page: 1}"
-                        >Companies</a>
-                    </nav>
-                    <span>{{companiesTotalResults}}</span>
-                </li>
-                <li>
-                    <nav>
-                        <a routerLink="../keywords/keywords"
-                        [queryParams]="{query:this.name, page: 1}"
-                        >Keywords</a>
-                    </nav>
-                    <span>{{keywordsTotalResults}}</span>
-                </li>
-                <li>
-                    <nav>
-                        <a routerLink="../movies/movies"
-                        [queryParams]="{query:this.name, page: 1}"
-                        >Movies</a>
-                    </nav>
-                    <span>{{moviesTotalResults}}</span>
-                </li>
-                <li>
-                    <nav>
-                        <a routerLink="../tvShows/tvShows"
-                        [queryParams]="{query:this.name, page: 1}"
-                        >Tv shows</a>
-                    </nav>
-                    <span>{{tvShowsTotalResults}}</span>
-                </li>
-            </ul>
+            </nav>
+            <nav>
+                <a routerLink="../companies/companies"
+                [queryParams]="{query:this.name, page: 1}"
+                >Companies</a>
+                <span>{{companiesTotalResults}}</span>
+            </nav>
+            <nav>
+                <a routerLink="../keywords/keywords"
+                [queryParams]="{query:this.name, page: 1}"
+                >Keywords</a>
+                <span>{{keywordsTotalResults}}</span>
+            </nav>
+            <nav>
+                <a routerLink="../movies/movies"
+                [queryParams]="{query:this.name, page: 1}"
+                >Movies</a>
+                <span>{{moviesTotalResults}}</span>
+            </nav>
+            <nav>
+                <a routerLink="../tvShows/tvShows"
+                [queryParams]="{query:this.name, page: 1}"
+                >Tv tvShows</a>
+                <span>{{tvShowsTotalResults}}</span>
+            </nav>
         </div> 
     </div>
     <div class="search-results flex-grow-1">
