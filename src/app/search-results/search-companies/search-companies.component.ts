@@ -10,10 +10,8 @@ import { map, Observable } from 'rxjs';
   styleUrls: ['./search-companies.component.css']
 })
 export class SearchCompaniesComponent implements OnInit {
-
   urlImage = environment.urlImage
   companies: Observable <Array<SearchCompaniesResult>> | undefined
-  companiesTotalPages: number | undefined
 
   constructor( private searchResults: SearchResultsService,
     private route: ActivatedRoute ) { }

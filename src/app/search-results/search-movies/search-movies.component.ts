@@ -12,11 +12,8 @@ import { map } from 'rxjs';
   styleUrls: ['./search-movies.component.css']
 })
 export class SearchMoviesComponent implements OnInit {
-  
   urlImage = environment.urlImage
   moviesResult: Observable <Array<MoviesResult>> | undefined
-  moviesTotalPages: number | undefined
-  moviesTotalResults!: number
 
   constructor( private searchResults: SearchResultsService,
     private route: ActivatedRoute ) { }

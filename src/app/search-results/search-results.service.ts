@@ -107,7 +107,6 @@ export interface SearchCompaniesResult {
 export class SearchResultsService {
   searchName: string | undefined
 
-
   constructor(private http: HttpClient) { }
 
   getName(name: string | undefined){

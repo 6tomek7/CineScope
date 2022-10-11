@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { SearchKeywordsResult, SearchResultsService } from '../search-results.service';
 
 @Component({
@@ -10,17 +9,14 @@ import { SearchKeywordsResult, SearchResultsService } from '../search-results.se
   styleUrls: ['./search-keywords.component.css']
 })
 export class SearchKeywordsComponent implements OnInit{
-  
-  urlImage = environment.urlImage
   keywords: Observable <Array<SearchKeywordsResult>> | undefined
-  keywordsTotalPages: number | undefined
 
   constructor( private searchResults: SearchResultsService,
     private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.keywords = this.searchResults.searchKeywords(params['name'], 1)
+    this.route.queryParams.subscribe(params => {
+      this.keywords = this.searchResults.searchKeywords(params['query'], params['page'])
       .pipe(map(results => results.results)) 
     })
   }

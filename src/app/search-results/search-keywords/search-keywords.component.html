@@ -1,7 +1,3 @@
-<div *ngFor="let keyword of keywords | async">
-    <ul>
-        <li>
-            <h3>Keyword: {{keyword.name}}</h3>
-        </li>
-    </ul>
+<div class="border-bottom m-1" *ngFor="let keyword of keywords | async">
+    <h3>{{keyword.name}}</h3>
 </div>

@@ -10,11 +10,9 @@ import { SearchResultsService, SearchTvShowsResult } from '../search-results.ser
   styleUrls: ['./search-tv-shows.component.css']
 })
 export class SearchTvShowsComponent {
- 
   urlImage = environment.urlImage
   tvShows: Observable <Array<SearchTvShowsResult>> | undefined
-  tvShowsTotalPages: number | undefined
-
+  
   constructor( private searchResults: SearchResultsService,
     private route: ActivatedRoute ) { }
 
