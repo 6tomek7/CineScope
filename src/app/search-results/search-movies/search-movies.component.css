@@ -1,0 +1,25 @@
+img {
+    width: 15%;
+    border-radius: 8px;
+}
+
+.movies {
+    background-color: rgb(253, 253, 253);
+    border: 3px solid rgb(244, 244, 244);
+    border-radius: 8px;
+    flex-grow: 1;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a :hover {
+    color: darkgreen;
+}
+
+p {
+    color: rgb(43, 43, 43);
+    font-size: large;
+}
