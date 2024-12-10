@@ -8,21 +8,23 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-popular-movies-in-the-genre',
   templateUrl: './popular-movies-in-the-genre.component.html',
-  styleUrls: ['./popular-movies-in-the-genre.component.css']
+  styleUrls: ['./popular-movies-in-the-genre.component.css'],
 })
 export class PopularMoviesInTheGenreComponent implements OnInit {
-  private _id: number | undefined
-  _name: string | undefined
-  genres$!: Observable<PopularMoviesInTheGenre>
-  urlImage = environment.urlImage
+  private _id: number | undefined;
+  _name: string | undefined;
+  genres$!: Observable<PopularMoviesInTheGenre>;
+  urlImage = environment.urlImage;
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+  ) {}
 
   ngOnInit(): void {
-    this._id = this.route.snapshot.params["id"] 
-    this._name = this.route.snapshot.params["name"]
-    this.genres$ = this.http.get<PopularMoviesInTheGenre>(`${environment.apiUrl}/discover/movie${environment.apiKey}&sort_by=popularity.desc&page=1&with_genres=${this._id}`);
+    this._id = this.route.snapshot.params['id'];
+    this._name = this.route.snapshot.params['name'];
+    this.genres$ = this.http.get<PopularMoviesInTheGenre>(
+      `${environment.apiUrl}/discover/movie${environment.apiKey}&sort_by=popularity.desc&page=1&with_genres=${this._id}`,
+    );
   }
 }

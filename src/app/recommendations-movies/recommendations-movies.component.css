@@ -1,5 +1,5 @@
 .container {
-    display: flex;
-    overflow-y: auto;
-    width: 1000px;
+  display: flex;
+  overflow-y: auto;
+  width: 1000px;
 }

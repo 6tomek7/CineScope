@@ -1,47 +1,58 @@
 <h3>
-    <button type="button" class="btn btn-primary btn-sm" title="Add this movie to list movies to watch" (click)="addToWatchlist()" >Add to watch</button>
-</h3> 
-<ngb-toast
-*ngIf="show"
-header="Request for access"
-[autohide]="false"
->
-Angular is asking for your permission to read and write data on your behalf. 
-This is necessary if you want to do things like maintain your lists or rate movies outside of TMDB.
-<a target="_blank" href="{{permission}}{{tokenNumber}}?redirect_to={{actuallyUrl}}/approved">
-<button class="btn btn-primary" >Approve</button></a>
+  <button
+    type="button"
+    class="btn btn-primary btn-sm"
+    title="Add this movie to list movies to watch"
+    (click)="addToWatchlist()"
+  >
+    Add to watch
+  </button>
+</h3>
+<ngb-toast *ngIf="show" header="Request for access" [autohide]="false">
+  Angular is asking for your permission to read and write data on your behalf.
+  This is necessary if you want to do things like maintain your lists or rate
+  movies outside of TMDB.
+  <a
+    target="_blank"
+    href="{{ permission }}{{ tokenNumber }}?redirect_to={{
+      actuallyUrl
+    }}/approved"
+  >
+    <button class="btn btn-primary">Approve</button></a
+  >
 </ngb-toast>
 
 <div *ngIf="data$ | async as data">
-    <div class="container">
-        <div class="left-column">
-            <img  src="{{urlImage}}{{data.poster_path}}">
-        </div>
-        <div class="right-column">
-            <p><b>Runtime:</b> {{data.runtime | trnsformTime}}</p>
-            <p><b>Date:</b> {{data.release_date}}</p>
-            <p><b>Genres: </b>
-                <span *ngFor="let genre of data.genres">
-                    <a routerLink="/genre/{{genre.id}}/{{genre.name}}">{{genre.name}},</a>
-                </span>
-            </p>
-            <p><b>Overview:</b>{{data.overview}}</p>
-        </div>
+  <div class="container">
+    <div class="left-column">
+      <img src="{{ urlImage }}{{ data.poster_path }}" />
     </div>
+    <div class="right-column">
+      <p><b>Runtime:</b> {{ data.runtime | trnsformTime }}</p>
+      <p><b>Date:</b> {{ data.release_date }}</p>
+      <p>
+        <b>Genres: </b>
+        <span *ngFor="let genre of data.genres">
+          <a routerLink="/genre/{{ genre.id }}/{{ genre.name }}"
+            >{{ genre.name }},</a
+          >
+        </span>
+      </p>
+      <p><b>Overview:</b>{{ data.overview }}</p>
+    </div>
+  </div>
 </div>
 
 <h3 class="mt-3">Cast</h3>
 <section class="persons">
-    <div *ngFor="let person of persons$ | async">
-        <ul>
-            <li>
-                <a routerLink="/person/{{person.id}}">{{person.name}}</a>
-            </li>
-        </ul>
-     </div>
+  <div *ngFor="let person of persons$ | async">
+    <ul>
+      <li>
+        <a routerLink="/person/{{ person.id }}">{{ person.name }}</a>
+      </li>
+    </ul>
+  </div>
 </section>
 
 <app-recommendations-movies [parentId]="id"></app-recommendations-movies>
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
-
-

@@ -7,17 +7,17 @@ import { Observable } from 'rxjs/internal/Observable';
 @Component({
   selector: 'app-recommendations-movies',
   templateUrl: './recommendations-movies.component.html',
-  styleUrls: ['./recommendations-movies.component.css']
+  styleUrls: ['./recommendations-movies.component.css'],
 })
 export class RecommendationsMoviesComponent implements OnInit {
-  @Input() set parentId(value: string | undefined){
-    this.data$ = this.http.get<Recommendations>(`${environment.apiUrl}/movie/${value}/recommendations${environment.apiKey}`)
+  @Input() set parentId(value: string | undefined) {
+    this.data$ = this.http.get<Recommendations>(
+      `${environment.apiUrl}/movie/${value}/recommendations${environment.apiKey}`,
+    );
   }
-  urlImage = environment.urlImage200
-  constructor(
-    private http: HttpClient) {}
-  data$!: Observable<Recommendations>
+  urlImage = environment.urlImage200;
+  constructor(private http: HttpClient) {}
+  data$!: Observable<Recommendations>;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

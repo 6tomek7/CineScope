@@ -1,15 +1,15 @@
 .top-bar {
-    display: flex;
-    background-color: rgb(240,242,245);
-    justify-content: space-between;
+  display: flex;
+  background-color: rgb(240, 242, 245);
+  justify-content: space-between;
 }
 
 .container {
-    display: flex;
+  display: flex;
 }
 
 .categories {
-    border-right: 1px solid black;
-    min-height: 700px;
-    min-width: 180px;
+  border-right: 1px solid black;
+  min-height: 700px;
+  min-width: 180px;
 }

@@ -1,30 +1,47 @@
-<h3 class="mb-2">Search for {{this.searchFor}}</h3>
+<h3 class="mb-2">Search for {{ this.searchFor }}</h3>
 
 <div class="btn-group mb-2" role="group">
-    <button type="button" class="btn btn-outline-primary"(click)="searchMovies()">Movie</button>
-    <button type="button" class="btn btn-outline-primary" (click)="searchActors()">Actors</button>
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="searchMovies()"
+  >
+    Movie
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="searchActors()"
+  >
+    Actors
+  </button>
 </div>
 <div>
-    <input [(ngModel)]="name" placeholder="Search...">
-    <button [disabled]="name === ''" (click)="clear(); choice(); name=''">Search</button>
+  <input [(ngModel)]="name" placeholder="Search..." />
+  <button [disabled]="name === ''" (click)="clear(); choice(); name = ''">
+    Search
+  </button>
 </div>
 
 <div *ngFor="let movie of movies">
-    <ul>
-        <li>
-            <a routerLink="/details/{{movie.id}}"><h3>Title: {{movie.title}}</h3></a>
-             <p>Release date: {{movie.release_date}}</p>
-            <img  src="{{urlImage}}{{movie.poster_path}}">
-        </li>
-    </ul>
+  <ul>
+    <li>
+      <a routerLink="/details/{{ movie.id }}"
+        ><h3>Title: {{ movie.title }}</h3></a
+      >
+      <p>Release date: {{ movie.release_date }}</p>
+      <img src="{{ urlImage }}{{ movie.poster_path }}" />
+    </li>
+  </ul>
 </div>
 
 <div *ngFor="let actor of actors">
-    <ul>
-        <li>
-            <a routerLink="/person/{{actor.id}}"><h3>Title: {{actor.name}}</h3></a>
-            <img  src="{{urlImage}}{{actor.profile_path}}">
-        </li>
-    </ul>
+  <ul>
+    <li>
+      <a routerLink="/person/{{ actor.id }}"
+        ><h3>Title: {{ actor.name }}</h3></a
+      >
+      <img src="{{ urlImage }}{{ actor.profile_path }}" />
+    </li>
+  </ul>
 </div>
-

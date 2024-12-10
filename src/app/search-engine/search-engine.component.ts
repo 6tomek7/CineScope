@@ -7,70 +7,75 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-search-engine',
   templateUrl: './search-engine.component.html',
-  styleUrls: ['./search-engine.component.css']
+  styleUrls: ['./search-engine.component.css'],
 })
-
 export class SearchEngineComponent implements OnInit {
-  urlImage = environment.urlImage
-  movies: Array<MoviesResult> | undefined
-  actors: Array<SearchActorsResult> | undefined
-  searchFor: string | undefined
-  name = ""
+  urlImage = environment.urlImage;
+  movies: Array<MoviesResult> | undefined;
+  actors: Array<SearchActorsResult> | undefined;
+  searchFor: string | undefined;
+  name = '';
   constructor(private http: HttpClient) {}
 
-  getMovies(){
-    this.http.get<Movies>(`${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${this.name}`).subscribe((res)=>{
-      this.movies = res.results.map(array => this.convertToMovies(array))
-    })
+  getMovies() {
+    this.http
+      .get<Movies>(
+        `${environment.apiUrl}/search/movie${environment.apiKey}&language=en-US&query=${this.name}`,
+      )
+      .subscribe((res) => {
+        this.movies = res.results.map((array) => this.convertToMovies(array));
+      });
   }
 
-  convertToMovies (dto:any) : MoviesResult {
+  convertToMovies(dto: any): MoviesResult {
     return {
       title: dto.title,
       poster_path: dto.poster_path,
       release_date: dto.release_date,
       overview: dto.overview,
       genre_ids: dto.genre_ids,
-      id: dto.id
-    }
-  }  
-
-  getActors(){
-    this.http.get<SearchActors>(`${environment.apiUrl}/search/person${environment.apiKey}&query=${this.name}`).subscribe((res)=>{
-      this.actors = res.results.map(array => this.convertToActors(array))
-    })
+      id: dto.id,
+    };
   }
 
-  convertToActors (dto:any) : SearchActorsResult {
+  getActors() {
+    this.http
+      .get<SearchActors>(
+        `${environment.apiUrl}/search/person${environment.apiKey}&query=${this.name}`,
+      )
+      .subscribe((res) => {
+        this.actors = res.results.map((array) => this.convertToActors(array));
+      });
+  }
+
+  convertToActors(dto: any): SearchActorsResult {
     return {
       id: dto.id,
       name: dto.name,
-      profile_path: dto.profile_path
-    }
+      profile_path: dto.profile_path,
+    };
   }
-  
+
   searchActors() {
-    this.searchFor = "actors"
+    this.searchFor = 'actors';
   }
 
   searchMovies() {
-    this.searchFor = "movies"
+    this.searchFor = 'movies';
   }
 
   choice() {
-    if (this.searchFor === "actors"){
-      this.getActors()   
-    }
-    else if (this.searchFor === "movies")
-    {
-      this.getMovies()
+    if (this.searchFor === 'actors') {
+      this.getActors();
+    } else if (this.searchFor === 'movies') {
+      this.getMovies();
     }
   }
 
-  clear(){
-    this.movies = []
-    this.actors = []
+  clear() {
+    this.movies = [];
+    this.actors = [];
   }
-  
+
   ngOnInit(): void {}
 }

@@ -8,26 +8,25 @@ import { PopularMoviesInTheGenreComponent } from './popular-movies-in-the-genre/
 import { ListOfMoviesComponent } from './list-of-movies/list-of-movies.component';
 
 const routes: Routes = [
-  { path: "popular-movies", component: PopularMoviesComponent },
-  { path: "search-engine", component: SearchEngineComponent },
-  { path: "details/:id", component: MovieDetailsComponent },
-  { path: "details/:id/:token", component: MovieDetailsComponent },
-  { path: "person/:id", component: PersonDetailsComponent },
-  { path: "genre/:id/:name", component: PopularMoviesInTheGenreComponent },
-  { path: "movies-list", component: ListOfMoviesComponent }
+  { path: 'popular-movies', component: PopularMoviesComponent },
+  { path: 'search-engine', component: SearchEngineComponent },
+  { path: 'details/:id', component: MovieDetailsComponent },
+  { path: 'details/:id/:token', component: MovieDetailsComponent },
+  { path: 'person/:id', component: PersonDetailsComponent },
+  { path: 'genre/:id/:name', component: PopularMoviesInTheGenreComponent },
+  { path: 'movies-list', component: ListOfMoviesComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-export const RoutingComponents = 
-[
-  PopularMoviesComponent, 
+export class AppRoutingModule {}
+export const RoutingComponents = [
+  PopularMoviesComponent,
   SearchEngineComponent,
   MovieDetailsComponent,
-  PersonDetailsComponent, 
-  PopularMoviesInTheGenreComponent, 
-  ListOfMoviesComponent
-]
+  PersonDetailsComponent,
+  PopularMoviesInTheGenreComponent,
+  ListOfMoviesComponent,
+];

@@ -1,4 +1,8 @@
-import { MoviesService, WatchlistMovies, WatchlistMoviesResult } from './../movies.service';
+import {
+  MoviesService,
+  WatchlistMovies,
+  WatchlistMoviesResult,
+} from './../movies.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -8,30 +12,33 @@ import { map, of } from 'rxjs';
 @Component({
   selector: 'app-list-of-movies',
   templateUrl: './list-of-movies.component.html',
-  styleUrls: ['./list-of-movies.component.css']
+  styleUrls: ['./list-of-movies.component.css'],
 })
 export class ListOfMoviesComponent implements OnInit {
-  info: string | undefined
-  watchlistMovies$: Observable<Array<WatchlistMoviesResult>> | undefined
+  info: string | undefined;
+  watchlistMovies$: Observable<Array<WatchlistMoviesResult>> | undefined;
   constructor(
     private http: HttpClient,
-    private moviesService: MoviesService
-  ) { }
-
+    private moviesService: MoviesService,
+  ) {}
 
   ngOnInit(): void {
-    if(this.moviesService.session_Id?.session_id != undefined){
-      this.watchlistMovies$ = this.http.get<WatchlistMovies>
-      (`${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.session_Id?.session_id}&sort_by=created_at.asc`)
-        .pipe(map(results => results.results)) 
+    if (this.moviesService.session_Id?.session_id != undefined) {
+      this.watchlistMovies$ = this.http
+        .get<WatchlistMovies>(
+          `${environment.apiUrl}/account/{account_id}/watchlist/movies${environment.apiKey}&session_id=${this.moviesService.session_Id?.session_id}&sort_by=created_at.asc`,
+        )
+        .pipe(map((results) => results.results));
     }
-    if(this.moviesService.session_Id?.session_id === undefined){
-      this.info = "Local storage:"
-      this.loadLocalData()
+    if (this.moviesService.session_Id?.session_id === undefined) {
+      this.info = 'Local storage:';
+      this.loadLocalData();
     }
   }
 
-  loadLocalData(){
-    this.watchlistMovies$ = of(JSON.parse(localStorage.getItem("session")||''))
+  loadLocalData() {
+    this.watchlistMovies$ = of(
+      JSON.parse(localStorage.getItem('session') || ''),
+    );
   }
 }

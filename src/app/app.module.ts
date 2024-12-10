@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RoutingComponents } from './app-routing.module'
+import { RoutingComponents } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TrnsformTimePipe } from './shared/trnsform-time.pipe';
@@ -17,7 +17,7 @@ import { ToastComponent } from './toast/toast.component';
     RoutingComponents,
     TrnsformTimePipe,
     RecommendationsMoviesComponent,
-    ToastComponent
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,10 +25,9 @@ import { ToastComponent } from './toast/toast.component';
     HttpClientModule,
     FormsModule,
     NgbModule,
-    NgToastModule
+    NgToastModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}
