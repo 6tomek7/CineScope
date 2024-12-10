@@ -1,6 +1,6 @@
 .top-bar {
   display: flex;
-  background-color: rgb(240, 242, 245);
+  background-color: rgba(212, 255, 0, 255);
   justify-content: space-between;
 }
 
@@ -12,4 +12,8 @@
   border-right: 1px solid black;
   min-height: 700px;
   min-width: 180px;
+}
+
+.logo {
+  width: 160px;
 }
