@@ -1,0 +1,56 @@
+<div class="search-engine mb-3">
+    <app-search-engine [name]="name"></app-search-engine>
+</div>
+
+<div class="d-flex m-4">
+    <div class="categories me-4">
+        <div class="header p-2">
+            <h3>Search results:</h3>
+        </div>
+        <div class="categories-list">
+            <nav>
+                <a routerLink="../people/people"
+                [queryParams]="{query:this.name, page: 1}"
+                >People</a>
+                <span>{{actorsTotalResults}}</span>
+            </nav>
+            <nav>
+                <a routerLink="../collection/collection"
+                    [queryParams]="{query:this.name, page: 1}">
+                    Collection</a>
+                    <span>{{collectionsTotalResults}}</span>
+            </nav>
+            <nav>
+                <a routerLink="../companies/companies"
+                [queryParams]="{query:this.name, page: 1}"
+                >Companies</a>
+                <span>{{companiesTotalResults}}</span>
+            </nav>
+            <nav>
+                <a routerLink="../keywords/keywords"
+                [queryParams]="{query:this.name, page: 1}"
+                >Keywords</a>
+                <span>{{keywordsTotalResults}}</span>
+            </nav>
+            <nav>
+                <a routerLink="../movies/movies"
+                [queryParams]="{query:this.name, page: 1}"
+                >Movies</a>
+                <span>{{moviesTotalResults}}</span>
+            </nav>
+            <nav>
+                <a routerLink="../tvShows/tvShows"
+                [queryParams]="{query:this.name, page: 1}"
+                >Tv shows</a>
+                <span>{{tvShowsTotalResults}}</span>
+            </nav>
+        </div> 
+    </div>
+    <div class="search-results flex-grow-1">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<div *ngIf="this.showPagination" class="d-flex justify-content-center">
+    <app-pagination [totalPages] = "totalPages"></app-pagination>
+</div>
+

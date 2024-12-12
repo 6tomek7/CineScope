@@ -6,7 +6,7 @@
   class="watchlist"
   *ngFor="let watchlistElement of watchlistMovies$ | async"
 >
-  <a routerLink="/details/{{ watchlistElement.id }}"
+  <a routerLink="/details/movies/{{ watchlistElement.id }}"
     >Title: {{ watchlistElement.title }}</a
   >
 </div>

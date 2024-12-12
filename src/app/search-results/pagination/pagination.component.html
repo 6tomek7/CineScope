@@ -1,0 +1,35 @@
+<nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link"  tabindex="-1" aria-disabled="true"
+        routerLink="../{{this.pathName}}"
+        [queryParams]="{query: this.query, page: this.firstNumber}"
+        >Previous
+        </a>
+      </li>
+      <li class="page-item {{firstButton}}">
+        <a class="page-link"
+        routerLink="../{{this.pathName}}"
+        [queryParams]="{query: this.query, page: this.firstNumber}">{{firstNumber}}
+        </a>
+      </li>
+      <li class="page-item {{secondButton}}" aria-current="page">
+        <a class="page-link"
+        routerLink="../{{this.pathName}}"
+        [queryParams]="{query: this.query, page: this.secondNumber}">{{secondNumber}}</a>
+      </li>
+      <li *ngIf="thirdButtonActivated" class="page-item {{thirdButton}}">
+        <a class="page-link" 
+        routerLink="../{{this.pathName}}"
+        [queryParams]="{query: this.query, page: this.thirdNumber}">{{thirdNumber}}
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" 
+        routerLink="../{{this.pathName}}"
+        [queryParams]="{query: this.query, page: this.thirdNumber}">
+        Next
+        </a>
+      </li>
+    </ul>
+  </nav>

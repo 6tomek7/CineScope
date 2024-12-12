@@ -1,8 +1,8 @@
 import {
-  Movies,
   Credits,
   CreditsResult,
   MoviesService,
+  Genres,
 } from './../movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-movie-details',
@@ -17,13 +19,12 @@ import { map } from 'rxjs';
   styleUrls: ['./movie-details.component.css'],
 })
 export class MovieDetailsComponent implements OnInit {
+  rate = 5;
   urlImage = environment.urlImage;
+  urlImage200 = environment.urlImage200;
   id: string | undefined;
-  data$: Observable<Movies> | undefined;
+  data$: Observable<Genres> | undefined;
   persons$: Observable<Array<CreditsResult>> | undefined;
-  permission = environment.authenticate;
-  tokenNumber = this.moviesService.tokenRequest?.request_token;
-  actuallyUrl = window.location;
   approved: string | undefined;
   show: boolean | undefined;
 
@@ -31,6 +32,7 @@ export class MovieDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private moviesService: MoviesService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -38,30 +40,36 @@ export class MovieDetailsComponent implements OnInit {
       this.id = params['id'];
       this.approved = params['token'];
       this.moviesService.getApproved(this.approved);
-      this.data$ = this.http.get<Movies>(
-        `${environment.apiUrl}/movie/${this.id}${environment.apiKey}`,
+      this.data$ = this.http.get<Genres>(
+        `${environment.apiUrl}/movie/${this.id}${environment.apiKey}`
       );
       this.persons$ = this.http
         .get<Credits>(
-          `${environment.apiUrl}/movie/${this.id}/credits${environment.apiKey}`,
+          `${environment.apiUrl}/movie/${this.id}/credits${environment.apiKey}`
         )
         .pipe(map((cast) => cast.cast));
       this.moviesService.getRoute(this.id);
       window.scroll({ top: 0, left: 0, behavior: 'smooth' });
       if (this.approved != undefined) {
-        this.moviesService.logicAddMovie();
+        this.moviesService.sendRequestToken();
       }
     });
   }
 
+  openModal() {
+    const modalRef = this.modalService.open(ModalComponent);
+  }
+
+  rateMovie(value: number) {
+    this.moviesService.rateMovie(value);
+  }
+
   addToWatchlist() {
-    this.moviesService.getToken();
-    this.moviesService.logicAddMovie();
+    this.moviesService.addMovie();
     setTimeout(() => {
-      this.tokenNumber = this.moviesService.tokenRequest?.request_token;
       if (this.moviesService.session_Id === undefined) {
-        this.show = true;
-      } else this.show = false;
+        this.openModal();
+      }
     }, 1000);
   }
 }

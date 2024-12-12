@@ -1,0 +1,9 @@
+<div class="movies d-flex m-1 mb-2" *ngFor="let movie of moviesResult | async">
+    <img  src="{{urlImage}}{{movie.poster_path}}">
+    <div class="p-2">
+        <a routerLink="/details/movies/{{movie.id}}">
+            <h3>Title: {{movie.title}}</h3>
+        </a>
+        <p>Release date: {{movie.release_date}}</p>
+    </div>
+</div>

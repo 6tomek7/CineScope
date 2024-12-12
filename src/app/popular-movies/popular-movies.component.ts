@@ -10,13 +10,13 @@ import { Observable } from 'rxjs/internal/Observable';
   styleUrls: ['./popular-movies.component.css'],
 })
 export class PopularMoviesComponent implements OnInit {
-  urlImage = environment.urlImage;
+  urlImage = environment.urlImage200;
   constructor(private http: HttpClient) {}
-  data$!: Observable<Movies>;
+  data$: Observable<Movies> | undefined;
 
   ngOnInit(): void {
     this.data$ = this.http.get<Movies>(
-      `${environment.apiUrl}/movie/popular${environment.apiKey}`,
+      `${environment.apiUrl}/movie/popular${environment.apiKey}`
     );
   }
 }

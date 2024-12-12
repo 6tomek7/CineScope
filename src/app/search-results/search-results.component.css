@@ -1,0 +1,31 @@
+.categories {
+    width: 250px;
+    height: 350px;
+    box-sizing: border-box; 
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.header {
+    background-color: rgb(196, 255, 210);
+    border-radius: 8px 8px 0px 0px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    flex-grow: 1;
+    font-size:x-large;
+    padding: 2%;
+}
+
+nav:hover {
+    background-color: rgb(210, 255, 221);
+    cursor:default
+}

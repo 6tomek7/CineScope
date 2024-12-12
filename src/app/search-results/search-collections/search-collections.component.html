@@ -1,0 +1,13 @@
+<div class="collection d-flex m-1 mb-2" *ngFor="let collection of collections | async">
+    <div class="image">
+        <div *ngIf="collection.poster_path">
+            <img  src="{{urlImage}}{{collection.poster_path}}">
+        </div>
+        <div *ngIf="!collection.poster_path">
+            <img src="../../assets/no-image.png">
+        </div>
+    </div>
+    <div class="content p-2">
+        <h3>Title: {{collection.name}}</h3>
+    </div>   
+</div>
