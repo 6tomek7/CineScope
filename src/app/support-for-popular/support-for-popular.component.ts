@@ -3,34 +3,20 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-support-for-popular',
   templateUrl: './support-for-popular.component.html',
-  styleUrls: ['./support-for-popular.component.css']
+  styleUrls: ['./support-for-popular.component.css'],
 })
 export class SupportForPopularComponent implements OnInit {
-  showMovies = false
-  showActors = false
-  showOnTv = false
-
-  constructor() { }
+  showMovies = false;
+  showActors = false;
+  showOnTv = false;
 
   ngOnInit(): void {
-    this.viewMovies()
+    this.updateView('movies');
   }
 
-  viewMovies(){
-    this.showMovies = true
-    this.showActors = false
-    this.showOnTv = false
-  }
-
-  viewActors(){
-    this.showActors = true
-    this.showMovies = false
-    this.showOnTv= false
-  }
-
-  viewOnTv(){
-    this.showOnTv = true
-    this.showMovies = false
-    this.showActors = false
+  updateView(view: 'movies' | 'actors' | 'onTv') {
+    this.showMovies = view === 'movies';
+    this.showActors = view === 'actors';
+    this.showOnTv = view === 'onTv';
   }
 }

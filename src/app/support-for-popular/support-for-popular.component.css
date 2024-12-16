@@ -1,4 +1,9 @@
-.header{
-    align-items: center;
-    align-content: center;
+label,
+span {
+  white-space: nowrap;
+}
+
+span {
+  font-size: xx-large;
+  font-weight: 500;
 }
