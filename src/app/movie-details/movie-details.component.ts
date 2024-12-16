@@ -57,7 +57,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   openModal() {
-    const modalRef = this.modalService.open(ModalComponent);
+    this.modalService.open(ModalComponent);
   }
 
   rateMovie(value: number) {

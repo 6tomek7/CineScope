@@ -1,8 +1,9 @@
-<div class="popular-actors mt-3" *ngIf="popularActors$ | async as popularActor">
-    <div class="container" *ngFor="let result of popularActor.results">    
-        <img  src="{{urlImage}}{{result.profile_path}}">
-        <div class="title ms-1">
-            <a routerLink="/details/person/{{result.id}}"><b>{{result.name}}</b></a> 
-        </div>
-    </div>
+<div class="sliding-bar" *ngIf="popularActors$ | async as popularActor">
+  <ul *ngFor="let result of popularActor.results">
+    <app-sliding-bar
+      [imagePath]="result.profile_path"
+      [link]="'/details/person/' + result.id"
+      [name]="result.name"
+    ></app-sliding-bar>
+  </ul>
 </div>

@@ -1,10 +1,9 @@
-<div class="popular-movies mt-3" *ngIf="data$ | async as data">
-  <div class="container" *ngFor="let result of data.results">
-    <img src="{{ urlImage }}{{ result.poster_path }}" />
-    <div class="title ms-1">
-      <a routerLink="/details/movies/{{ result.id }}"
-        ><b>{{ result.title }}</b></a
-      >
-    </div>
-  </div>
+<div class="sliding-bar" *ngIf="data$ | async as data">
+  <ul *ngFor="let result of data.results">
+    <app-sliding-bar
+      [imagePath]="result.poster_path"
+      [link]="'/details/movies/' + result.id"
+      [name]="result.title"
+    ></app-sliding-bar>
+  </ul>
 </div>

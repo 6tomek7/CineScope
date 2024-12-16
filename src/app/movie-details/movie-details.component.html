@@ -66,16 +66,15 @@
 
 <h3 class="mt-1 ms-4">Cast</h3>
 <div class="persons me-4 ms-4">
-  <div *ngFor="let person of persons$ | async">
-    <ul>
-      <a routerLink="/details/person/{{ person.id }}">
-        <img src="{{ urlImage200 }}{{ person.profile_path }}" />
-        <b>{{ person.name }}</b>
-      </a>
-    </ul>
-  </div>
+  <ul *ngFor="let person of persons$ | async">
+    <app-sliding-bar
+      [imagePath]="person.profile_path"
+      [link]="'/details/person/' + person.id"
+      [name]="person.name"
+    ></app-sliding-bar>
+  </ul>
 </div>
-<div class="content me-4 ms-4">
+<div class="content me-4 ms-4 mt-3">
   <div>
     <app-recommendations-movies [parentId]="id"></app-recommendations-movies>
   </div>
