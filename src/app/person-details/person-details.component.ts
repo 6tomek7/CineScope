@@ -1,9 +1,8 @@
 import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs/internal/Observable';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Person } from '../movies.service';
+import { MoviesService, Person } from '../movies.service';
 
 @Component({
   selector: 'app-person-details',
@@ -12,18 +11,19 @@ import { Person } from '../movies.service';
 })
 export class PersonDetailsComponent implements OnInit {
   urlImage = environment.urlImage;
-  private _id: number | undefined;
   person$!: Observable<Person>;
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
+    private moviesService: MoviesService
   ) {}
 
   ngOnInit(): void {
-    this._id = this.route.snapshot.params['id'];
-    this.person$ = this.http.get<Person>(
-      `${environment.apiUrl}/person/${this._id}${environment.apiKey}`,
-    );
+    this.getPersonDetails();
+  }
+
+  private getPersonDetails(): void {
+    const id = this.route.snapshot.params['id'];
+    this.person$ = this.moviesService.getPersonDetails(id);
   }
 }

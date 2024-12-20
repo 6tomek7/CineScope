@@ -394,4 +394,10 @@ export class MoviesService {
       `${environment.apiUrl}/tv/popular${environment.apiKey}`
     );
   }
+
+  getPersonDetails(id: number): Observable<Person> {
+    return this.http.get<Person>(
+      `${environment.apiUrl}/person/${id}${environment.apiKey}`
+    );
+  }
 }
