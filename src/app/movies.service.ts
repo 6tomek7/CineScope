@@ -209,9 +209,7 @@ export class MoviesService {
     private http: HttpClient,
     private toastService: ToastService,
     private googleService: GoogleService
-  ) {
-    this.googleService.googleLogin();
-  }
+  ) {}
   getRoute(id: string | undefined) {
     this.routeId = id;
   }
