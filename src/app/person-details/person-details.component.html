@@ -1,7 +1,6 @@
-<div *ngIf="person$ | async as person">
-  <h3>{{ person.name }}</h3>
-  <div class="container">
-    <div class="left-column">
+<div class="container-fluid mt-2" *ngIf="person$ | async as person">
+  <div class="row">
+    <div class="col-sm-4">
       <div *ngIf="person.profile_path">
         <img src="{{ urlImage }}{{ person.profile_path }}" />
       </div>
@@ -9,10 +8,16 @@
         <img src="../assets/Profile.png" />
       </div>
     </div>
-    <div class="right-column">
-      <p>Date of birth: {{ person.birthday }}</p>
-      <p>Place of birth: {{ person.place_of_birth }}</p>
-      <p>{{ person.biography }}</p>
+    <div class="col-sm-8">
+      <h3>
+        <b>{{ person.name }}</b>
+      </h3>
+      <p><b>Date of birth:</b> {{ person.birthday }}</p>
+      <p><b>Place of birth:</b> {{ person.place_of_birth }}</p>
+      <p *ngIf="person.biography"><b>Biography:</b> {{ person.biography }}</p>
+      <p *ngIf="!person.biography">
+        <b>Biography:</b> We don't have a biography for {{ person.name }}.
+      </p>
     </div>
   </div>
 </div>

@@ -22,6 +22,7 @@ import {
 import { SearchEngineModule } from './search-engine/search-engine.module';
 import { PopularMoviesComponent } from './popular-movies/popular-movies.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     SocialLoginModule,
     SearchEngineModule,
     OAuthModule.forRoot(),
+    SharedModule,
   ],
   providers: [
     {

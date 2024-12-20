@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Movies } from '../movies.service';
-import { environment } from 'src/environments/environment';
+import { Movies, MoviesService } from '../movies.service';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
@@ -10,13 +8,10 @@ import { Observable } from 'rxjs/internal/Observable';
   styleUrls: ['./popular-movies.component.css'],
 })
 export class PopularMoviesComponent implements OnInit {
-  urlImage = environment.urlImage200;
-  constructor(private http: HttpClient) {}
+  constructor(private moviesService: MoviesService) {}
   data$: Observable<Movies> | undefined;
 
   ngOnInit(): void {
-    this.data$ = this.http.get<Movies>(
-      `${environment.apiUrl}/movie/popular${environment.apiKey}`
-    );
+    this.data$ = this.moviesService.getPopularMovies();
   }
 }

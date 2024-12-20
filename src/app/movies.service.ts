@@ -12,6 +12,10 @@ export interface Movies {
   total_results: number;
 }
 
+export interface ArrayResult<T> {
+  results: Array<T>;
+}
+
 export interface MoviesResult {
   title: string;
   name?: string;
@@ -371,5 +375,29 @@ export class MoviesService {
       .then((a) => {
         this.userProfileTmdbSubject.next(a as Profile);
       });
+  }
+
+  getPopularActors(): Observable<PopularPeople> {
+    return this.http.get<PopularPeople>(
+      `${environment.apiUrl}/person/popular${environment.apiKey}`
+    );
+  }
+
+  getPopularMovies(): Observable<Movies> {
+    return this.http.get<Movies>(
+      `${environment.apiUrl}/movie/popular${environment.apiKey}`
+    );
+  }
+
+  getPopularOnTv(): Observable<Movies> {
+    return this.http.get<Movies>(
+      `${environment.apiUrl}/tv/popular${environment.apiKey}`
+    );
+  }
+
+  getPersonDetails(id: number): Observable<Person> {
+    return this.http.get<Person>(
+      `${environment.apiUrl}/person/${id}${environment.apiKey}`
+    );
   }
 }
