@@ -1,9 +1,9 @@
 <div class="movie-details p-3" *ngIf="data$ | async as data">
-  <div class="details">
-    <div class="left-column p-2">
+  <div class="row">
+    <div class="col-sm-4">
       <img src="{{ urlImage }}{{ data.poster_path }}" />
     </div>
-    <div class="right-column">
+    <div class="col-sm-8">
       <div class="functionality d-flex mb-2">
         <div class="star" ngbDropdown #myDrop="ngbDropdown" title="Rate it">
           <svg
@@ -58,7 +58,7 @@
             >
           </span>
         </p>
-        <p><b>Overview:</b>{{ data.overview }}</p>
+        <p><b>Overview: </b>{{ data.overview }}</p>
       </div>
     </div>
   </div>

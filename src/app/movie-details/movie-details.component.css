@@ -1,11 +1,3 @@
-.details {
-  display: flex;
-}
-
-.right-column {
-  padding: 1rem;
-}
-
 .persons {
   display: flex;
   overflow-y: auto;
@@ -37,4 +29,8 @@ a {
 
 a:hover {
   color: darkgreen;
+}
+
+img {
+  width: 100%;
 }
